@@ -5,42 +5,42 @@ import getTheme from './theme'
 fs.mkdir('./themes', { recursive: true })
   .then(() => Promise.all([
     fs.writeFile(
-      './themes/vitesse-light.json',
+      './themes/jannchie-dark.json',
       `${JSON.stringify(getTheme({
-        style: 'light',
-        name: 'Vitesse Light',
+        style: 'dark',
+        name: 'Jannchie Dark',
       }), null, 2)}\n`,
     ),
     fs.writeFile(
-      './themes/vitesse-dark.json',
+      './themes/jannchie-black.json',
       `${JSON.stringify(getTheme({
         style: 'dark',
-        name: 'Vitesse Dark',
-      }), null, 2)}\n`,
-    ),
-    fs.writeFile(
-      './themes/vitesse-black.json',
-      `${JSON.stringify(getTheme({
-        style: 'dark',
-        name: 'Vitesse Black',
+        name: 'Jannchie Black',
         black: true,
       }), null, 2)}\n`,
     ),
     fs.writeFile(
-      './themes/vitesse-light-soft.json',
-      `${JSON.stringify(getTheme({
-        style: 'light',
-        name: 'Vitesse Light Soft',
-        soft: true,
-      }), null, 2)}\n`,
-    ),
-    fs.writeFile(
-      './themes/vitesse-dark-soft.json',
+      './themes/jannchie-dark-soft.json',
       `${JSON.stringify(getTheme({
         style: 'dark',
-        name: 'Vitesse Dark Soft',
+        name: 'Jannchie Dark Soft',
         soft: true,
       }), null, 2)}\n`,
     ),
+    // fs.writeFile(
+    //   './themes/jannchie-light.json',
+    //   `${JSON.stringify(getTheme({
+    //     style: 'light',
+    //     name: 'Jannchie Light',
+    //   }), null, 2)}\n`,
+    // ),
+    // fs.writeFile(
+    //   './themes/jannchie-light-soft.json',
+    //   `${JSON.stringify(getTheme({
+    //     style: 'light',
+    //     name: 'Jannchie Light Soft',
+    //     soft: true,
+    //   }), null, 2)}\n`,
+    // ),
   ]))
   .catch(() => process.exit(1))

@@ -1,21 +1,21 @@
 {
-  "publisher": "antfu",
-  "name": "theme-vitesse",
-  "displayName": "Vitesse Theme",
-  "version": "0.7.3",
-  "packageManager": "pnpm@8.7.1",
-  "description": "Vitesse theme for VS Code",
+  "publisher": "jannchie",
+  "name": "theme-jannchie",
+  "displayName": "Jannchie Theme",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "Jannchie theme for VS Code",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/antfu/vscode-theme-vitesse"
+    "url": "https://github.com/jannchie/vscode-theme"
   },
   "bugs": {
-    "url": "https://github.com/antfu/vscode-theme-vitesse/issues"
+    "url": "https://github.com/jannchie/vscode-theme/issues"
   },
   "keywords": [
     "theme",
-    "vitesse",
+    "my-theme",
     "light",
     "dark"
   ],
@@ -32,29 +32,19 @@
   "contributes": {
     "themes": [
       {
-        "label": "Vitesse Light",
-        "uiTheme": "vs",
-        "path": "./themes/vitesse-light.json"
-      },
-      {
-        "label": "Vitesse Dark",
+        "label": "Jannchie Dark",
         "uiTheme": "vs-dark",
-        "path": "./themes/vitesse-dark.json"
+        "path": "./themes/jannchie-dark.json"
       },
       {
-        "label": "Vitesse Black",
+        "label": "Jannchie Black",
         "uiTheme": "vs-dark",
-        "path": "./themes/vitesse-black.json"
+        "path": "./themes/jannchie-black.json"
       },
       {
-        "label": "Vitesse Light Soft",
-        "uiTheme": "vs",
-        "path": "./themes/vitesse-light-soft.json"
-      },
-      {
-        "label": "Vitesse Dark Soft",
+        "label": "Jannchie Dark Soft",
         "uiTheme": "vs-dark",
-        "path": "./themes/vitesse-dark-soft.json"
+        "path": "./themes/jannchie-dark-soft.json"
       }
     ]
   },
@@ -67,14 +57,14 @@
     "release": "bumpp --all && vsce publish --no-dependencies"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.41.0",
     "@antfu/utils": "^0.7.6",
-    "@types/color": "^3.0.3",
-    "@types/node": "^18.17.12",
-    "@vscode/vsce": "^2.21.0",
+    "@jannchie/eslint-config": "^2.2.0",
+    "@types/color": "^3.0.4",
+    "@types/node": "^20.8.6",
+    "@vscode/vsce": "^2.21.1",
     "bumpp": "^9.2.0",
     "color": "^4.2.3",
-    "eslint": "^8.48.0",
+    "eslint": "^8.51.0",
     "esno": "^0.17.0",
     "tsup": "^7.2.0",
     "typescript": "^5.2.2"
