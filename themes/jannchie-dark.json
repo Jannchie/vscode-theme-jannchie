@@ -607,7 +607,7 @@
       ],
       "settings": {
         "fontStyle": "bold",
-        "foreground": "#0571af"
+        "foreground": "#e4c14f"
       }
     },
     {
@@ -1136,11 +1136,11 @@
     },
     {
       "token": "markup.heading",
-      "foreground": "0571af"
+      "foreground": "e4c14f"
     },
     {
       "token": "markup.heading entity.name",
-      "foreground": "0571af"
+      "foreground": "e4c14f"
     },
     {
       "token": "markup.quote",

@@ -676,7 +676,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
         scope: ['markup.heading', 'markup.heading entity.name'],
         settings: {
           fontStyle: 'bold',
-          foreground: primary,
+          foreground: themeColor('function'),
         },
       },
       {
