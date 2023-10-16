@@ -1,6 +1,6 @@
 import { toArray } from '@antfu/utils'
 import { getColors } from './primer'
-import { JannchieThemes } from './colors'
+import { JannchieThemes, scheme } from './colors'
 
 export default function getTheme({ style, name, soft = false, black = false }) {
   // Usage: `pick({ light: "lightblue", dark: "darkblue" })`
@@ -48,8 +48,8 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'descriptionForeground': secondaryForeground,
       'errorForeground': themeColor('red'),
 
-      'textLink.foreground': primary,
-      'textLink.activeForeground': primary,
+      'textLink.foreground': scheme.blue[6],
+      'textLink.activeForeground': scheme.blue[5],
       'textBlockQuote.background': background,
       'textBlockQuote.border': border,
       'textCodeBlock.background': background,
