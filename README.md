@@ -1,6 +1,8 @@
 <h1 align="center">Jannchie's Theme for VS Code</h1>
 
-<img src="https://raw.githubusercontent.com/Jannchie/vscode-theme-jannchie/main/shapshot.png" alt="preview" width="100%">
+![preview](https://vscodethemes.com/e/jannchie.theme-jannchie/jannchie-dark.svg?language=javascript)
+
+[More Previews](https://vscodethemes.com/e/jannchie.theme-jannchie/jannchie-dark?language=cpp)
 
 This is a vscode theme I made for myself.
 
