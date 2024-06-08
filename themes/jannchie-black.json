@@ -423,7 +423,19 @@
       }
     },
     {
-      "scope": "support",
+      "scope": [
+        "support",
+        "support.type.property-name.toml"
+      ],
+      "settings": {
+        "foreground": "#a2d6f8"
+      }
+    },
+    {
+      "scope": [
+        "support.type.property-name.table.toml",
+        "support.type.property-name.array.toml"
+      ],
       "settings": {
         "foreground": "#e4c150"
       }
@@ -991,6 +1003,18 @@
     },
     {
       "token": "support",
+      "foreground": "a2d6f8"
+    },
+    {
+      "token": "support.type.property-name.toml",
+      "foreground": "a2d6f8"
+    },
+    {
+      "token": "support.type.property-name.table.toml",
+      "foreground": "e4c150"
+    },
+    {
+      "token": "support.type.property-name.array.toml",
       "foreground": "e4c150"
     },
     {

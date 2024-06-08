@@ -57,17 +57,17 @@
     "release": "bumpp --all && vsce publish --no-dependencies"
   },
   "devDependencies": {
-    "@antfu/utils": "^0.7.6",
-    "@jannchie/eslint-config": "^2.2.0",
-    "@types/color": "^3.0.4",
-    "@types/node": "^20.8.6",
-    "@vscode/vsce": "^2.21.1",
-    "bumpp": "^9.2.0",
+    "@antfu/utils": "^0.7.8",
+    "@jannchie/eslint-config": "^3.2.0",
+    "@types/color": "^3.0.6",
+    "@types/node": "^20.12.11",
+    "@vscode/vsce": "^2.26.1",
+    "bumpp": "^9.4.1",
     "color": "^4.2.3",
-    "eslint": "^8.51.0",
-    "esno": "^0.17.0",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2"
+    "eslint": "^9.2.0",
+    "esno": "^4.7.0",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
   },
   "preview": true
 }

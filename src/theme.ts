@@ -498,7 +498,16 @@ export default function getTheme({ style, name, soft = false, black = false }) {
         },
       },
       {
-        scope: 'support',
+        scope: ['support', 'support.type.property-name.toml'],
+        settings: {
+          foreground: themeColor('property'),
+        },
+      },
+      {
+        scope: [
+          'support.type.property-name.table.toml',
+          'support.type.property-name.array.toml',
+        ],
         settings: {
           foreground: themeColor('function'),
         },
