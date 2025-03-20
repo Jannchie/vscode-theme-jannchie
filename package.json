@@ -54,7 +54,7 @@
     "vscode:prepublish": "npm run build",
     "lint": "eslint .",
     "prepublishOnly": "npm run build",
-    "release": "bumpp --all && vsce publish --no-dependencies"
+    "release": "vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@antfu/utils": "^0.7.8",
