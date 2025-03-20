@@ -3,7 +3,7 @@
   "name": "theme-jannchie",
   "displayName": "Jannchie Theme",
   "type": "module",
-  "version": "0.5.0",
+  "version": "1.0.0",
   "description": "Jannchie theme for VS Code",
   "license": "MIT",
   "repository": {
