@@ -1,3 +1,4 @@
+import { it } from 'node:test'
 import { toArray } from '@antfu/utils'
 import { getColors } from './primer'
 import { JannchieThemes, scheme } from './colors'
@@ -35,9 +36,9 @@ export default function getTheme({ style, name, soft = false, black = false }) {
     ? themeColor('punctuation', 'cc')
     : themeColor('punctuation')
 
-  const selectionBackgroundInActive = pick({ light: '#22222208', dark: '#eeeeee08' })
-  const selectionBackgroundActive = pick({ light: '#22222215', dark: '#eeeeee15' })
-  const selectionBackground = pick({ light: '#22222215', dark: '#eeeeee15' })
+  const selectionBackgroundInActive = pick({ light: '#22222208', dark: '#eeeeee15' })
+  const selectionBackgroundActive = pick({ light: '#22222215', dark: '#eeeeee25' })
+  const selectionBackground = pick({ light: '#22222215', dark: '#eeeeee25' })
 
   const theme = {
     name,
@@ -272,6 +273,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editorStickyScrollHover.background': activeBackground,
 
       'menu.separatorBackground': border,
+
     },
     semanticHighlighting: true,
     semanticTokenColors: {
@@ -314,11 +316,18 @@ export default function getTheme({ style, name, soft = false, black = false }) {
         foreground: themeColor('class'),
         underline: true,
       },
+      'enum': {
+        foreground: themeColor('class'),
+        underline: true,
+      },
       'enumMember': {
         foreground: themeColor('class'),
         underline: true,
       },
       'decorator': themeColor('decorator'),
+      'variable.decorator': {
+        foreground: themeColor('decorator'),
+      },
       'event': themeColor('function'),
       'function': themeColor('function'),
       'function.builtin': themeColor('functionBuiltin'),
@@ -336,6 +345,9 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'operator': themeColor('operator'),
       'builtinConstant': themeColor('boolean'),
       'component': themeColor('class'),
+      'variable.builtin': {
+        bold: true,
+      },
     },
     tokenColors: [
       {

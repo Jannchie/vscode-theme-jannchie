@@ -102,7 +102,7 @@
     "breadcrumb.foreground": "#959da5",
     "breadcrumb.focusForeground": "#d4d4d4",
     "breadcrumb.background": "#262626",
-    "breadcrumb.activeSelectionForeground": "#eeeeee15",
+    "breadcrumb.activeSelectionForeground": "#eeeeee25",
     "breadcrumbPicker.background": "#171717",
     "editor.foreground": "#d4d4d4",
     "editor.background": "#171717",
@@ -116,9 +116,9 @@
     "editorWhitespace.foreground": "#ffffff15",
     "editor.findMatchBackground": "#e6cc7722",
     "editor.findMatchHighlightBackground": "#e6cc7744",
-    "editor.inactiveSelectionBackground": "#eeeeee08",
-    "editor.selectionBackground": "#eeeeee15",
-    "editor.selectionHighlightBackground": "#eeeeee08",
+    "editor.inactiveSelectionBackground": "#eeeeee15",
+    "editor.selectionBackground": "#eeeeee25",
+    "editor.selectionHighlightBackground": "#eeeeee15",
     "editor.wordHighlightBackground": "#1c6b4805",
     "editor.wordHighlightStrongBackground": "#1c6b4810",
     "editorBracketMatch.background": "#4d937520",
@@ -136,7 +136,7 @@
     "panelTitle.inactiveForeground": "#959da5",
     "panelInput.border": "#2f363d",
     "terminal.foreground": "#d4d4d4",
-    "terminal.selectionBackground": "#eeeeee15",
+    "terminal.selectionBackground": "#eeeeee25",
     "terminal.ansiBrightBlack": "#777777",
     "terminal.ansiBrightBlue": "#4babf2",
     "terminal.ansiBrightCyan": "#57cbdd",
@@ -236,11 +236,18 @@
       "foreground": "#33b07e",
       "underline": true
     },
+    "enum": {
+      "foreground": "#33b07e",
+      "underline": true
+    },
     "enumMember": {
       "foreground": "#33b07e",
       "underline": true
     },
     "decorator": "#d39d91",
+    "variable.decorator": {
+      "foreground": "#d39d91"
+    },
     "event": "#e4c150",
     "function": "#e4c150",
     "function.builtin": "#f3e1a6",
@@ -257,7 +264,10 @@
     "regexp": "#efacad",
     "operator": "#e47f7f",
     "builtinConstant": "#289af2",
-    "component": "#33b07e"
+    "component": "#33b07e",
+    "variable.builtin": {
+      "bold": true
+    }
   },
   "tokenColors": [
     {

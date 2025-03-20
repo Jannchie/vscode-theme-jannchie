@@ -15,7 +15,7 @@
   },
   "keywords": [
     "theme",
-    "my-theme",
+    "jannchie",
     "light",
     "dark"
   ],
@@ -32,14 +32,14 @@
   "contributes": {
     "themes": [
       {
-        "label": "Jannchie Dark Soft",
-        "uiTheme": "vs-dark",
-        "path": "./themes/jannchie-dark-soft.json"
-      },
-      {
         "label": "Jannchie Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/jannchie-dark.json"
+      },
+      {
+        "label": "Jannchie Dark Soft",
+        "uiTheme": "vs-dark",
+        "path": "./themes/jannchie-dark-soft.json"
       },
       {
         "label": "Jannchie Black",
