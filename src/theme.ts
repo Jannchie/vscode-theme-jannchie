@@ -87,7 +87,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'titleBar.border': activeBackground,
 
       'activityBar.foreground': foreground,
-      'activityBar.inactiveForeground': themeColor('ignored'),
+      'activityBar.inactiveForeground': secondaryForeground,
       'activityBar.background': background,
       'activityBarBadge.foreground': background,
       'activityBarBadge.background': activeForeground,
@@ -148,7 +148,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editorGroup.border': border,
 
       'tab.activeForeground': foreground,
-      'tab.inactiveForeground': primer.gray[5],
+      'tab.inactiveForeground': 'primer.gray[5]',
       'tab.inactiveBackground': background,
       'tab.activeBackground': background,
       'tab.hoverBackground': activeBackground,
