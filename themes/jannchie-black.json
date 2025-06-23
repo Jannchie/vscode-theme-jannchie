@@ -89,7 +89,7 @@
     "editorGroupHeader.tabsBorder": "#171717",
     "editorGroup.border": "#171717",
     "tab.activeForeground": "#dbd7cacc",
-    "tab.inactiveForeground": "primer.gray[5]",
+    "tab.inactiveForeground": "#959da5",
     "tab.inactiveBackground": "#000",
     "tab.activeBackground": "#000",
     "tab.hoverBackground": "#121212",
@@ -197,7 +197,10 @@
   },
   "semanticHighlighting": true,
   "semanticTokenColors": {
-    "namespace": "#e47f7f",
+    "namespace": {
+      "foreground": "#e47f7f",
+      "underline": true
+    },
     "class": {
       "foreground": "#33b07e",
       "underline": true

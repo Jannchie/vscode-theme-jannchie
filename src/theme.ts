@@ -148,7 +148,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editorGroup.border': border,
 
       'tab.activeForeground': foreground,
-      'tab.inactiveForeground': 'primer.gray[5]',
+      'tab.inactiveForeground': primer.gray[5],
       'tab.inactiveBackground': background,
       'tab.activeBackground': background,
       'tab.hoverBackground': activeBackground,
@@ -277,7 +277,10 @@ export default function getTheme({ style, name, soft = false, black = false }) {
     },
     semanticHighlighting: true,
     semanticTokenColors: {
-      'namespace': themeColor('namespace'),
+      'namespace': {
+        foreground: themeColor('namespace'),
+        underline: true,
+      },
       'class': {
         foreground: themeColor('class'),
         underline: true,
