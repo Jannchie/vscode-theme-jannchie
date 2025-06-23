@@ -1,3 +1,11 @@
+## v1.0.2
+
+[v1.0.1...v1.0.2](https://github.com/Jannchie/vscode-theme-jannchie/compare/v1.0.1...v1.0.2)
+
+### :adhesive_bandage: Fixes
+
+- **theme**: fix tab color and namespace highlighting - By [Jianqi Pan](mailto:jannchie@gmail.com) in [8e0b4b1](https://github.com/Jannchie/vscode-theme-jannchie/commit/8e0b4b1)
+
 ## v1.0.1
 
 [v1.0.0...v1.0.1](https://github.com/Jannchie/vscode-theme-jannchie/compare/v1.0.0...v1.0.1)
