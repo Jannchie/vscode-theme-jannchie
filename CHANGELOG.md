@@ -1,3 +1,15 @@
+## v1.1.0
+
+[v1.0.2...v1.1.0](https://github.com/Jannchie/vscode-theme-jannchie/compare/v1.0.2...v1.1.0)
+
+### :rocket: Breaking Changes
+
+- **theming**: add modular theme builder with semantic color system - By [Jianqi Pan](mailto:jannchie@gmail.com) in [12633d1](https://github.com/Jannchie/vscode-theme-jannchie/commit/12633d1)
+
+### :sparkles: Features
+
+- **theme**: add light and light-soft variants && unify theme color opacity - By [Jianqi Pan](mailto:jannchie@gmail.com) in [ae852d8](https://github.com/Jannchie/vscode-theme-jannchie/commit/ae852d8)
+
 ## v1.0.2
 
 [v1.0.1...v1.0.2](https://github.com/Jannchie/vscode-theme-jannchie/compare/v1.0.1...v1.0.2)
