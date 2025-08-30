@@ -45,6 +45,16 @@
         "label": "Jannchie Black",
         "uiTheme": "vs-dark",
         "path": "./themes/jannchie-black.json"
+      },
+      {
+        "label": "Jannchie Light",
+        "uiTheme": "vs",
+        "path": "./themes/jannchie-light.json"
+      },
+      {
+        "label": "Jannchie Light Soft",
+        "uiTheme": "vs",
+        "path": "./themes/jannchie-light-soft.json"
       }
     ]
   },

@@ -1,7 +1,6 @@
-import { it } from 'node:test'
 import { toArray } from '@antfu/utils'
 import { getColors } from './primer'
-import { JannchieThemes, scheme } from './colors'
+import { JannchieThemes, scheme, opacity } from './colors'
 
 export default function getTheme({ style, name, soft = false, black = false }) {
   // Usage: `pick({ light: "lightblue", dark: "darkblue" })`
@@ -12,33 +11,35 @@ export default function getTheme({ style, name, soft = false, black = false }) {
   const primer = getColors(style)
 
   const foreground = black
-    ? '#dbd7cacc'
+    ? themeColor('blackForeground')
     : themeColor('foreground')
   const secondaryForeground = themeColor('secondaryForeground')
+  const mutedForeground = themeColor('mutedForeground')
+  const subtleForeground = themeColor('subtleForeground')
   const activeForeground = themeColor('activeForeground')
   const primary = themeColor('primary')
 
   const border = soft
-    ? themeColor('lowBorder')
+    ? themeColor('softBorder')
     : themeColor('border')
   const background = black
-    ? '#000'
+    ? themeColor('blackBackground')
     : soft
-      ? themeColor('lowBackground')
+      ? themeColor('softBackground')
       : themeColor('background')
   const activeBackground = black
-    ? '#121212'
+    ? themeColor('blackActiveBackground')
     : soft
-      ? themeColor('lowActiveBackground')
+      ? themeColor('softActiveBackground')
       : themeColor('activeBackground')
 
   const punctuation = black
-    ? themeColor('punctuation', 'cc')
+    ? themeColor('punctuation', opacity.medium)
     : themeColor('punctuation')
 
-  const selectionBackgroundInActive = pick({ light: '#22222208', dark: '#eeeeee15' })
-  const selectionBackgroundActive = pick({ light: '#22222215', dark: '#eeeeee25' })
-  const selectionBackground = pick({ light: '#22222215', dark: '#eeeeee25' })
+  const selectionBackgroundInActive = pick({ light: `${themeColor('foreground')}${opacity.barely}`, dark: `#eeeeee${opacity.faint}` })
+  const selectionBackgroundActive = pick({ light: `${themeColor('foreground')}${opacity.faint}`, dark: `#eeeeee${opacity.ghost}` })
+  const selectionBackground = pick({ light: `${themeColor('foreground')}${opacity.faint}`, dark: `#eeeeee${opacity.ghost}` })
 
   const theme = {
     name,
@@ -49,20 +50,20 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'descriptionForeground': secondaryForeground,
       'errorForeground': themeColor('red'),
 
-      'textLink.foreground': scheme.blue[6],
-      'textLink.activeForeground': scheme.blue[5],
+      'textLink.foreground': themeColor('blue'),
+      'textLink.activeForeground': themeColor('blue'),
       'textBlockQuote.background': background,
       'textBlockQuote.border': border,
       'textCodeBlock.background': background,
-      'textPreformat.foreground': primer.gray[6],
-      'textSeparator.foreground': primer.gray[3],
+      'textPreformat.foreground': mutedForeground,
+      'textSeparator.foreground': activeForeground,
 
       'button.background': primary,
       'button.foreground': foreground,
       'button.hoverBackground': primary,
 
       'checkbox.background': activeBackground,
-      'checkbox.border': pick({ light: primer.gray[3], dark: primer.gray[1] }),
+      'checkbox.border': activeBackground,
 
       'dropdown.background': background,
       'dropdown.border': border,
@@ -73,7 +74,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'input.border': border,
       'input.foreground': foreground,
       'input.placeholderForeground': secondaryForeground,
-      'inputOption.activeBackground': themeColor('ignored'),
+      'inputOption.activeBackground': mutedForeground,
 
       'badge.foreground': background,
       'badge.background': secondaryForeground,
@@ -82,7 +83,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
 
       'titleBar.activeForeground': activeForeground,
       'titleBar.activeBackground': background,
-      'titleBar.inactiveForeground': primer.gray[5],
+      'titleBar.inactiveForeground': mutedForeground,
       'titleBar.inactiveBackground': background,
       'titleBar.border': activeBackground,
 
@@ -112,9 +113,9 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'list.focusBackground': activeBackground,
       'list.highlightForeground': primary,
 
-      'tree.indentGuidesStroke': pick({ light: primer.gray[2], dark: primer.gray[1] }),
+      'tree.indentGuidesStroke': activeBackground,
 
-      'notificationCenterHeader.foreground': primer.gray[5],
+      'notificationCenterHeader.foreground': mutedForeground,
       'notificationCenterHeader.background': background,
       'notifications.foreground': foreground,
       'notifications.background': background,
@@ -148,7 +149,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editorGroup.border': border,
 
       'tab.activeForeground': foreground,
-      'tab.inactiveForeground': primer.gray[5],
+      'tab.inactiveForeground': mutedForeground,
       'tab.inactiveBackground': background,
       'tab.activeBackground': background,
       'tab.hoverBackground': activeBackground,
@@ -159,7 +160,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'tab.unfocusedActiveBorder': border,
       'tab.activeBorderTop': secondaryForeground,
 
-      'breadcrumb.foreground': primer.gray[5],
+      'breadcrumb.foreground': mutedForeground,
       'breadcrumb.focusForeground': foreground,
       'breadcrumb.background': activeBackground,
       'breadcrumb.activeSelectionForeground': selectionBackgroundActive,
@@ -168,49 +169,49 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editor.foreground': foreground,
       'editor.background': background,
       'editorWidget.background': background,
-      'editor.foldBackground': pick({ light: '#22222210', dark: '#eeeeee10' }),
+      'editor.foldBackground': pick({ light: `${themeColor('foreground')}${opacity.faint}`, dark: `#eeeeee${opacity.faint}` }),
       'editor.lineHighlightBackground': activeBackground,
-      'editorLineNumber.foreground': themeColor('ignored'),
+      'editorLineNumber.foreground': mutedForeground,
       'editorLineNumber.activeForeground': activeForeground,
-      'editorIndentGuide.background': pick({ light: '#00000015', dark: '#ffffff15' }),
-      'editorIndentGuide.activeBackground': pick({ light: '#00000030', dark: '#ffffff30' }),
-      'editorWhitespace.foreground': pick({ light: '#00000015', dark: '#ffffff15' }),
+      'editorIndentGuide.background': pick({ light: `${themeColor('foreground')}${opacity.faint}`, dark: `#ffffff${opacity.faint}` }),
+      'editorIndentGuide.activeBackground': pick({ light: `${themeColor('foreground')}${opacity.subtle}`, dark: `#ffffff${opacity.subtle}` }),
+      'editorWhitespace.foreground': pick({ light: `${themeColor('foreground')}${opacity.faint}`, dark: `#ffffff${opacity.faint}` }),
       // 'editorCursor.foreground': primary,
 
-      'editor.findMatchBackground': pick({ light: '#e6cc7744', dark: '#e6cc7722' }),
-      'editor.findMatchHighlightBackground': pick({ light: '#e6cc7766', dark: '#e6cc7744' }),
+      'editor.findMatchBackground': pick({ light: `${themeColor('yellow')}${opacity.subtle}`, dark: `${themeColor('yellow')}${opacity.ghost}` }),
+      'editor.findMatchHighlightBackground': pick({ light: `${themeColor('yellow')}${opacity.lower}`, dark: `${themeColor('yellow')}${opacity.subtle}` }),
       'editor.inactiveSelectionBackground': selectionBackgroundInActive,
       'editor.selectionBackground': selectionBackground,
       'editor.selectionHighlightBackground': selectionBackgroundInActive,
-      'editor.wordHighlightBackground': pick({ light: '#1c6b4805', dark: '#1c6b4805' }),
-      'editor.wordHighlightStrongBackground': pick({ light: '#1c6b4810', dark: '#1c6b4810' }),
-      'editorBracketMatch.background': pick({ light: '#1c6b4820', dark: '#4d937520' }),
+      'editor.wordHighlightBackground': pick({ light: `${themeColor('green')}${opacity.barely}`, dark: `${themeColor('green')}${opacity.barely}` }),
+      'editor.wordHighlightStrongBackground': pick({ light: `${themeColor('green')}${opacity.faint}`, dark: `${themeColor('green')}${opacity.faint}` }),
+      'editorBracketMatch.background': pick({ light: `${themeColor('green')}${opacity.ghost}`, dark: `${themeColor('green')}${opacity.ghost}` }),
 
-      'diffEditor.insertedTextBackground': pick({ light: '#1c6b4815', dark: '#4d937522' }),
-      'diffEditor.removedTextBackground': pick({ light: '#ab595910', dark: '#ab595922' }),
+      'diffEditor.insertedTextBackground': pick({ light: `${themeColor('green')}${opacity.faint}`, dark: `${themeColor('green')}${opacity.ghost}` }),
+      'diffEditor.removedTextBackground': pick({ light: `${themeColor('red')}${opacity.faint}`, dark: `${themeColor('red')}${opacity.ghost}` }),
 
       'scrollbar.shadow': pick({ light: '#6a737d33', dark: '#0000' }),
-      'scrollbarSlider.background': themeColor('faded'),
-      'scrollbarSlider.hoverBackground': themeColor('ignored'),
-      'scrollbarSlider.activeBackground': themeColor('ignored'),
-      'editorOverviewRuler.border': primer.white,
+      'scrollbarSlider.background': subtleForeground,
+      'scrollbarSlider.hoverBackground': mutedForeground,
+      'scrollbarSlider.activeBackground': mutedForeground,
+      'editorOverviewRuler.border': pick({ light: themeColor('border'), dark: '#ffffff' }),
 
       'panel.background': background,
       'panel.border': border,
       'panelTitle.activeBorder': primary,
       'panelTitle.activeForeground': foreground,
-      'panelTitle.inactiveForeground': primer.gray[5],
-      'panelInput.border': pick({ light: primer.gray[2], dark: primer.gray[1] }),
+      'panelTitle.inactiveForeground': mutedForeground,
+      'panelInput.border': activeBackground,
 
       'terminal.foreground': foreground,
       'terminal.selectionBackground': selectionBackground,
-      'terminal.ansiBrightBlack': pick({ light: '#aaaaaa', dark: '#777777' }),
+      'terminal.ansiBrightBlack': pick({ light: activeForeground, dark: mutedForeground }),
       'terminal.ansiBrightBlue': themeColor('blue'),
       'terminal.ansiBrightCyan': themeColor('cyan'),
       'terminal.ansiBrightGreen': themeColor('green'),
       'terminal.ansiBrightMagenta': themeColor('magenta'),
       'terminal.ansiBrightRed': themeColor('red'),
-      'terminal.ansiBrightWhite': pick({ light: '#dddddd', dark: '#ffffff' }),
+      'terminal.ansiBrightWhite': pick({ light: mutedForeground, dark: foreground }),
       'terminal.ansiBrightYellow': themeColor('yellow'),
       'terminal.ansiBlack': pick({ light: JannchieThemes.background[0], dark: JannchieThemes.foreground[1] }),
       'terminal.ansiBlue': themeColor('blue'),
@@ -225,7 +226,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'gitDecoration.modifiedResourceForeground': themeColor('blue'),
       'gitDecoration.deletedResourceForeground': themeColor('red'),
       'gitDecoration.untrackedResourceForeground': themeColor('cyan'),
-      'gitDecoration.ignoredResourceForeground': themeColor('ignored'),
+      'gitDecoration.ignoredResourceForeground': mutedForeground,
       'gitDecoration.conflictingResourceForeground': themeColor('orange'),
       'gitDecoration.submoduleResourceForeground': themeColor('secondaryForeground'),
 
@@ -241,8 +242,8 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editorBracketHighlight.foreground6': themeColor('blue'),
 
       'debugToolBar.background': background,
-      'editor.stackFrameHighlightBackground': pick({ light: primer.yellow[1], dark: '#a707' }),
-      'editor.focusedStackFrameHighlightBackground': pick({ light: primer.yellow[2], dark: '#b808' }),
+      'editor.stackFrameHighlightBackground': pick({ light: themeColor('yellow', opacity.ghost), dark: `${themeColor('yellow')}${opacity.barely}` }),
+      'editor.focusedStackFrameHighlightBackground': pick({ light: themeColor('yellow', opacity.faint), dark: `${themeColor('yellow')}${opacity.faint}` }),
 
       'peekViewEditor.matchHighlightBackground': pick({ dark: '#ffd33d33' }),
       'peekViewResult.matchHighlightBackground': pick({ dark: '#ffd33d33' }),
@@ -251,8 +252,8 @@ export default function getTheme({ style, name, soft = false, black = false }) {
 
       'settings.headerForeground': foreground,
       'settings.modifiedItemIndicator': primary,
-      'welcomePage.buttonBackground': primer.gray[1],
-      'welcomePage.buttonHoverBackground': primer.gray[2],
+      'welcomePage.buttonBackground': activeBackground,
+      'welcomePage.buttonHoverBackground': mutedForeground,
 
       'problemsErrorIcon.foreground': themeColor('red'),
       'problemsWarningIcon.foreground': themeColor('orange'),
@@ -263,7 +264,7 @@ export default function getTheme({ style, name, soft = false, black = false }) {
       'editorInfo.foreground': themeColor('blue'),
       'editorHint.foreground': themeColor('green'),
 
-      'editorGutter.commentRangeForeground': themeColor('ignored'),
+      'editorGutter.commentRangeForeground': mutedForeground,
       'editorGutter.foldingControlForeground': themeColor('secondaryForeground'),
 
       'editorInlayHint.foreground': punctuation,
@@ -585,43 +586,43 @@ export default function getTheme({ style, name, soft = false, black = false }) {
         scope: 'invalid.broken',
         settings: {
           fontStyle: 'italic',
-          foreground: primer.red[7],
+          foreground: themeColor('red'),
         },
       },
       {
         scope: 'invalid.deprecated',
         settings: {
           fontStyle: 'italic',
-          foreground: primer.red[7],
+          foreground: themeColor('red'),
         },
       },
       {
         scope: 'invalid.illegal',
         settings: {
           fontStyle: 'italic',
-          foreground: primer.red[7],
+          foreground: themeColor('red'),
         },
       },
       {
         scope: 'invalid.unimplemented',
         settings: {
           fontStyle: 'italic',
-          foreground: primer.red[7],
+          foreground: themeColor('red'),
         },
       },
       {
         scope: 'carriage-return',
         settings: {
           fontStyle: 'italic underline',
-          background: pick({ light: primer.red[5], dark: primer.red[6] }),
-          foreground: primer.gray[0],
+          background: themeColor('red'),
+          foreground: background,
           content: '^M',
         },
       },
       {
         scope: 'message.error',
         settings: {
-          foreground: primer.red[7],
+          foreground: themeColor('red'),
         },
       },
       {
@@ -739,8 +740,8 @@ export default function getTheme({ style, name, soft = false, black = false }) {
           'punctuation.definition.deleted',
         ],
         settings: {
-          background: primer.red[0],
-          foreground: primer.red[7],
+          background: `${themeColor('red')}${opacity.barely}`,
+          foreground: themeColor('red'),
         },
       },
       {
@@ -750,48 +751,48 @@ export default function getTheme({ style, name, soft = false, black = false }) {
           'punctuation.definition.inserted',
         ],
         settings: {
-          background: primer.green[0],
-          foreground: primer.green[6],
+          background: `${themeColor('green')}${opacity.barely}`,
+          foreground: themeColor('green'),
         },
       },
       {
         scope: ['markup.changed', 'punctuation.definition.changed'],
         settings: {
-          background: primer.orange[1],
-          foreground: primer.orange[6],
+          background: `${themeColor('orange')}${opacity.barely}`,
+          foreground: themeColor('orange'),
         },
       },
       {
         scope: ['markup.ignored', 'markup.untracked'],
         settings: {
-          foreground: primer.gray[1],
-          background: primer.blue[6],
+          foreground: mutedForeground,
+          background: themeColor('blue'),
         },
       },
       {
         scope: 'meta.diff.range',
         settings: {
-          foreground: pick({ light: primer.purple[5], dark: primer.purple[6] }),
+          foreground: themeColor('magenta'),
           fontStyle: 'bold',
         },
       },
       {
         scope: 'meta.diff.header',
         settings: {
-          foreground: primer.blue[6],
+          foreground: themeColor('blue'),
         },
       },
       {
         scope: 'meta.separator',
         settings: {
           fontStyle: 'bold',
-          foreground: primer.blue[6],
+          foreground: themeColor('blue'),
         },
       },
       {
         scope: 'meta.output',
         settings: {
-          foreground: primer.blue[6],
+          foreground: themeColor('blue'),
         },
       },
       {
@@ -804,13 +805,13 @@ export default function getTheme({ style, name, soft = false, black = false }) {
           'brackethighlighter.quote',
         ],
         settings: {
-          foreground: primer.gray[6],
+          foreground: mutedForeground,
         },
       },
       {
         scope: 'brackethighlighter.unmatched',
         settings: {
-          foreground: primer.red[7],
+          foreground: themeColor('red'),
         },
       },
       {

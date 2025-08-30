@@ -27,20 +27,20 @@ fs.mkdir('./themes', { recursive: true })
         soft: true,
       }), null, 2)}\n`,
     ),
-    // fs.writeFile(
-    //   './themes/jannchie-light.json',
-    //   `${JSON.stringify(getTheme({
-    //     style: 'light',
-    //     name: 'Jannchie Light',
-    //   }), null, 2)}\n`,
-    // ),
-    // fs.writeFile(
-    //   './themes/jannchie-light-soft.json',
-    //   `${JSON.stringify(getTheme({
-    //     style: 'light',
-    //     name: 'Jannchie Light Soft',
-    //     soft: true,
-    //   }), null, 2)}\n`,
-    // ),
+    fs.writeFile(
+      './themes/jannchie-light.json',
+      `${JSON.stringify(getTheme({
+        style: 'light',
+        name: 'Jannchie Light',
+      }), null, 2)}\n`,
+    ),
+    fs.writeFile(
+      './themes/jannchie-light-soft.json',
+      `${JSON.stringify(getTheme({
+        style: 'light',
+        name: 'Jannchie Light Soft',
+        soft: true,
+      }), null, 2)}\n`,
+    ),
   ]))
   .catch(() => process.exit(1))

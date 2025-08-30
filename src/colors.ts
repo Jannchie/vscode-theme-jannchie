@@ -1,3 +1,16 @@
+// Opacity levels for consistent transparency across theme
+export const opacity = {
+  full: 'ff',      // 100%
+  high: 'e6',      // 90%
+  medium: 'cc',    // 80%
+  low: 'aa',       // 67%
+  lower: '80',     // 50%
+  subtle: '4d',    // 30%
+  ghost: '33',     // 20%
+  faint: '1a',     // 10%
+  barely: '0d',    // 5%
+}
+
 export const colors = {
   black: '#111',
   white: '#fff',
@@ -28,19 +41,30 @@ export const scheme = {
 export const JannchieThemes = {
   primary: [scheme.blue[8], scheme.blue[4]],
 
+  // Text colors
   foreground: [scheme.neutral[3], '#393a34'],
   activeForeground: [scheme.neutral[4], '#4e4f47'],
-  secondaryForeground: [`${scheme.neutral[4]}90`, '#393a3490'],
-  ignored: [`${scheme.neutral[4]}50`, '#393a3450'],
-  faded: [`${scheme.neutral[4]}10`, '#393a3410'],
+  secondaryForeground: [`${scheme.neutral[4]}${opacity.medium}`, `#393a34${opacity.high}`],
+  mutedForeground: [`${scheme.neutral[4]}${opacity.low}`, `#393a34${opacity.lower}`],
+  subtleForeground: [`${scheme.neutral[4]}${opacity.faint}`, `#393a34${opacity.faint}`],
+  
+  // Black theme special foreground
+  blackForeground: [`#dbd7ca${opacity.medium}`, '#393a34'],
+  
+  // Borders and backgrounds
   border: [scheme.neutral[9], '#f0f0f0'],
 
-  background: [`${scheme.neutral[10]}`, '#ffffff'],
+  background: [scheme.neutral[10], '#ffffff'],
   activeBackground: [scheme.neutral[9], '#f7f7f7'],
-
-  lowBackground: [scheme.neutral[9], '#F1F0E9'],
-  lowActiveBackground: [scheme.neutral[8], '#E7E5DB'],
-  lowBorder: [scheme.neutral[8], '#E7E5DB'],
+  
+  // Soft theme variants
+  softBackground: [scheme.neutral[9], '#F1F0E9'],
+  softActiveBackground: [scheme.neutral[8], '#E7E5DB'],
+  softBorder: [scheme.neutral[8], '#E7E5DB'],
+  
+  // Black theme variants
+  blackBackground: ['#000000', '#ffffff'],
+  blackActiveBackground: ['#121212', '#f7f7f7'],
 
   comment: [scheme.green[9], '#547560'],
   string: [scheme.brown[4], '#c98a7d'],
@@ -62,7 +86,7 @@ export const JannchieThemes = {
   classBuiltin: [scheme.green[8], '#82a39a'],
   type: [scheme.green[7], '#097575'],
   interface: [scheme.green[7], '#216a7e'],
-  punctuation: [scheme.blueGray[7], '#a1a1a1'],
+  punctuation: ['#8a9099', '#a1a1a1'],
   decorator: [scheme.brown[3], '#6b5454'],
   regex: [scheme.red[2], '#8d4427'],
 
