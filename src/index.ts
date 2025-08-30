@@ -1,46 +1,55 @@
 import { promises as fs } from 'node:fs'
 import process from 'node:process'
-import getTheme from './theme'
+import { ThemeBuilder } from './core/ThemeBuilder'
+
+const themes = [
+  {
+    name: 'Jannchie Dark',
+    filename: 'jannchie-dark.json',
+    variant: 'dark' as const,
+    modifiers: [] as const
+  },
+  {
+    name: 'Jannchie Black',
+    filename: 'jannchie-black.json',
+    variant: 'dark' as const,
+    modifiers: ['black'] as const
+  },
+  {
+    name: 'Jannchie Dark Soft',
+    filename: 'jannchie-dark-soft.json',
+    variant: 'dark' as const,
+    modifiers: ['soft'] as const
+  },
+  {
+    name: 'Jannchie Light',
+    filename: 'jannchie-light.json',
+    variant: 'light' as const,
+    modifiers: [] as const
+  },
+  {
+    name: 'Jannchie Light Soft',
+    filename: 'jannchie-light-soft.json',
+    variant: 'light' as const,
+    modifiers: ['soft'] as const
+  },
+]
 
 fs.mkdir('./themes', { recursive: true })
-  .then(() => Promise.all([
-    fs.writeFile(
-      './themes/jannchie-dark.json',
-      `${JSON.stringify(getTheme({
-        style: 'dark',
-        name: 'Jannchie Dark',
-      }), null, 2)}\n`,
-    ),
-    fs.writeFile(
-      './themes/jannchie-black.json',
-      `${JSON.stringify(getTheme({
-        style: 'dark',
-        name: 'Jannchie Black',
-        black: true,
-      }), null, 2)}\n`,
-    ),
-    fs.writeFile(
-      './themes/jannchie-dark-soft.json',
-      `${JSON.stringify(getTheme({
-        style: 'dark',
-        name: 'Jannchie Dark Soft',
-        soft: true,
-      }), null, 2)}\n`,
-    ),
-    fs.writeFile(
-      './themes/jannchie-light.json',
-      `${JSON.stringify(getTheme({
-        style: 'light',
-        name: 'Jannchie Light',
-      }), null, 2)}\n`,
-    ),
-    fs.writeFile(
-      './themes/jannchie-light-soft.json',
-      `${JSON.stringify(getTheme({
-        style: 'light',
-        name: 'Jannchie Light Soft',
-        soft: true,
-      }), null, 2)}\n`,
-    ),
-  ]))
+  .then(() => Promise.all(
+    themes.map(config => {
+      const themeBuilder = new ThemeBuilder({
+        name: config.name,
+        variant: config.variant,
+        modifiers: config.modifiers
+      })
+      
+      const theme = themeBuilder.build()
+      
+      return fs.writeFile(
+        `./themes/${config.filename}`,
+        `${JSON.stringify(theme, null, 2)}\n`
+      )
+    })
+  ))
   .catch(() => process.exit(1))

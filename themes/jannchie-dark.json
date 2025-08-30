@@ -128,7 +128,7 @@
     "scrollbarSlider.background": "#a3a3a31a",
     "scrollbarSlider.hoverBackground": "#a3a3a3aa",
     "scrollbarSlider.activeBackground": "#a3a3a3aa",
-    "editorOverviewRuler.border": "#ffffff",
+    "editorOverviewRuler.border": "#171717",
     "panel.background": "#0f0f0f",
     "panel.border": "#171717",
     "panelTitle.activeBorder": "#0877c2",
@@ -1088,23 +1088,29 @@
     },
     {
       "token": "invalid.broken",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "fontStyle": "italic"
     },
     {
       "token": "invalid.deprecated",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "fontStyle": "italic"
     },
     {
       "token": "invalid.illegal",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "fontStyle": "italic"
     },
     {
       "token": "invalid.unimplemented",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "fontStyle": "italic"
     },
     {
       "token": "carriage-return",
-      "foreground": "0f0f0f"
+      "foreground": "0f0f0f",
+      "background": "db5a5a",
+      "fontStyle": "italic underline"
     },
     {
       "token": "message.error",
@@ -1176,11 +1182,13 @@
     },
     {
       "token": "markup.heading",
-      "foreground": "e4c150"
+      "foreground": "e4c150",
+      "fontStyle": "bold"
     },
     {
       "token": "markup.heading entity.name",
-      "foreground": "e4c150"
+      "foreground": "e4c150",
+      "fontStyle": "bold"
     },
     {
       "token": "markup.quote",
@@ -1188,11 +1196,13 @@
     },
     {
       "token": "markup.italic",
-      "foreground": "d4d4d4"
+      "foreground": "d4d4d4",
+      "fontStyle": "italic"
     },
     {
       "token": "markup.bold",
-      "foreground": "d4d4d4"
+      "foreground": "d4d4d4",
+      "fontStyle": "bold"
     },
     {
       "token": "markup.raw",
@@ -1200,47 +1210,58 @@
     },
     {
       "token": "markup.deleted",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "background": "db5a5a0d"
     },
     {
       "token": "meta.diff.header.from-file",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "background": "db5a5a0d"
     },
     {
       "token": "punctuation.definition.deleted",
-      "foreground": "db5a5a"
+      "foreground": "db5a5a",
+      "background": "db5a5a0d"
     },
     {
       "token": "markup.inserted",
-      "foreground": "33b07e"
+      "foreground": "33b07e",
+      "background": "33b07e0d"
     },
     {
       "token": "meta.diff.header.to-file",
-      "foreground": "33b07e"
+      "foreground": "33b07e",
+      "background": "33b07e0d"
     },
     {
       "token": "punctuation.definition.inserted",
-      "foreground": "33b07e"
+      "foreground": "33b07e",
+      "background": "33b07e0d"
     },
     {
       "token": "markup.changed",
-      "foreground": "f28043"
+      "foreground": "f28043",
+      "background": "f280430d"
     },
     {
       "token": "punctuation.definition.changed",
-      "foreground": "f28043"
+      "foreground": "f28043",
+      "background": "f280430d"
     },
     {
       "token": "markup.ignored",
-      "foreground": "a3a3a3aa"
+      "foreground": "a3a3a3aa",
+      "background": "4babf2"
     },
     {
       "token": "markup.untracked",
-      "foreground": "a3a3a3aa"
+      "foreground": "a3a3a3aa",
+      "background": "4babf2"
     },
     {
       "token": "meta.diff.range",
-      "foreground": "f24391"
+      "foreground": "f24391",
+      "fontStyle": "bold"
     },
     {
       "token": "meta.diff.header",
@@ -1248,7 +1269,8 @@
     },
     {
       "token": "meta.separator",
-      "foreground": "4babf2"
+      "foreground": "4babf2",
+      "fontStyle": "bold"
     },
     {
       "token": "meta.output",
@@ -1300,11 +1322,13 @@
     },
     {
       "token": "markup.underline.link.markdown",
-      "foreground": "a3a3a3cc"
+      "foreground": "a3a3a3cc",
+      "fontStyle": "underline"
     },
     {
       "token": "markup.underline.link.image.markdown",
-      "foreground": "a3a3a3cc"
+      "foreground": "a3a3a3cc",
+      "fontStyle": "underline"
     },
     {
       "token": "type.identifier",
@@ -1315,7 +1339,8 @@
       "foreground": "a2d6f8"
     },
     {
-      "token": "invalid.illegal.unrecognized-tag.html"
+      "token": "invalid.illegal.unrecognized-tag.html",
+      "fontStyle": "normal"
     }
   ]
 }
