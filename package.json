@@ -4,6 +4,7 @@
   "displayName": "Jannchie Theme",
   "type": "module",
   "version": "1.1.0",
+  "packageManager": "pnpm@10.26.2+sha512.0e308ff2005fc7410366f154f625f6631ab2b16b1d2e70238444dd6ae9d630a8482d92a451144debc492416896ed16f7b114a86ec68b8404b2443869e68ffda6",
   "description": "Jannchie theme for VS Code",
   "license": "MIT",
   "repository": {
@@ -61,23 +62,27 @@
   "scripts": {
     "build": "esno src/index.ts",
     "dev": "esno watch src/index.ts",
-    "vscode:prepublish": "npm run build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "vscode:prepublish": "pnpm build",
     "lint": "eslint .",
-    "prepublishOnly": "npm run build",
+    "prepublishOnly": "pnpm build",
     "release": "vsce publish --no-dependencies"
   },
   "devDependencies": {
-    "@antfu/utils": "^0.7.8",
-    "@jannchie/eslint-config": "^3.2.0",
-    "@types/color": "^3.0.6",
-    "@types/node": "^20.14.2",
-    "@vscode/vsce": "^2.27.0",
-    "bumpp": "^9.4.1",
-    "color": "^4.2.3",
-    "eslint": "^9.4.0",
-    "esno": "^4.7.0",
-    "tsup": "^8.1.0",
-    "typescript": "^5.4.5"
+    "@antfu/utils": "^9.3.0",
+    "@jannchie/eslint-config": "^3.7.6",
+    "@types/color": "^4.2.1",
+    "@types/node": "^25.5.0",
+    "@vscode/vsce": "^3.7.1",
+    "bumpp": "^11.0.1",
+    "color": "^5.0.3",
+    "eslint": "^10.1.0",
+    "esno": "^4.8.0",
+    "tsup": "^8.5.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.1",
+    "vitest": "^4.1.0"
   },
   "preview": true
 }

@@ -1,13 +1,16 @@
-import type { ColorPair } from '../config/semanticColors'
 import type { OpacityLevel } from '../config/opacity'
+import type { SemanticRole, VariantColor } from '../config/semanticColors'
 import { opacity } from '../config/opacity'
+import { baseSemanticColors, modifierOverrides } from '../config/semanticColors'
+
+const modifierPrecedence = ['soft', 'black'] as const
 
 export type ThemeVariant = 'light' | 'dark'
-export type ThemeModifier = 'soft' | 'black'
+export type ThemeModifier = (typeof modifierPrecedence)[number]
 
 export interface ColorResolverOptions {
-  variant: ThemeVariant
   modifiers: ThemeModifier[]
+  variant: ThemeVariant
 }
 
 /**
@@ -23,25 +26,26 @@ export class ColorResolver {
   }
 
   /**
-   * Pick color from color pair based on theme variant
+   * Pick color from variant pair
    */
-  pick<T>(options: { light: T; dark: T }): T {
+  pick<T>(options: { dark: T, light: T }): T {
     return options[this.variant]
   }
 
   /**
-   * Resolve semantic color with optional opacity
+   * Resolve semantic role with optional opacity
    */
-  resolveColor(colorPair: ColorPair, op: OpacityLevel | string = ''): string {
-    const color = this.variant === 'light' ? colorPair[1] : colorPair[0]
-    
-    // Handle opacity
-    if (op) {
-      const opacityValue = (op in opacity) ? opacity[op as OpacityLevel] : op
-      return `${color}${opacityValue}`
-    }
-    
-    return color
+  resolveRole(role: SemanticRole, op: OpacityLevel | string = ''): string {
+    const color = this.getVariantColor(role)[this.variant]
+    return this.withOpacity(color, op)
+  }
+
+  /**
+   * Resolve semantic role without modifier overrides
+   */
+  resolveBaseRole(role: SemanticRole, op: OpacityLevel | string = ''): string {
+    const color = baseSemanticColors[role][this.variant]
+    return this.withOpacity(color, op)
   }
 
   /**
@@ -51,43 +55,29 @@ export class ColorResolver {
     return this.modifiers.includes(modifier)
   }
 
-  /**
-   * Get appropriate background color based on modifiers
-   */
-  getBackgroundColor(
-    baseBackground: ColorPair,
-    softBackground?: ColorPair,
-    blackBackground?: ColorPair
-  ): string {
-    if (this.hasModifier('black') && blackBackground) {
-      return this.resolveColor(blackBackground)
+  private getVariantColor(role: SemanticRole): VariantColor {
+    const resolvedColor: VariantColor = { ...baseSemanticColors[role] }
+
+    for (const modifier of modifierPrecedence) {
+      if (!this.hasModifier(modifier)) {
+        continue
+      }
+
+      const override = modifierOverrides[modifier][role]
+      if (override) {
+        Object.assign(resolvedColor, override)
+      }
     }
-    if (this.hasModifier('soft') && softBackground) {
-      return this.resolveColor(softBackground)
-    }
-    return this.resolveColor(baseBackground)
+
+    return resolvedColor
   }
 
-  /**
-   * Get appropriate foreground color based on modifiers
-   */
-  getForegroundColor(
-    baseForeground: ColorPair,
-    blackForeground?: ColorPair
-  ): string {
-    if (this.hasModifier('black') && blackForeground) {
-      return this.resolveColor(blackForeground)
+  private withOpacity(color: string, op: OpacityLevel | string = ''): string {
+    if (!op) {
+      return color
     }
-    return this.resolveColor(baseForeground)
-  }
 
-  /**
-   * Apply opacity to punctuation for black theme
-   */
-  getPunctuationColor(punctuation: ColorPair): string {
-    if (this.hasModifier('black')) {
-      return this.resolveColor(punctuation, opacity.medium)
-    }
-    return this.resolveColor(punctuation)
+    const opacityValue = op in opacity ? opacity[op as OpacityLevel] : op
+    return `${color}${opacityValue}`
   }
 }

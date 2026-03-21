@@ -1,18 +1,6 @@
-// Base color palette - all color values from the original theme
-export const colors = {
-  black: '#111',
-  white: '#fff',
-  gray: ['#fafbfc', '#f6f8fa', '#e1e4e8', '#d1d5da', '#959da5', '#6a737d', '#586069', '#444d56', '#2f363d', '#24292e'],
-  blue: ['#f1f8ff', '#dbedff', '#c8e1ff', '#79b8ff', '#2188ff', '#0366d6', '#005cc5', '#044289', '#032f62', '#05264c'],
-  green: ['#f0fff4', '#dcffe4', '#bef5cb', '#85e89d', '#34d058', '#28a745', '#22863a', '#176f2c', '#165c26', '#144620'],
-  yellow: ['#fffdef', '#fffbdd', '#fff5b1', '#ffea7f', '#ffdf5d', '#ffd33d', '#f9c513', '#dbab09', '#b08800', '#735c0f'],
-  orange: ['#fff8f2', '#ffebda', '#ffd1ac', '#ffab70', '#fb8532', '#f66a0a', '#e36209', '#d15704', '#c24e00', '#a04100'],
-  red: ['#ffeef0', '#ffdce0', '#fdaeb7', '#f97583', '#ea4a5a', '#d73a49', '#cb2431', '#b31d28', '#9e1c23', '#86181d'],
-  purple: ['#f5f0ff', '#e6dcfd', '#d1bcf9', '#b392f0', '#8a63d2', '#6f42c1', '#5a32a3', '#4c2889', '#3a1d6e', '#29134e'],
-  pink: ['#ffeef8', '#fedbf0', '#f9b3dd', '#f692ce', '#ec6cb9', '#ea4aaa', '#d03592', '#b93a86', '#99306f', '#6d224f'],
-}
+import { opacity } from './opacity'
 
-// Enhanced color scheme for the theme
+// Base color ramps used to derive semantic theme roles
 export const scheme = {
   green: ['#e6fcf5', '#d7f5e9', '#b2e9d3', '#89dcbb', '#67d1a7', '#51ca9a', '#43c892', '#33b07e', '#279c6f', '#0f885e'],
   blue: ['#e5f8ff', '#d1ecfd', '#a2d6f8', '#71bff5', '#4babf2', '#36a0f1', '#289af2', '#1b86d7', '#0877c2', '#0066ac'],
@@ -25,7 +13,132 @@ export const scheme = {
   magenta: ['#ffe9f6', '#ffd1e6', '#faa1c9', '#f66eab', '#f24391', '#f02881', '#f01879', '#d60867', '#c0005c', '#a9004f'],
   background: ['#FFFFFF', '#f7f7f7', '#f0f0f0', '#e0e0e0', '#d0d0d0', '#c0c0c0', '#b0b0b0', '#a0a0a0', '#909090', '#808080'],
   neutral: ['#fafafa', '#f5f5f5', '#e5e5e5', '#d4d4d4', '#a3a3a3', '#737373', '#525252', '#404040', '#262626', '#171717', '#0f0f0f'],
-}
+} as const
 
-export type ColorName = keyof typeof colors
-export type SchemeName = keyof typeof scheme
+// Central palette entry point for semantic roles and hard-coded UI colors.
+export const themePalette = {
+  shared: {
+    transparent: '#00000000',
+  },
+  light: {
+    semantic: {
+      primary: scheme.blue[4],
+      foreground: '#393a34',
+      activeForeground: '#4e4f47',
+      secondaryForeground: `#393a34${opacity.high}`,
+      mutedForeground: `#393a34${opacity.lower}`,
+      subtleForeground: `#393a34${opacity.faint}`,
+      border: '#f0f0f0',
+      background: '#ffffff',
+      activeBackground: '#f7f7f7',
+      comment: '#547560',
+      string: '#c98a7d',
+      readonly: '#6d6d6d',
+      variable: '#4b4b4b',
+      parameter: '#4f75aa',
+      variableBuiltin: '#b4b4b4',
+      property: '#3184b4',
+      keyword: '#196692',
+      number: '#207d8b',
+      boolean: '#1b577a',
+      constant: '#32769e',
+      namespace: '#aa3939',
+      operator: '#aa3939',
+      builtin: '#aa3939',
+      function: '#a57610',
+      functionBuiltin: '#8f6f18',
+      class: '#00855f',
+      classBuiltin: '#82a39a',
+      type: '#097575',
+      interface: '#216a7e',
+      punctuation: '#a1a1a1',
+      decorator: '#6b5454',
+      regex: '#8d4427',
+      green: '#116e46',
+      cyan: '#2993a3',
+      blue: '#1d5e97',
+      red: '#ab5959',
+      orange: '#a65e2b',
+      yellow: '#998114',
+      magenta: '#a13865',
+    },
+    ui: {
+      overlayBase: '#393a34',
+      guideBase: '#393a34',
+      scrollbarShadow: '#6a737d33',
+      terminalBlack: '#ffffff',
+    },
+  },
+  dark: {
+    semantic: {
+      primary: scheme.blue[8],
+      foreground: scheme.neutral[3],
+      activeForeground: scheme.neutral[4],
+      secondaryForeground: `${scheme.neutral[4]}${opacity.medium}`,
+      mutedForeground: `${scheme.neutral[4]}${opacity.low}`,
+      subtleForeground: `${scheme.neutral[4]}${opacity.faint}`,
+      border: scheme.neutral[9],
+      background: scheme.neutral[10],
+      activeBackground: scheme.neutral[9],
+      comment: scheme.green[9],
+      string: scheme.brown[4],
+      readonly: scheme.blue[3],
+      variable: scheme.blue[2],
+      parameter: scheme.blue[2],
+      variableBuiltin: scheme.blue[2],
+      property: scheme.blue[2],
+      keyword: scheme.blue[4],
+      number: scheme.cyan[7],
+      boolean: scheme.blue[6],
+      constant: scheme.blue[3],
+      namespace: scheme.red[3],
+      operator: scheme.red[3],
+      builtin: scheme.red[3],
+      function: scheme.yellow[4],
+      functionBuiltin: scheme.yellow[2],
+      class: scheme.green[7],
+      classBuiltin: scheme.green[8],
+      type: scheme.green[7],
+      interface: scheme.green[7],
+      punctuation: '#8a9099',
+      decorator: scheme.brown[3],
+      regex: scheme.red[2],
+      green: scheme.green[7],
+      cyan: scheme.cyan[4],
+      blue: scheme.blue[4],
+      red: scheme.red[4],
+      orange: scheme.orange[4],
+      yellow: scheme.yellow[4],
+      magenta: scheme.magenta[4],
+    },
+    ui: {
+      overlayBase: '#eeeeee',
+      guideBase: '#ffffff',
+      scrollbarShadow: '#0000',
+      terminalBlack: '#393a34',
+      peekMatchBackground: '#ffd33d33',
+    },
+  },
+  modifiers: {
+    soft: {
+      dark: {
+        background: scheme.neutral[9],
+        activeBackground: scheme.neutral[8],
+        border: scheme.neutral[8],
+      },
+      light: {
+        background: '#F1F0E9',
+        activeBackground: '#E7E5DB',
+        border: '#E7E5DB',
+      },
+    },
+    black: {
+      dark: {
+        foreground: `#dbd7ca${opacity.medium}`,
+        background: '#000000',
+        activeBackground: '#121212',
+        punctuation: `#8a9099${opacity.medium}`,
+      },
+    },
+  },
+} as const

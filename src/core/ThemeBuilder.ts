@@ -1,14 +1,14 @@
-import { ColorResolver, type ThemeVariant, type ThemeModifier } from './colorResolver'
+import type { ThemeModifier, ThemeVariant } from './colorResolver'
+import type { Rule, TokenColor, VSCodeTheme } from './types'
 import { buildTokenColors } from '../syntax/tokenColors'
-import { buildUIColors } from '../ui/uiColors'
 import { buildSemanticTokenColors } from '../ui/semanticTokenColors'
-import { semanticColors } from '../config/semanticColors'
-import type { VSCodeTheme } from './types'
+import { buildUIColors } from '../ui/uiColors'
+import { ColorResolver } from './colorResolver'
 
 export interface ThemeConfig {
+  modifiers: ThemeModifier[]
   name: string
   variant: ThemeVariant
-  modifiers: ThemeModifier[]
 }
 
 /**
@@ -22,7 +22,7 @@ export class ThemeBuilder {
     this.config = config
     this.colorResolver = new ColorResolver({
       variant: config.variant,
-      modifiers: config.modifiers
+      modifiers: config.modifiers,
     })
   }
 
@@ -30,10 +30,7 @@ export class ThemeBuilder {
    * Build the complete VS Code theme
    */
   build(): VSCodeTheme {
-    const punctuation = this.colorResolver.getPunctuationColor(semanticColors.punctuation)
-    
-    // Generate token colors
-    const tokenColors = buildTokenColors(this.colorResolver, punctuation)
+    const tokenColors = buildTokenColors(this.colorResolver)
 
     return {
       name: this.config.name,
@@ -41,24 +38,23 @@ export class ThemeBuilder {
       colors: buildUIColors(this.colorResolver),
       semanticHighlighting: true,
       semanticTokenColors: buildSemanticTokenColors(this.colorResolver),
-      tokenColors: tokenColors,
-      rules: this.generateMonacoRules(tokenColors)
+      tokenColors,
+      rules: this.generateMonacoRules(tokenColors),
     }
   }
-
 
   /**
    * Generate Monaco editor rules from token colors
    */
-  private generateMonacoRules(tokenColors: any[]): any[] {
-    const rules: any[] = []
-    
-    tokenColors.forEach(tokenColor => {
+  private generateMonacoRules(tokenColors: TokenColor[]): Rule[] {
+    const rules: Rule[] = []
+
+    for (const tokenColor of tokenColors) {
       const scopes = Array.isArray(tokenColor.scope) ? tokenColor.scope : [tokenColor.scope]
-      
-      scopes.forEach(scope => {
-        const rule: any = { token: scope }
-        
+
+      for (const scope of scopes) {
+        const rule: Rule = { token: scope }
+
         if (tokenColor.settings.foreground) {
           rule.foreground = tokenColor.settings.foreground.replace('#', '')
         }
@@ -68,11 +64,11 @@ export class ThemeBuilder {
         if (tokenColor.settings.fontStyle) {
           rule.fontStyle = tokenColor.settings.fontStyle
         }
-        
+
         rules.push(rule)
-      })
-    })
-    
+      }
+    }
+
     return rules
   }
 }
