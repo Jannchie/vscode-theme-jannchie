@@ -58,4 +58,27 @@ describe('color resolver', () => {
     expect(resolver.resolveRole('primary', 'barely')).toBe('#4babf20d')
     expect(resolver.resolveRole('primary', '33')).toBe('#4babf233')
   })
+
+  it('resolves ui palette roles and variant-specific helpers', () => {
+    const darkResolver = new ColorResolver({
+      variant: 'dark',
+      modifiers: [],
+    })
+    const lightResolver = new ColorResolver({
+      variant: 'light',
+      modifiers: [],
+    })
+
+    expect(lightResolver.resolveUiRole('terminalBlack')).toBe('#ffffff')
+    expect(darkResolver.resolveUiRole('peekMatchBackground')).toBe('#ffd33d33')
+    expect(lightResolver.resolveUiRole('peekMatchBackground')).toBeUndefined()
+    expect(darkResolver.resolveUiRoleByVariant('overlayBase', {
+      light: 'barely',
+      dark: 'faint',
+    })).toBe('#eeeeee1a')
+    expect(lightResolver.resolveRoleByVariant('yellow', {
+      light: 'subtle',
+      dark: 'ghost',
+    })).toBe('#9981144d')
+  })
 })

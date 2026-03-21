@@ -1,6 +1,6 @@
-import type { OpacityLevel } from '../config/opacity'
+import type { OpacityLevel, SharedPaletteRole, UiPaletteRole, VariantValue } from '../config/colorPalette'
 import type { SemanticRole, VariantColor } from '../config/semanticColors'
-import { opacity } from '../config/opacity'
+import { opacity, themePalette } from '../config/colorPalette'
 import { baseSemanticColors, modifierOverrides } from '../config/semanticColors'
 
 const modifierPrecedence = ['soft', 'black'] as const
@@ -28,7 +28,7 @@ export class ColorResolver {
   /**
    * Pick color from variant pair
    */
-  pick<T>(options: { dark: T, light: T }): T {
+  pick<T>(options: VariantValue<T>): T {
     return options[this.variant]
   }
 
@@ -46,6 +46,39 @@ export class ColorResolver {
   resolveBaseRole(role: SemanticRole, op: OpacityLevel | string = ''): string {
     const color = baseSemanticColors[role][this.variant]
     return this.withOpacity(color, op)
+  }
+
+  /**
+   * Resolve semantic role with variant-specific opacity
+   */
+  resolveRoleByVariant(role: SemanticRole, opacityByVariant: VariantValue<OpacityLevel | string>): string {
+    return this.resolveRole(role, this.pick(opacityByVariant))
+  }
+
+  /**
+   * Resolve UI palette role with optional opacity
+   */
+  resolveUiRole(role: UiPaletteRole, op: OpacityLevel | string = ''): string | undefined {
+    const color = this.pick({
+      dark: themePalette.dark.ui[role],
+      light: themePalette.light.ui[role],
+    })
+
+    return this.withOptionalOpacity(color, op)
+  }
+
+  /**
+   * Resolve UI palette role with variant-specific opacity
+   */
+  resolveUiRoleByVariant(role: UiPaletteRole, opacityByVariant: VariantValue<OpacityLevel | string>): string | undefined {
+    return this.resolveUiRole(role, this.pick(opacityByVariant))
+  }
+
+  /**
+   * Resolve shared palette color
+   */
+  resolveSharedColor(role: SharedPaletteRole): string {
+    return themePalette.shared[role]
   }
 
   /**
@@ -79,5 +112,13 @@ export class ColorResolver {
 
     const opacityValue = op in opacity ? opacity[op as OpacityLevel] : op
     return `${color}${opacityValue}`
+  }
+
+  private withOptionalOpacity(color: string | undefined, op: OpacityLevel | string = ''): string | undefined {
+    if (color === undefined) {
+      return color
+    }
+
+    return this.withOpacity(color, op)
   }
 }

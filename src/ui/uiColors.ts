@@ -1,47 +1,83 @@
 import type { ColorResolver } from '../core/colorResolver'
-import { themePalette } from '../config/colorPalette'
-import { opacity } from '../config/opacity'
 
 export function buildUIColors(colorResolver: ColorResolver) {
-  const foreground = colorResolver.resolveRole('foreground')
-  const activeForeground = colorResolver.resolveRole('activeForeground')
-  const secondaryForeground = colorResolver.resolveRole('secondaryForeground')
-  const mutedForeground = colorResolver.resolveRole('mutedForeground')
-  const subtleForeground = colorResolver.resolveRole('subtleForeground')
-  const primary = colorResolver.resolveRole('primary')
-  const background = colorResolver.resolveRole('background')
-  const activeBackground = colorResolver.resolveRole('activeBackground')
-  const border = colorResolver.resolveRole('border')
-  const overlayBase = colorResolver.pick({
-    light: themePalette.light.ui.overlayBase,
-    dark: themePalette.dark.ui.overlayBase,
-  })
-  const guideBase = colorResolver.pick({
-    light: themePalette.light.ui.guideBase,
-    dark: themePalette.dark.ui.guideBase,
-  })
+  const role = colorResolver.resolveRole.bind(colorResolver)
+  const roleByVariant = colorResolver.resolveRoleByVariant.bind(colorResolver)
+  const baseRole = colorResolver.resolveBaseRole.bind(colorResolver)
+  const uiRole = colorResolver.resolveUiRole.bind(colorResolver)
+  const uiRoleByVariant = colorResolver.resolveUiRoleByVariant.bind(colorResolver)
+  const sharedColor = colorResolver.resolveSharedColor.bind(colorResolver)
 
-  const selectionBackgroundInActive = colorResolver.pick({
-    light: `${overlayBase}${opacity.barely}`,
-    dark: `${overlayBase}${opacity.faint}`,
+  const foreground = role('foreground')
+  const activeForeground = role('activeForeground')
+  const secondaryForeground = role('secondaryForeground')
+  const mutedForeground = role('mutedForeground')
+  const subtleForeground = role('subtleForeground')
+  const primary = role('primary')
+  const background = role('background')
+  const activeBackground = role('activeBackground')
+  const border = role('border')
+  const transparent = sharedColor('transparent')
+  const selectionBackgroundInActive = uiRoleByVariant('overlayBase', {
+    light: 'barely',
+    dark: 'faint',
+  }) ?? transparent
+  const selectionBackgroundActive = uiRoleByVariant('overlayBase', {
+    light: 'faint',
+    dark: 'ghost',
+  }) ?? transparent
+  const selectionBackground = selectionBackgroundActive
+  const foldBackground = uiRoleByVariant('overlayBase', {
+    light: 'faint',
+    dark: 'faint',
+  }) ?? transparent
+  const indentGuideBackground = uiRoleByVariant('guideBase', {
+    light: 'faint',
+    dark: 'faint',
+  }) ?? transparent
+  const indentGuideActiveBackground = uiRoleByVariant('guideBase', {
+    light: 'subtle',
+    dark: 'subtle',
+  }) ?? transparent
+  const findMatchBackground = roleByVariant('yellow', {
+    light: 'subtle',
+    dark: 'ghost',
   })
-  const selectionBackgroundActive = colorResolver.pick({
-    light: `${overlayBase}${opacity.faint}`,
-    dark: `${overlayBase}${opacity.ghost}`,
+  const findMatchHighlightBackground = roleByVariant('yellow', {
+    light: 'lower',
+    dark: 'subtle',
   })
-  const selectionBackground = colorResolver.pick({
-    light: `${overlayBase}${opacity.faint}`,
-    dark: `${overlayBase}${opacity.ghost}`,
+  const stackFrameHighlightBackground = roleByVariant('yellow', {
+    light: 'ghost',
+    dark: 'barely',
   })
+  const focusedStackFrameHighlightBackground = roleByVariant('yellow', {
+    light: 'faint',
+    dark: 'faint',
+  })
+  const wordHighlightBackground = role('green', 'barely')
+  const wordHighlightStrongBackground = role('green', 'faint')
+  const bracketMatchBackground = role('green', 'ghost')
+  const insertedTextBackground = roleByVariant('green', {
+    light: 'faint',
+    dark: 'ghost',
+  })
+  const removedTextBackground = roleByVariant('red', {
+    light: 'faint',
+    dark: 'ghost',
+  })
+  const scrollbarShadow = uiRole('scrollbarShadow') ?? transparent
+  const terminalBlack = uiRole('terminalBlack') ?? background
+  const peekMatchBackground = uiRole('peekMatchBackground')
 
   return {
-    'focusBorder': themePalette.shared.transparent,
+    'focusBorder': transparent,
     foreground,
     'descriptionForeground': secondaryForeground,
-    'errorForeground': colorResolver.resolveRole('red'),
+    'errorForeground': role('red'),
 
-    'textLink.foreground': colorResolver.resolveRole('blue'),
-    'textLink.activeForeground': colorResolver.resolveRole('blue'),
+    'textLink.foreground': role('blue'),
+    'textLink.activeForeground': role('blue'),
     'textBlockQuote.background': background,
     'textBlockQuote.border': border,
     'textCodeBlock.background': background,
@@ -110,9 +146,9 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'notifications.foreground': foreground,
     'notifications.background': background,
     'notifications.border': border,
-    'notificationsErrorIcon.foreground': colorResolver.resolveRole('red'),
-    'notificationsWarningIcon.foreground': colorResolver.resolveRole('orange'),
-    'notificationsInfoIcon.foreground': colorResolver.resolveRole('blue'),
+    'notificationsErrorIcon.foreground': role('red'),
+    'notificationsWarningIcon.foreground': role('orange'),
+    'notificationsInfoIcon.foreground': role('blue'),
 
     'pickerGroup.border': border,
     'pickerGroup.foreground': foreground,
@@ -129,9 +165,9 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'statusBarItem.prominentBackground': activeBackground,
     'statusBarItem.remoteBackground': activeBackground,
     'statusBarItem.remoteForeground': activeForeground,
-    'statusBarItem.remoteHoverBackground': colorResolver.resolveRole('yellow'),
+    'statusBarItem.remoteHoverBackground': role('yellow'),
     'statusBarItem.remoteHoverForeground': background,
-    'statusBarItem.errorBackground': colorResolver.resolveRole('red'),
+    'statusBarItem.errorBackground': role('red'),
     'statusBarItem.errorForeground': background,
 
     'editorGroupHeader.tabsBackground': background,
@@ -159,63 +195,27 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'editor.foreground': foreground,
     'editor.background': background,
     'editorWidget.background': background,
-    'editor.foldBackground': colorResolver.pick({
-      light: `${overlayBase}${opacity.faint}`,
-      dark: `${overlayBase}${opacity.faint}`,
-    }),
+    'editor.foldBackground': foldBackground,
     'editor.lineHighlightBackground': activeBackground,
     'editorLineNumber.foreground': mutedForeground,
     'editorLineNumber.activeForeground': activeForeground,
-    'editorIndentGuide.background': colorResolver.pick({
-      light: `${guideBase}${opacity.faint}`,
-      dark: `${guideBase}${opacity.faint}`,
-    }),
-    'editorIndentGuide.activeBackground': colorResolver.pick({
-      light: `${guideBase}${opacity.subtle}`,
-      dark: `${guideBase}${opacity.subtle}`,
-    }),
-    'editorWhitespace.foreground': colorResolver.pick({
-      light: `${guideBase}${opacity.faint}`,
-      dark: `${guideBase}${opacity.faint}`,
-    }),
+    'editorIndentGuide.background': indentGuideBackground,
+    'editorIndentGuide.activeBackground': indentGuideActiveBackground,
+    'editorWhitespace.foreground': indentGuideBackground,
 
-    'editor.findMatchBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('yellow')}${opacity.subtle}`,
-      dark: `${colorResolver.resolveRole('yellow')}${opacity.ghost}`,
-    }),
-    'editor.findMatchHighlightBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('yellow')}${opacity.lower}`,
-      dark: `${colorResolver.resolveRole('yellow')}${opacity.subtle}`,
-    }),
+    'editor.findMatchBackground': findMatchBackground,
+    'editor.findMatchHighlightBackground': findMatchHighlightBackground,
     'editor.inactiveSelectionBackground': selectionBackgroundInActive,
     'editor.selectionBackground': selectionBackground,
     'editor.selectionHighlightBackground': selectionBackgroundInActive,
-    'editor.wordHighlightBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('green')}${opacity.barely}`,
-      dark: `${colorResolver.resolveRole('green')}${opacity.barely}`,
-    }),
-    'editor.wordHighlightStrongBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('green')}${opacity.faint}`,
-      dark: `${colorResolver.resolveRole('green')}${opacity.faint}`,
-    }),
-    'editorBracketMatch.background': colorResolver.pick({
-      light: `${colorResolver.resolveRole('green')}${opacity.ghost}`,
-      dark: `${colorResolver.resolveRole('green')}${opacity.ghost}`,
-    }),
+    'editor.wordHighlightBackground': wordHighlightBackground,
+    'editor.wordHighlightStrongBackground': wordHighlightStrongBackground,
+    'editorBracketMatch.background': bracketMatchBackground,
 
-    'diffEditor.insertedTextBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('green')}${opacity.faint}`,
-      dark: `${colorResolver.resolveRole('green')}${opacity.ghost}`,
-    }),
-    'diffEditor.removedTextBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('red')}${opacity.faint}`,
-      dark: `${colorResolver.resolveRole('red')}${opacity.ghost}`,
-    }),
+    'diffEditor.insertedTextBackground': insertedTextBackground,
+    'diffEditor.removedTextBackground': removedTextBackground,
 
-    'scrollbar.shadow': colorResolver.pick({
-      light: themePalette.light.ui.scrollbarShadow,
-      dark: themePalette.dark.ui.scrollbarShadow,
-    }),
+    'scrollbar.shadow': scrollbarShadow,
     'scrollbarSlider.background': subtleForeground,
     'scrollbarSlider.hoverBackground': mutedForeground,
     'scrollbarSlider.activeBackground': mutedForeground,
@@ -231,65 +231,47 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'terminal.foreground': foreground,
     'terminal.selectionBackground': selectionBackground,
     'terminal.ansiBrightBlack': colorResolver.pick({ light: activeForeground, dark: mutedForeground }),
-    'terminal.ansiBrightBlue': colorResolver.resolveRole('blue'),
-    'terminal.ansiBrightCyan': colorResolver.resolveRole('cyan'),
-    'terminal.ansiBrightGreen': colorResolver.resolveRole('green'),
-    'terminal.ansiBrightMagenta': colorResolver.resolveRole('magenta'),
-    'terminal.ansiBrightRed': colorResolver.resolveRole('red'),
+    'terminal.ansiBrightBlue': role('blue'),
+    'terminal.ansiBrightCyan': role('cyan'),
+    'terminal.ansiBrightGreen': role('green'),
+    'terminal.ansiBrightMagenta': role('magenta'),
+    'terminal.ansiBrightRed': role('red'),
     'terminal.ansiBrightWhite': colorResolver.pick({ light: mutedForeground, dark: foreground }),
-    'terminal.ansiBrightYellow': colorResolver.resolveRole('yellow'),
-    'terminal.ansiBlack': colorResolver.pick({
-      light: themePalette.light.ui.terminalBlack,
-      dark: themePalette.dark.ui.terminalBlack,
-    }),
-    'terminal.ansiBlue': colorResolver.resolveRole('blue'),
-    'terminal.ansiCyan': colorResolver.resolveRole('cyan'),
-    'terminal.ansiGreen': colorResolver.resolveRole('green'),
-    'terminal.ansiMagenta': colorResolver.resolveRole('magenta'),
-    'terminal.ansiRed': colorResolver.resolveRole('red'),
-    'terminal.ansiWhite': colorResolver.pick({
-      light: colorResolver.resolveBaseRole('foreground'),
-      dark: colorResolver.resolveBaseRole('foreground'),
-    }),
-    'terminal.ansiYellow': colorResolver.resolveRole('yellow'),
+    'terminal.ansiBrightYellow': role('yellow'),
+    'terminal.ansiBlack': terminalBlack,
+    'terminal.ansiBlue': role('blue'),
+    'terminal.ansiCyan': role('cyan'),
+    'terminal.ansiGreen': role('green'),
+    'terminal.ansiMagenta': role('magenta'),
+    'terminal.ansiRed': role('red'),
+    'terminal.ansiWhite': baseRole('foreground'),
+    'terminal.ansiYellow': role('yellow'),
 
-    'gitDecoration.addedResourceForeground': colorResolver.resolveRole('green'),
-    'gitDecoration.modifiedResourceForeground': colorResolver.resolveRole('blue'),
-    'gitDecoration.deletedResourceForeground': colorResolver.resolveRole('red'),
-    'gitDecoration.untrackedResourceForeground': colorResolver.resolveRole('cyan'),
+    'gitDecoration.addedResourceForeground': role('green'),
+    'gitDecoration.modifiedResourceForeground': role('blue'),
+    'gitDecoration.deletedResourceForeground': role('red'),
+    'gitDecoration.untrackedResourceForeground': role('cyan'),
     'gitDecoration.ignoredResourceForeground': mutedForeground,
-    'gitDecoration.conflictingResourceForeground': colorResolver.resolveRole('orange'),
+    'gitDecoration.conflictingResourceForeground': role('orange'),
     'gitDecoration.submoduleResourceForeground': secondaryForeground,
 
-    'editorGutter.modifiedBackground': colorResolver.resolveRole('blue'),
-    'editorGutter.addedBackground': colorResolver.resolveRole('green'),
-    'editorGutter.deletedBackground': colorResolver.resolveRole('red'),
+    'editorGutter.modifiedBackground': role('blue'),
+    'editorGutter.addedBackground': role('green'),
+    'editorGutter.deletedBackground': role('red'),
 
-    'editorBracketHighlight.foreground1': colorResolver.resolveRole('cyan'),
-    'editorBracketHighlight.foreground2': colorResolver.resolveRole('green'),
-    'editorBracketHighlight.foreground3': colorResolver.resolveRole('orange'),
-    'editorBracketHighlight.foreground4': colorResolver.resolveRole('magenta'),
-    'editorBracketHighlight.foreground5': colorResolver.resolveRole('yellow'),
-    'editorBracketHighlight.foreground6': colorResolver.resolveRole('blue'),
+    'editorBracketHighlight.foreground1': role('cyan'),
+    'editorBracketHighlight.foreground2': role('green'),
+    'editorBracketHighlight.foreground3': role('orange'),
+    'editorBracketHighlight.foreground4': role('magenta'),
+    'editorBracketHighlight.foreground5': role('yellow'),
+    'editorBracketHighlight.foreground6': role('blue'),
 
     'debugToolBar.background': background,
-    'editor.stackFrameHighlightBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('yellow')}${opacity.ghost}`,
-      dark: `${colorResolver.resolveRole('yellow')}${opacity.barely}`,
-    }),
-    'editor.focusedStackFrameHighlightBackground': colorResolver.pick({
-      light: `${colorResolver.resolveRole('yellow')}${opacity.faint}`,
-      dark: `${colorResolver.resolveRole('yellow')}${opacity.faint}`,
-    }),
+    'editor.stackFrameHighlightBackground': stackFrameHighlightBackground,
+    'editor.focusedStackFrameHighlightBackground': focusedStackFrameHighlightBackground,
 
-    'peekViewEditor.matchHighlightBackground': colorResolver.pick<string | undefined>({
-      light: undefined,
-      dark: themePalette.dark.ui.peekMatchBackground,
-    }),
-    'peekViewResult.matchHighlightBackground': colorResolver.pick<string | undefined>({
-      light: undefined,
-      dark: themePalette.dark.ui.peekMatchBackground,
-    }),
+    'peekViewEditor.matchHighlightBackground': peekMatchBackground,
+    'peekViewResult.matchHighlightBackground': peekMatchBackground,
     'peekViewEditor.background': background,
     'peekViewResult.background': background,
 
@@ -298,20 +280,20 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'welcomePage.buttonBackground': activeBackground,
     'welcomePage.buttonHoverBackground': mutedForeground,
 
-    'problemsErrorIcon.foreground': colorResolver.resolveRole('red'),
-    'problemsWarningIcon.foreground': colorResolver.resolveRole('orange'),
-    'problemsInfoIcon.foreground': colorResolver.resolveRole('blue'),
+    'problemsErrorIcon.foreground': role('red'),
+    'problemsWarningIcon.foreground': role('orange'),
+    'problemsInfoIcon.foreground': role('blue'),
 
-    'editorError.foreground': colorResolver.resolveRole('red'),
-    'editorWarning.foreground': colorResolver.resolveRole('orange'),
-    'editorInfo.foreground': colorResolver.resolveRole('blue'),
-    'editorHint.foreground': colorResolver.resolveRole('green'),
+    'editorError.foreground': role('red'),
+    'editorWarning.foreground': role('orange'),
+    'editorInfo.foreground': role('blue'),
+    'editorHint.foreground': role('green'),
 
     'editorGutter.commentRangeForeground': mutedForeground,
     'editorGutter.foldingControlForeground': secondaryForeground,
 
-    'editorInlayHint.foreground': colorResolver.resolveRole('punctuation'),
-    'editorInlayHint.background': themePalette.shared.transparent,
+    'editorInlayHint.foreground': role('punctuation'),
+    'editorInlayHint.background': transparent,
 
     'editorStickyScroll.background': activeBackground,
     'editorStickyScrollHover.background': activeBackground,

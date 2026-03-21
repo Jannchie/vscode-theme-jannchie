@@ -1,4 +1,23 @@
-import { opacity } from './opacity'
+export interface VariantValue<T> {
+  dark: T
+  light: T
+}
+
+// Opacity levels for consistent transparency across theme
+export const opacity = {
+  full: 'ff', // 100%
+  high: 'e6', // 90%
+  medium: 'cc', // 80%
+  low: 'aa', // 67%
+  veil: '99', // 60%
+  lower: '80', // 50%
+  subtle: '4d', // 30%
+  ghost: '33', // 20%
+  faint: '1a', // 10%
+  barely: '0d', // 5%
+} as const
+
+export type OpacityLevel = keyof typeof opacity
 
 // Base color ramps used to derive semantic theme roles
 export const scheme = {
@@ -15,109 +34,134 @@ export const scheme = {
   neutral: ['#fafafa', '#f5f5f5', '#e5e5e5', '#d4d4d4', '#a3a3a3', '#737373', '#525252', '#404040', '#262626', '#171717', '#0f0f0f'],
 } as const
 
+const sharedPalette = {
+  transparent: '#00000000',
+} as const
+
+const lightForegroundBase = '#393a34'
+const lightErrorAccent = '#aa3939'
+const darkNeutralPanel = scheme.neutral[9]
+const darkReadonlyAccent = scheme.blue[3]
+const darkVariableAccent = scheme.blue[2]
+const darkKeywordAccent = scheme.blue[4]
+const darkErrorAccent = scheme.red[3]
+const darkFunctionAccent = scheme.yellow[4]
+const darkTypeAccent = scheme.green[7]
+
+export const lightSemanticPalette = {
+  primary: scheme.blue[4],
+  foreground: lightForegroundBase,
+  activeForeground: '#4e4f47',
+  secondaryForeground: `${lightForegroundBase}${opacity.high}`,
+  mutedForeground: `${lightForegroundBase}${opacity.lower}`,
+  subtleForeground: `${lightForegroundBase}${opacity.faint}`,
+  border: '#f0f0f0',
+  background: '#ffffff',
+  activeBackground: '#f7f7f7',
+  comment: '#547560',
+  string: '#c98a7d',
+  readonly: '#6d6d6d',
+  variable: '#4b4b4b',
+  parameter: '#4f75aa',
+  variableBuiltin: '#b4b4b4',
+  property: '#3184b4',
+  keyword: '#196692',
+  number: '#207d8b',
+  boolean: '#1b577a',
+  constant: '#32769e',
+  namespace: lightErrorAccent,
+  operator: lightErrorAccent,
+  builtin: lightErrorAccent,
+  function: '#a57610',
+  functionBuiltin: '#8f6f18',
+  class: '#00855f',
+  classBuiltin: '#82a39a',
+  type: '#097575',
+  interface: '#216a7e',
+  punctuation: '#a1a1a1',
+  decorator: '#6b5454',
+  regex: '#8d4427',
+  green: '#116e46',
+  cyan: '#2993a3',
+  blue: '#1d5e97',
+  red: '#ab5959',
+  orange: '#a65e2b',
+  yellow: '#998114',
+  magenta: '#a13865',
+} as const
+
+export const darkSemanticPalette = {
+  primary: scheme.blue[8],
+  foreground: scheme.neutral[3],
+  activeForeground: scheme.neutral[4],
+  secondaryForeground: `${scheme.neutral[4]}${opacity.medium}`,
+  mutedForeground: `${scheme.neutral[4]}${opacity.low}`,
+  subtleForeground: `${scheme.neutral[4]}${opacity.faint}`,
+  border: darkNeutralPanel,
+  background: scheme.neutral[10],
+  activeBackground: darkNeutralPanel,
+  comment: scheme.green[9],
+  string: scheme.brown[4],
+  readonly: darkReadonlyAccent,
+  variable: darkVariableAccent,
+  parameter: darkVariableAccent,
+  variableBuiltin: darkVariableAccent,
+  property: darkVariableAccent,
+  keyword: darkKeywordAccent,
+  number: scheme.cyan[7],
+  boolean: scheme.blue[6],
+  constant: darkReadonlyAccent,
+  namespace: darkErrorAccent,
+  operator: darkErrorAccent,
+  builtin: darkErrorAccent,
+  function: darkFunctionAccent,
+  functionBuiltin: scheme.yellow[2],
+  class: darkTypeAccent,
+  classBuiltin: scheme.green[8],
+  type: darkTypeAccent,
+  interface: darkTypeAccent,
+  punctuation: '#8a9099',
+  decorator: scheme.brown[3],
+  regex: scheme.red[2],
+  green: darkTypeAccent,
+  cyan: scheme.cyan[4],
+  blue: darkKeywordAccent,
+  red: scheme.red[4],
+  orange: scheme.orange[4],
+  yellow: darkFunctionAccent,
+  magenta: scheme.magenta[4],
+} as const satisfies Record<keyof typeof lightSemanticPalette, string>
+
+export const lightUiPalette = {
+  overlayBase: lightForegroundBase,
+  guideBase: lightForegroundBase,
+  scrollbarShadow: '#6a737d33',
+  terminalBlack: lightSemanticPalette.background,
+  peekMatchBackground: undefined,
+} as const
+
+export const darkUiPalette = {
+  overlayBase: '#eeeeee',
+  guideBase: '#ffffff',
+  scrollbarShadow: '#0000',
+  terminalBlack: '#393a34',
+  peekMatchBackground: '#ffd33d33',
+} as const satisfies Record<keyof typeof lightUiPalette, string | undefined>
+
+export type SharedPaletteRole = keyof typeof sharedPalette
+export type SemanticPaletteRole = keyof typeof lightSemanticPalette
+export type UiPaletteRole = keyof typeof lightUiPalette
+
 // Central palette entry point for semantic roles and hard-coded UI colors.
 export const themePalette = {
-  shared: {
-    transparent: '#00000000',
-  },
+  shared: sharedPalette,
   light: {
-    semantic: {
-      primary: scheme.blue[4],
-      foreground: '#393a34',
-      activeForeground: '#4e4f47',
-      secondaryForeground: `#393a34${opacity.high}`,
-      mutedForeground: `#393a34${opacity.lower}`,
-      subtleForeground: `#393a34${opacity.faint}`,
-      border: '#f0f0f0',
-      background: '#ffffff',
-      activeBackground: '#f7f7f7',
-      comment: '#547560',
-      string: '#c98a7d',
-      readonly: '#6d6d6d',
-      variable: '#4b4b4b',
-      parameter: '#4f75aa',
-      variableBuiltin: '#b4b4b4',
-      property: '#3184b4',
-      keyword: '#196692',
-      number: '#207d8b',
-      boolean: '#1b577a',
-      constant: '#32769e',
-      namespace: '#aa3939',
-      operator: '#aa3939',
-      builtin: '#aa3939',
-      function: '#a57610',
-      functionBuiltin: '#8f6f18',
-      class: '#00855f',
-      classBuiltin: '#82a39a',
-      type: '#097575',
-      interface: '#216a7e',
-      punctuation: '#a1a1a1',
-      decorator: '#6b5454',
-      regex: '#8d4427',
-      green: '#116e46',
-      cyan: '#2993a3',
-      blue: '#1d5e97',
-      red: '#ab5959',
-      orange: '#a65e2b',
-      yellow: '#998114',
-      magenta: '#a13865',
-    },
-    ui: {
-      overlayBase: '#393a34',
-      guideBase: '#393a34',
-      scrollbarShadow: '#6a737d33',
-      terminalBlack: '#ffffff',
-    },
+    semantic: lightSemanticPalette,
+    ui: lightUiPalette,
   },
   dark: {
-    semantic: {
-      primary: scheme.blue[8],
-      foreground: scheme.neutral[3],
-      activeForeground: scheme.neutral[4],
-      secondaryForeground: `${scheme.neutral[4]}${opacity.medium}`,
-      mutedForeground: `${scheme.neutral[4]}${opacity.low}`,
-      subtleForeground: `${scheme.neutral[4]}${opacity.faint}`,
-      border: scheme.neutral[9],
-      background: scheme.neutral[10],
-      activeBackground: scheme.neutral[9],
-      comment: scheme.green[9],
-      string: scheme.brown[4],
-      readonly: scheme.blue[3],
-      variable: scheme.blue[2],
-      parameter: scheme.blue[2],
-      variableBuiltin: scheme.blue[2],
-      property: scheme.blue[2],
-      keyword: scheme.blue[4],
-      number: scheme.cyan[7],
-      boolean: scheme.blue[6],
-      constant: scheme.blue[3],
-      namespace: scheme.red[3],
-      operator: scheme.red[3],
-      builtin: scheme.red[3],
-      function: scheme.yellow[4],
-      functionBuiltin: scheme.yellow[2],
-      class: scheme.green[7],
-      classBuiltin: scheme.green[8],
-      type: scheme.green[7],
-      interface: scheme.green[7],
-      punctuation: '#8a9099',
-      decorator: scheme.brown[3],
-      regex: scheme.red[2],
-      green: scheme.green[7],
-      cyan: scheme.cyan[4],
-      blue: scheme.blue[4],
-      red: scheme.red[4],
-      orange: scheme.orange[4],
-      yellow: scheme.yellow[4],
-      magenta: scheme.magenta[4],
-    },
-    ui: {
-      overlayBase: '#eeeeee',
-      guideBase: '#ffffff',
-      scrollbarShadow: '#0000',
-      terminalBlack: '#393a34',
-      peekMatchBackground: '#ffd33d33',
-    },
+    semantic: darkSemanticPalette,
+    ui: darkUiPalette,
   },
   modifiers: {
     soft: {

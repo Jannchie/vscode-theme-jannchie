@@ -1,58 +1,24 @@
-import { themePalette } from './colorPalette'
+import type { SemanticPaletteRole } from './colorPalette'
+import {
+  darkSemanticPalette,
+  lightSemanticPalette,
+
+  themePalette,
+} from './colorPalette'
 
 export interface VariantColor {
   dark: string
   light: string
 }
 
-const semanticRoles = [
-  'primary',
-  'foreground',
-  'activeForeground',
-  'secondaryForeground',
-  'mutedForeground',
-  'subtleForeground',
-  'border',
-  'background',
-  'activeBackground',
-  'comment',
-  'string',
-  'readonly',
-  'variable',
-  'parameter',
-  'variableBuiltin',
-  'property',
-  'keyword',
-  'number',
-  'boolean',
-  'constant',
-  'namespace',
-  'operator',
-  'builtin',
-  'function',
-  'functionBuiltin',
-  'class',
-  'classBuiltin',
-  'type',
-  'interface',
-  'punctuation',
-  'decorator',
-  'regex',
-  'green',
-  'cyan',
-  'blue',
-  'red',
-  'orange',
-  'yellow',
-  'magenta',
-] as const
+const semanticRoles = Object.keys(lightSemanticPalette) as SemanticPaletteRole[]
 
-export type SemanticRole = (typeof semanticRoles)[number]
+export type SemanticRole = SemanticPaletteRole
 
 function createVariantColor(role: SemanticRole): VariantColor {
   return {
-    dark: themePalette.dark.semantic[role],
-    light: themePalette.light.semantic[role],
+    dark: darkSemanticPalette[role],
+    light: lightSemanticPalette[role],
   }
 }
 
