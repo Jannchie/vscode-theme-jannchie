@@ -1,13 +1,13 @@
 import type { ColorResolver } from '../core/colorResolver'
 
 export function buildTokenColors(colorResolver: ColorResolver) {
-  const role = colorResolver.resolveRole.bind(colorResolver)
+  const color = colorResolver.resolve.bind(colorResolver)
 
-  const punctuation = role('punctuation')
-  const foreground = role('foreground')
-  const background = role('background')
-  const mutedForeground = role('mutedForeground')
-  const primary = role('primary')
+  const punctuation = color('syntax.punctuation')
+  const foreground = color('text.primary')
+  const background = color('surface.canvas')
+  const mutedForeground = color('text.muted')
+  const primary = color('accent.primary')
 
   return [
     {
@@ -17,7 +17,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'string.comment',
       ],
       settings: {
-        foreground: role('comment'),
+        foreground: color('syntax.comment'),
       },
     },
     {
@@ -53,13 +53,13 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'meta.definition.variable',
       ],
       settings: {
-        foreground: role('constant'),
+        foreground: color('syntax.constant'),
       },
     },
     {
       scope: ['entity', 'entity.name'],
       settings: {
-        foreground: role('parameter'),
+        foreground: color('syntax.parameter'),
       },
     },
     {
@@ -74,7 +74,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'tag.html',
       ],
       settings: {
-        foreground: role('keyword'),
+        foreground: color('syntax.keyword'),
       },
     },
     {
@@ -83,13 +83,13 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'support.class.component',
       ],
       settings: {
-        foreground: role('type'),
+        foreground: color('syntax.type'),
       },
     },
     {
       scope: 'entity.name.function',
       settings: {
-        foreground: role('function'),
+        foreground: color('syntax.function'),
       },
     },
     {
@@ -98,7 +98,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'storage.type.class.jsdoc',
       ],
       settings: {
-        foreground: role('keyword'),
+        foreground: color('syntax.keyword'),
       },
     },
     {
@@ -110,7 +110,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'constant.language.null',
       ],
       settings: {
-        foreground: role('builtin'),
+        foreground: color('syntax.builtin'),
       },
     },
     {
@@ -131,7 +131,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'attribute.value',
       ],
       settings: {
-        foreground: role('string'),
+        foreground: color('syntax.string'),
       },
     },
     {
@@ -140,7 +140,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'variable.other.readwrite',
       ],
       settings: {
-        foreground: role('variable'),
+        foreground: color('syntax.variable'),
       },
     },
     {
@@ -149,7 +149,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'variable.other.property',
       ],
       settings: {
-        foreground: role('property'),
+        foreground: color('syntax.property'),
       },
     },
     {
@@ -157,7 +157,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'meta.function-call',
       ],
       settings: {
-        foreground: role('function'),
+        foreground: color('syntax.function'),
       },
     },
     {
@@ -166,13 +166,13 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'punctuation.support.type.property-name',
       ],
       settings: {
-        foreground: role('string', 'veil'),
+        foreground: color('syntax.string', 'veil'),
       },
     },
     {
       scope: ['support', 'support.type.property-name.toml'],
       settings: {
-        foreground: role('property'),
+        foreground: color('syntax.property'),
       },
     },
     {
@@ -181,7 +181,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'support.type.property-name.array.toml',
       ],
       settings: {
-        foreground: role('function'),
+        foreground: color('syntax.function'),
       },
     },
     {
@@ -193,7 +193,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'attribute.name',
       ],
       settings: {
-        foreground: role('property'),
+        foreground: color('syntax.property'),
       },
     },
     {
@@ -202,7 +202,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'identifier',
       ],
       settings: {
-        foreground: role('variable'),
+        foreground: color('syntax.variable'),
       },
     },
     {
@@ -210,7 +210,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'variable.other.constant',
       ],
       settings: {
-        foreground: role('constant'),
+        foreground: color('syntax.constant'),
       },
     },
     {
@@ -219,13 +219,13 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'entity.name.type',
       ],
       settings: {
-        foreground: role('type'),
+        foreground: color('syntax.type'),
       },
     },
     {
       scope: 'namespace',
       settings: {
-        foreground: role('namespace'),
+        foreground: color('syntax.namespace'),
       },
     },
     {
@@ -235,42 +235,42 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'meta.var.expr.ts',
       ],
       settings: {
-        foreground: role('operator'),
+        foreground: color('syntax.operator'),
       },
     },
     {
       scope: 'invalid.broken',
       settings: {
         fontStyle: 'italic',
-        foreground: role('red'),
+        foreground: color('accent.red'),
       },
     },
     {
       scope: 'invalid.deprecated',
       settings: {
         fontStyle: 'italic',
-        foreground: role('red'),
+        foreground: color('accent.red'),
       },
     },
     {
       scope: 'invalid.illegal',
       settings: {
         fontStyle: 'italic',
-        foreground: role('red'),
+        foreground: color('accent.red'),
       },
     },
     {
       scope: 'invalid.unimplemented',
       settings: {
         fontStyle: 'italic',
-        foreground: role('red'),
+        foreground: color('accent.red'),
       },
     },
     {
       scope: 'carriage-return',
       settings: {
         fontStyle: 'italic underline',
-        background: role('red'),
+        background: color('accent.red'),
         foreground: background,
         content: '^M',
       },
@@ -278,19 +278,19 @@ export function buildTokenColors(colorResolver: ColorResolver) {
     {
       scope: 'message.error',
       settings: {
-        foreground: role('red'),
+        foreground: color('accent.red'),
       },
     },
     {
       scope: 'string variable',
       settings: {
-        foreground: role('string'),
+        foreground: color('syntax.string'),
       },
     },
     {
       scope: ['source.regexp', 'string.regexp'],
       settings: {
-        foreground: role('regex'),
+        foreground: color('syntax.regex'),
       },
     },
     {
@@ -301,13 +301,13 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'string.regexp string.regexp.arbitrary-repitition',
       ],
       settings: {
-        foreground: role('string'),
+        foreground: color('syntax.string'),
       },
     },
     {
       scope: 'string.regexp constant.character.escape',
       settings: {
-        foreground: role('yellow'),
+        foreground: color('accent.yellow'),
       },
     },
     {
@@ -315,7 +315,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'support.constant',
       ],
       settings: {
-        foreground: role('constant'),
+        foreground: color('syntax.constant'),
       },
     },
     {
@@ -324,7 +324,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'number',
       ],
       settings: {
-        foreground: role('number'),
+        foreground: color('syntax.number'),
       },
     },
     {
@@ -332,7 +332,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'keyword.other.unit',
       ],
       settings: {
-        foreground: role('builtin'),
+        foreground: color('syntax.builtin'),
       },
     },
     {
@@ -341,7 +341,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'constant.language',
       ],
       settings: {
-        foreground: role('boolean'),
+        foreground: color('syntax.boolean'),
       },
     },
     {
@@ -353,20 +353,20 @@ export function buildTokenColors(colorResolver: ColorResolver) {
     {
       scope: 'punctuation.definition.list.begin.markdown',
       settings: {
-        foreground: role('orange'),
+        foreground: color('accent.orange'),
       },
     },
     {
       scope: ['markup.heading', 'markup.heading entity.name'],
       settings: {
         fontStyle: 'bold',
-        foreground: role('function'),
+        foreground: color('syntax.function'),
       },
     },
     {
       scope: 'markup.quote',
       settings: {
-        foreground: role('interface'),
+        foreground: color('syntax.interface'),
       },
     },
     {
@@ -396,8 +396,8 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'punctuation.definition.deleted',
       ],
       settings: {
-        background: role('red', 'barely'),
-        foreground: role('red'),
+        background: color('accent.red', 'barely'),
+        foreground: color('accent.red'),
       },
     },
     {
@@ -407,48 +407,48 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'punctuation.definition.inserted',
       ],
       settings: {
-        background: role('green', 'barely'),
-        foreground: role('green'),
+        background: color('accent.green', 'barely'),
+        foreground: color('accent.green'),
       },
     },
     {
       scope: ['markup.changed', 'punctuation.definition.changed'],
       settings: {
-        background: role('orange', 'barely'),
-        foreground: role('orange'),
+        background: color('accent.orange', 'barely'),
+        foreground: color('accent.orange'),
       },
     },
     {
       scope: ['markup.ignored', 'markup.untracked'],
       settings: {
         foreground: mutedForeground,
-        background: role('blue'),
+        background: color('accent.blue'),
       },
     },
     {
       scope: 'meta.diff.range',
       settings: {
-        foreground: role('magenta'),
+        foreground: color('accent.magenta'),
         fontStyle: 'bold',
       },
     },
     {
       scope: 'meta.diff.header',
       settings: {
-        foreground: role('blue'),
+        foreground: color('accent.blue'),
       },
     },
     {
       scope: 'meta.separator',
       settings: {
         fontStyle: 'bold',
-        foreground: role('blue'),
+        foreground: color('accent.blue'),
       },
     },
     {
       scope: 'meta.output',
       settings: {
-        foreground: role('blue'),
+        foreground: color('accent.blue'),
       },
     },
     {
@@ -467,7 +467,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
     {
       scope: 'brackethighlighter.unmatched',
       settings: {
-        foreground: role('red'),
+        foreground: color('accent.red'),
       },
     },
     {
@@ -478,7 +478,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'punctuation.definition.string.end.markdown',
       ],
       settings: {
-        foreground: role('string'),
+        foreground: color('syntax.string'),
       },
     },
     {
@@ -487,7 +487,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'markup.underline.link.image.markdown',
       ],
       settings: {
-        foreground: role('secondaryForeground'),
+        foreground: color('text.secondary'),
         fontStyle: 'underline',
       },
     },
@@ -496,7 +496,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'type.identifier',
       ],
       settings: {
-        foreground: role('class'),
+        foreground: color('syntax.class'),
       },
     },
     {
@@ -504,7 +504,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'entity.other.attribute-name.html',
       ],
       settings: {
-        foreground: role('parameter'),
+        foreground: color('syntax.parameter'),
       },
     },
     {

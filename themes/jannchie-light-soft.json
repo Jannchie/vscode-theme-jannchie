@@ -12,7 +12,7 @@
     "textBlockQuote.border": "#E7E5DB",
     "textCodeBlock.background": "#F1F0E9",
     "textPreformat.foreground": "#393a3480",
-    "textSeparator.foreground": "#4e4f47",
+    "textSeparator.foreground": "#4b4b4b",
     "button.background": "#4babf2",
     "button.foreground": "#393a34",
     "button.hoverBackground": "#4babf2",
@@ -30,7 +30,7 @@
     "badge.foreground": "#F1F0E9",
     "badge.background": "#393a34e6",
     "progressBar.background": "#4babf2",
-    "titleBar.activeForeground": "#4e4f47",
+    "titleBar.activeForeground": "#4b4b4b",
     "titleBar.activeBackground": "#F1F0E9",
     "titleBar.inactiveForeground": "#393a3480",
     "titleBar.inactiveBackground": "#F1F0E9",
@@ -39,10 +39,10 @@
     "activityBar.inactiveForeground": "#393a34e6",
     "activityBar.background": "#F1F0E9",
     "activityBarBadge.foreground": "#F1F0E9",
-    "activityBarBadge.background": "#4e4f47",
+    "activityBarBadge.background": "#4b4b4b",
     "activityBar.activeBorder": "#4babf2",
     "activityBar.border": "#E7E5DB",
-    "sideBar.foreground": "#4e4f47",
+    "sideBar.foreground": "#4b4b4b",
     "sideBar.background": "#F1F0E9",
     "sideBar.border": "#E7E5DB",
     "sideBarTitle.foreground": "#393a34",
@@ -72,15 +72,15 @@
     "quickInput.background": "#F1F0E9",
     "quickInput.foreground": "#393a34",
     "quickInputList.focusBackground": "#E7E5DB",
-    "statusBar.foreground": "#4e4f47",
+    "statusBar.foreground": "#4b4b4b",
     "statusBar.background": "#F1F0E9",
     "statusBar.border": "#E7E5DB",
     "statusBar.noFolderBackground": "#F1F0E9",
     "statusBar.debuggingBackground": "#E7E5DB",
-    "statusBar.debuggingForeground": "#4e4f47",
+    "statusBar.debuggingForeground": "#4b4b4b",
     "statusBarItem.prominentBackground": "#E7E5DB",
     "statusBarItem.remoteBackground": "#E7E5DB",
-    "statusBarItem.remoteForeground": "#4e4f47",
+    "statusBarItem.remoteForeground": "#4b4b4b",
     "statusBarItem.remoteHoverBackground": "#998114",
     "statusBarItem.remoteHoverForeground": "#F1F0E9",
     "statusBarItem.errorBackground": "#ab5959",
@@ -110,7 +110,7 @@
     "editor.foldBackground": "#393a341a",
     "editor.lineHighlightBackground": "#E7E5DB",
     "editorLineNumber.foreground": "#393a3480",
-    "editorLineNumber.activeForeground": "#4e4f47",
+    "editorLineNumber.activeForeground": "#4b4b4b",
     "editorIndentGuide.background": "#393a341a",
     "editorIndentGuide.activeBackground": "#393a344d",
     "editorWhitespace.foreground": "#393a341a",
@@ -137,7 +137,7 @@
     "panelInput.border": "#E7E5DB",
     "terminal.foreground": "#393a34",
     "terminal.selectionBackground": "#393a341a",
-    "terminal.ansiBrightBlack": "#4e4f47",
+    "terminal.ansiBrightBlack": "#4b4b4b",
     "terminal.ansiBrightBlue": "#1d5e97",
     "terminal.ansiBrightCyan": "#2993a3",
     "terminal.ansiBrightGreen": "#116e46",
@@ -251,16 +251,16 @@
     },
     "event": "#a57610",
     "function": "#a57610",
-    "function.builtin": "#8f6f18",
-    "function.defaultLibrary": "#8f6f18",
+    "function.builtin": "#a57610",
+    "function.defaultLibrary": "#a57610",
     "method": "#a57610",
-    "method.defaultLibrary": "#8f6f18",
-    "method.builtin": "#8f6f18",
+    "method.defaultLibrary": "#a57610",
+    "method.builtin": "#a57610",
     "macro": "#a57610",
     "label": "#a57610",
     "comment": "#547560",
     "string": "#c98a7d",
-    "keyword": "#196692",
+    "keyword": "#1d5e97",
     "number": "#207d8b",
     "regexp": "#8d4427",
     "operator": "#aa3939",
@@ -338,7 +338,7 @@
         "tag.html"
       ],
       "settings": {
-        "foreground": "#196692"
+        "foreground": "#1d5e97"
       }
     },
     {
@@ -362,7 +362,7 @@
         "storage.type.class.jsdoc"
       ],
       "settings": {
-        "foreground": "#196692"
+        "foreground": "#1d5e97"
       }
     },
     {
@@ -910,11 +910,11 @@
     },
     {
       "token": "entity.name.tag",
-      "foreground": "196692"
+      "foreground": "1d5e97"
     },
     {
       "token": "tag.html",
-      "foreground": "196692"
+      "foreground": "1d5e97"
     },
     {
       "token": "entity.other.attribute-name.html.meta.attribute.class.html",
@@ -930,11 +930,11 @@
     },
     {
       "token": "keyword",
-      "foreground": "196692"
+      "foreground": "1d5e97"
     },
     {
       "token": "storage.type.class.jsdoc",
-      "foreground": "196692"
+      "foreground": "1d5e97"
     },
     {
       "token": "storage",

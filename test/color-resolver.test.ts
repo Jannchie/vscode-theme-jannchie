@@ -1,5 +1,13 @@
+import type { ThemeColorGroups } from '../src/config/colorPalette'
 import { describe, expect, it } from 'vitest'
+import { themeColorConfig } from '../src/config/colorPalette'
 import { ColorResolver } from '../src/core/colorResolver'
+
+function collectThemePaths(groups: Partial<ThemeColorGroups>): string[] {
+  return Object.entries(groups).flatMap(([group, values]) =>
+    Object.keys(values ?? {}).map(key => `${group}.${key}`),
+  )
+}
 
 describe('color resolver', () => {
   it('resolves base colors for light and dark variants', () => {
@@ -12,8 +20,8 @@ describe('color resolver', () => {
       modifiers: [],
     })
 
-    expect(darkResolver.resolveRole('foreground')).toBe('#d4d4d4')
-    expect(lightResolver.resolveRole('foreground')).toBe('#393a34')
+    expect(darkResolver.resolve('text.primary')).toBe('#d4d4d4')
+    expect(lightResolver.resolve('text.primary')).toBe('#393a34')
   })
 
   it('applies soft overrides to semantic roles', () => {
@@ -22,9 +30,9 @@ describe('color resolver', () => {
       modifiers: ['soft'],
     })
 
-    expect(resolver.resolveRole('background')).toBe('#F1F0E9')
-    expect(resolver.resolveRole('activeBackground')).toBe('#E7E5DB')
-    expect(resolver.resolveRole('border')).toBe('#E7E5DB')
+    expect(resolver.resolve('surface.canvas')).toBe('#F1F0E9')
+    expect(resolver.resolve('surface.panel')).toBe('#E7E5DB')
+    expect(resolver.resolve('surface.border')).toBe('#E7E5DB')
   })
 
   it('prefers black overrides over soft overrides', () => {
@@ -33,10 +41,10 @@ describe('color resolver', () => {
       modifiers: ['soft', 'black'],
     })
 
-    expect(resolver.resolveRole('background')).toBe('#000000')
-    expect(resolver.resolveRole('activeBackground')).toBe('#121212')
-    expect(resolver.resolveRole('foreground')).toBe('#dbd7cacc')
-    expect(resolver.resolveRole('punctuation')).toBe('#8a9099cc')
+    expect(resolver.resolve('surface.canvas')).toBe('#000000')
+    expect(resolver.resolve('surface.panel')).toBe('#121212')
+    expect(resolver.resolve('text.primary')).toBe('#dbd7cacc')
+    expect(resolver.resolve('syntax.punctuation')).toBe('#8a9099cc')
   })
 
   it('can resolve base colors without modifier overrides', () => {
@@ -45,8 +53,8 @@ describe('color resolver', () => {
       modifiers: ['black'],
     })
 
-    expect(resolver.resolveBaseRole('foreground')).toBe('#d4d4d4')
-    expect(resolver.resolveBaseRole('background')).toBe('#0f0f0f')
+    expect(resolver.resolveBase('text.primary')).toBe('#d4d4d4')
+    expect(resolver.resolveBase('surface.canvas')).toBe('#0f0f0f')
   })
 
   it('appends opacity to resolved colors', () => {
@@ -55,11 +63,11 @@ describe('color resolver', () => {
       modifiers: [],
     })
 
-    expect(resolver.resolveRole('primary', 'barely')).toBe('#4babf20d')
-    expect(resolver.resolveRole('primary', '33')).toBe('#4babf233')
+    expect(resolver.resolve('accent.primary', 'barely')).toBe('#4babf20d')
+    expect(resolver.resolve('accent.primary', '33')).toBe('#4babf233')
   })
 
-  it('resolves ui palette roles and variant-specific helpers', () => {
+  it('resolves utility colors and variant-specific helpers', () => {
     const darkResolver = new ColorResolver({
       variant: 'dark',
       modifiers: [],
@@ -69,16 +77,34 @@ describe('color resolver', () => {
       modifiers: [],
     })
 
-    expect(lightResolver.resolveUiRole('terminalBlack')).toBe('#ffffff')
-    expect(darkResolver.resolveUiRole('peekMatchBackground')).toBe('#ffd33d33')
-    expect(lightResolver.resolveUiRole('peekMatchBackground')).toBeUndefined()
-    expect(darkResolver.resolveUiRoleByVariant('overlayBase', {
+    expect(lightResolver.resolve('utility.terminalBlack')).toBe('#ffffff')
+    expect(darkResolver.resolve('utility.peekMatchBackground')).toBe('#ffd33d33')
+    expect(lightResolver.resolve('utility.peekMatchBackground')).toBeUndefined()
+    expect(darkResolver.resolveByVariant('surface.overlay', {
       light: 'barely',
       dark: 'faint',
     })).toBe('#eeeeee1a')
-    expect(lightResolver.resolveRoleByVariant('yellow', {
+    expect(lightResolver.resolveByVariant('accent.yellow', {
       light: 'subtle',
       dark: 'ghost',
     })).toBe('#9981144d')
+  })
+
+  it('keeps light and dark semantic keys aligned', () => {
+    expect(collectThemePaths(themeColorConfig.baseColors.light)).toEqual(
+      collectThemePaths(themeColorConfig.baseColors.dark),
+    )
+  })
+
+  it('limits modifier overrides to known semantic paths', () => {
+    const knownPaths = new Set(collectThemePaths(themeColorConfig.baseColors.light))
+
+    for (const variantModifiers of Object.values(themeColorConfig.modifiers)) {
+      for (const modifierColors of Object.values(variantModifiers)) {
+        for (const path of collectThemePaths(modifierColors ?? {})) {
+          expect(knownPaths.has(path)).toBe(true)
+        }
+      }
+    }
   })
 })

@@ -1,4 +1,4 @@
-import type { ThemeModifier, ThemeVariant } from './colorResolver'
+import type { ThemeModifier, ThemeVariant } from '../config/colorPalette'
 import type { VSCodeTheme } from './types'
 import { ThemeBuilder } from './ThemeBuilder'
 

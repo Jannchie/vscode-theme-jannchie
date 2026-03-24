@@ -1,80 +1,80 @@
 import type { ColorResolver } from '../core/colorResolver'
 
 export function buildSemanticTokenColors(colorResolver: ColorResolver) {
-  const role = colorResolver.resolveRole.bind(colorResolver)
+  const color = colorResolver.resolve.bind(colorResolver)
 
   return {
     'namespace': {
-      foreground: role('namespace'),
+      foreground: color('syntax.namespace'),
       underline: true,
     },
     'class': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
       underline: true,
     },
     'class.defaultLibrary': {
-      foreground: role('classBuiltin'),
+      foreground: color('syntax.classBuiltin'),
     },
     'interface': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
       underline: true,
     },
     'interface.defaultLibrary': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
     },
     'struct': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
       underline: true,
     },
-    'typeParameter': role('type'),
+    'typeParameter': color('syntax.type'),
     'type': {
-      foreground: role('type'),
+      foreground: color('syntax.type'),
       underline: true,
     },
     'parameter': {
-      foreground: role('parameter'),
+      foreground: color('syntax.parameter'),
     },
-    'variable': role('variable'),
+    'variable': color('syntax.variable'),
     'variable.readonly': {
-      foreground: role('readonly'),
+      foreground: color('syntax.readonly'),
     },
     'variable.defaultLibrary': {
-      foreground: role('variableBuiltin'),
+      foreground: color('syntax.variableBuiltin'),
     },
-    'property': role('property'),
+    'property': color('syntax.property'),
     'enum.declaration': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
       underline: true,
     },
     'enum': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
       underline: true,
     },
     'enumMember': {
-      foreground: role('class'),
+      foreground: color('syntax.class'),
       underline: true,
     },
-    'decorator': role('decorator'),
+    'decorator': color('syntax.decorator'),
     'variable.decorator': {
-      foreground: role('decorator'),
+      foreground: color('syntax.decorator'),
     },
-    'event': role('function'),
-    'function': role('function'),
-    'function.builtin': role('functionBuiltin'),
-    'function.defaultLibrary': role('functionBuiltin'),
-    'method': role('function'),
-    'method.defaultLibrary': role('functionBuiltin'),
-    'method.builtin': role('functionBuiltin'),
-    'macro': role('function'),
-    'label': role('function'),
-    'comment': role('comment'),
-    'string': role('string'),
-    'keyword': role('keyword'),
-    'number': role('number'),
-    'regexp': role('regex'),
-    'operator': role('operator'),
-    'builtinConstant': role('boolean'),
-    'component': role('class'),
+    'event': color('syntax.function'),
+    'function': color('syntax.function'),
+    'function.builtin': color('syntax.functionBuiltin'),
+    'function.defaultLibrary': color('syntax.functionBuiltin'),
+    'method': color('syntax.function'),
+    'method.defaultLibrary': color('syntax.functionBuiltin'),
+    'method.builtin': color('syntax.functionBuiltin'),
+    'macro': color('syntax.function'),
+    'label': color('syntax.function'),
+    'comment': color('syntax.comment'),
+    'string': color('syntax.string'),
+    'keyword': color('syntax.keyword'),
+    'number': color('syntax.number'),
+    'regexp': color('syntax.regex'),
+    'operator': color('syntax.operator'),
+    'builtinConstant': color('syntax.boolean'),
+    'component': color('syntax.class'),
     'variable.builtin': {
       bold: true,
     },

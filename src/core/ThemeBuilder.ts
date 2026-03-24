@@ -1,4 +1,4 @@
-import type { ThemeModifier, ThemeVariant } from './colorResolver'
+import type { ThemeModifier, ThemeVariant } from '../config/colorPalette'
 import type { Rule, TokenColor, VSCodeTheme } from './types'
 import { buildTokenColors } from '../syntax/tokenColors'
 import { buildSemanticTokenColors } from '../ui/semanticTokenColors'

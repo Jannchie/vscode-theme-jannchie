@@ -1,12 +1,14 @@
-import type { OpacityLevel, SharedPaletteRole, UiPaletteRole, VariantValue } from '../config/colorPalette'
-import type { SemanticRole, VariantColor } from '../config/semanticColors'
-import { opacity, themePalette } from '../config/colorPalette'
-import { baseSemanticColors, modifierOverrides } from '../config/semanticColors'
-
-const modifierPrecedence = ['soft', 'black'] as const
-
-export type ThemeVariant = 'light' | 'dark'
-export type ThemeModifier = (typeof modifierPrecedence)[number]
+import type {
+  OpacityLevel,
+  ResolvedThemeColor,
+  ThemeColorGroup,
+  ThemeColorGroups,
+  ThemeColorPath,
+  ThemeModifier,
+  ThemeVariant,
+  VariantValue,
+} from '../config/colorPalette'
+import { applyOpacity, themeColorConfig } from '../config/colorPalette'
 
 export interface ColorResolverOptions {
   modifiers: ThemeModifier[]
@@ -35,50 +37,24 @@ export class ColorResolver {
   /**
    * Resolve semantic role with optional opacity
    */
-  resolveRole(role: SemanticRole, op: OpacityLevel | string = ''): string {
-    const color = this.getVariantColor(role)[this.variant]
-    return this.withOpacity(color, op)
+  resolve<Path extends ThemeColorPath>(path: Path, op: OpacityLevel | string = ''): ResolvedThemeColor<Path> {
+    const color = this.getColor(path)
+    return this.withOptionalOpacity(color, op) as ResolvedThemeColor<Path>
   }
 
   /**
-   * Resolve semantic role without modifier overrides
+   * Resolve theme color without modifier overrides
    */
-  resolveBaseRole(role: SemanticRole, op: OpacityLevel | string = ''): string {
-    const color = baseSemanticColors[role][this.variant]
-    return this.withOpacity(color, op)
+  resolveBase<Path extends ThemeColorPath>(path: Path, op: OpacityLevel | string = ''): ResolvedThemeColor<Path> {
+    const color = this.getBaseColor(path)
+    return this.withOptionalOpacity(color, op) as ResolvedThemeColor<Path>
   }
 
   /**
-   * Resolve semantic role with variant-specific opacity
+   * Resolve theme color with variant-specific opacity
    */
-  resolveRoleByVariant(role: SemanticRole, opacityByVariant: VariantValue<OpacityLevel | string>): string {
-    return this.resolveRole(role, this.pick(opacityByVariant))
-  }
-
-  /**
-   * Resolve UI palette role with optional opacity
-   */
-  resolveUiRole(role: UiPaletteRole, op: OpacityLevel | string = ''): string | undefined {
-    const color = this.pick({
-      dark: themePalette.dark.ui[role],
-      light: themePalette.light.ui[role],
-    })
-
-    return this.withOptionalOpacity(color, op)
-  }
-
-  /**
-   * Resolve UI palette role with variant-specific opacity
-   */
-  resolveUiRoleByVariant(role: UiPaletteRole, opacityByVariant: VariantValue<OpacityLevel | string>): string | undefined {
-    return this.resolveUiRole(role, this.pick(opacityByVariant))
-  }
-
-  /**
-   * Resolve shared palette color
-   */
-  resolveSharedColor(role: SharedPaletteRole): string {
-    return themePalette.shared[role]
+  resolveByVariant<Path extends ThemeColorPath>(path: Path, opacityByVariant: VariantValue<OpacityLevel | string>): ResolvedThemeColor<Path> {
+    return this.resolve(path, this.pick(opacityByVariant))
   }
 
   /**
@@ -88,37 +64,56 @@ export class ColorResolver {
     return this.modifiers.includes(modifier)
   }
 
-  private getVariantColor(role: SemanticRole): VariantColor {
-    const resolvedColor: VariantColor = { ...baseSemanticColors[role] }
-
-    for (const modifier of modifierPrecedence) {
+  private getColor<Path extends ThemeColorPath>(path: Path): ResolvedThemeColor<Path> {
+    let resolvedColor = this.getBaseColor(path)
+    for (const modifier of themeColorConfig.modifierPrecedence) {
       if (!this.hasModifier(modifier)) {
         continue
       }
 
-      const override = modifierOverrides[modifier][role]
-      if (override) {
-        Object.assign(resolvedColor, override)
+      const override = this.getModifierColor(themeColorConfig.modifiers[modifier]?.[this.variant], path)
+      if (override !== undefined) {
+        resolvedColor = override as ResolvedThemeColor<Path>
       }
     }
 
     return resolvedColor
   }
 
-  private withOpacity(color: string, op: OpacityLevel | string = ''): string {
-    if (!op) {
-      return color
+  private getBaseColor<Path extends ThemeColorPath>(path: Path): ResolvedThemeColor<Path> {
+    const [group, key] = this.parsePath(path)
+    return themeColorConfig.baseColors[this.variant][group][key] as ResolvedThemeColor<Path>
+  }
+
+  private getModifierColor<Path extends ThemeColorPath>(
+    modifierGroup: Partial<ThemeColorGroups> | undefined,
+    path: Path,
+  ): ResolvedThemeColor<Path> | undefined {
+    if (!modifierGroup) {
+      return undefined
     }
 
-    const opacityValue = op in opacity ? opacity[op as OpacityLevel] : op
-    return `${color}${opacityValue}`
+    const [group, key] = this.parsePath(path)
+    return modifierGroup[group]?.[key] as ResolvedThemeColor<Path> | undefined
+  }
+
+  private parsePath<Path extends ThemeColorPath>(path: Path): [
+    ThemeColorGroup,
+    keyof ThemeColorGroups[ThemeColorGroup],
+  ] {
+    const [group, key] = path.split('.') as [
+      ThemeColorGroup,
+      keyof ThemeColorGroups[ThemeColorGroup],
+    ]
+
+    return [group, key]
   }
 
   private withOptionalOpacity(color: string | undefined, op: OpacityLevel | string = ''): string | undefined {
-    if (color === undefined) {
+    if (color === undefined || !op) {
       return color
     }
 
-    return this.withOpacity(color, op)
+    return applyOpacity(color, op)
   }
 }
