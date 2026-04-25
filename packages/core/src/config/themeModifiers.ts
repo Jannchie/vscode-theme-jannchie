@@ -18,6 +18,9 @@ export const themeModifiers = {
         panel: '#E7E5DB',
         border: '#E7E5DB',
       },
+      text: {
+        muted: '#797979'
+      }
     },
   },
   black: {
@@ -33,5 +36,10 @@ export const themeModifiers = {
         punctuation: applyOpacity('#8a9099', 'medium'),
       },
     },
+    light: {
+      text: {
+        muted: '#797979',
+      },
+    }
   },
 } as const satisfies Record<ThemeModifier, Partial<Record<ThemeVariant, ModifierColorGroups>>>

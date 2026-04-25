@@ -18,6 +18,7 @@ const lightThemeColors = {
     shadow: colorTokens.light.surface.shadow,
   },
   syntax: {
+    import: colorTokens.light.syntax.import,
     comment: colorTokens.light.syntax.comment,
     string: colorTokens.light.syntax.string,
     readonly: colorTokens.light.syntax.readonly,
@@ -25,7 +26,7 @@ const lightThemeColors = {
     parameter: colorTokens.light.syntax.parameter,
     variableBuiltin: colorTokens.light.syntax.variableBuiltin,
     property: colorTokens.light.syntax.property,
-    keyword: colorTokens.light.accent.blue,
+    keyword: colorTokens.light.syntax.keyword,
     number: colorTokens.light.syntax.number,
     boolean: colorTokens.light.syntax.boolean,
     constant: colorTokens.light.syntax.constant,
@@ -76,6 +77,7 @@ const darkThemeColors = {
     shadow: colorTokens.dark.surface.shadow,
   },
   syntax: {
+    import: colorTokens.dark.syntax.import,
     comment: colorTokens.dark.syntax.comment,
     string: colorTokens.dark.syntax.string,
     readonly: colorTokens.dark.syntax.readonly,
@@ -83,7 +85,7 @@ const darkThemeColors = {
     parameter: colorTokens.dark.syntax.variable,
     variableBuiltin: colorTokens.dark.syntax.variable,
     property: colorTokens.dark.syntax.variable,
-    keyword: colorTokens.dark.accent.blue,
+    keyword: colorTokens.dark.syntax.keyword,
     number: colorTokens.dark.syntax.number,
     boolean: colorTokens.dark.syntax.boolean,
     constant: colorTokens.dark.syntax.constant,

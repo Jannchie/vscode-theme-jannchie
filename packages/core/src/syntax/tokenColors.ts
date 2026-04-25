@@ -265,6 +265,14 @@ export function buildTokenColors(colorResolver: ColorResolver) {
       },
     },
     {
+      scope: [
+        'keyword.control.import',
+      ],
+      settings: {
+        foreground: color('syntax.import'),
+      },
+    },
+    {
       scope: 'invalid.broken',
       settings: {
         fontStyle: 'italic',

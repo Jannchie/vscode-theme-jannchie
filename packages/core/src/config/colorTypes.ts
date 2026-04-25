@@ -26,6 +26,7 @@ export interface ThemeColorGroups {
     shadow: string
   }
   syntax: {
+    import: string
     boolean: string
     builtin: string
     class: string

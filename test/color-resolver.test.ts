@@ -86,7 +86,7 @@ describe('color resolver', () => {
     expect(lightResolver.resolveByVariant('accent.yellow', {
       light: 'subtle',
       dark: 'ghost',
-    })).toBe('#b882004d')
+    })).toBe('#8d6c024d')
   })
 
   it('keeps light and dark semantic keys aligned', () => {

@@ -1,7 +1,7 @@
 import type { ColorResolver } from './colorResolver'
 
 export function resolveCodeBackground(colorResolver: ColorResolver): string {
-  let darkEditorBackground = '#0a0a0a'
+  let darkEditorBackground = '#0d0d0d'
   if (colorResolver.hasModifier('black')) {
     darkEditorBackground = '#000000'
   }
