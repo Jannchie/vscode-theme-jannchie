@@ -19,8 +19,8 @@ export const themeModifiers = {
         border: '#E7E5DB',
       },
       text: {
-        muted: '#797979'
-      }
+        muted: '#797979',
+      },
     },
   },
   black: {
@@ -40,6 +40,6 @@ export const themeModifiers = {
       text: {
         muted: '#797979',
       },
-    }
+    },
   },
 } as const satisfies Record<ThemeModifier, Partial<Record<ThemeVariant, ModifierColorGroups>>>

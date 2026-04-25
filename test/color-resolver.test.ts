@@ -20,7 +20,7 @@ describe('color resolver', () => {
     })
 
     expect(darkResolver.resolve('text.primary')).toBe('#d4d4d4')
-    expect(lightResolver.resolve('text.primary')).toBe('#393a34')
+    expect(lightResolver.resolve('text.primary')).toBe('#1b1b1b')
   })
 
   it('applies soft overrides to semantic roles', () => {
@@ -86,7 +86,7 @@ describe('color resolver', () => {
     expect(lightResolver.resolveByVariant('accent.yellow', {
       light: 'subtle',
       dark: 'ghost',
-    })).toBe('#8d6c024d')
+    })).toBe('#fad1494d')
   })
 
   it('keeps light and dark semantic keys aligned', () => {

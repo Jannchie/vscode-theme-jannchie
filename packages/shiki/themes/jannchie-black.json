@@ -266,6 +266,14 @@
       }
     },
     {
+      "scope": [
+        "keyword.control.import"
+      ],
+      "settings": {
+        "foreground": "#ff6e6e"
+      }
+    },
+    {
       "scope": "invalid.broken",
       "settings": {
         "fontStyle": "italic",
@@ -1002,6 +1010,14 @@
         "keyword.operator.logical.python",
         "keyword.operator.wordlike",
         "keyword.operator.noexcept"
+      ],
+      "settings": {
+        "foreground": "#ff6e6e"
+      }
+    },
+    {
+      "scope": [
+        "keyword.control.import"
       ],
       "settings": {
         "foreground": "#ff6e6e"
