@@ -25,10 +25,10 @@
   ],
   "icon": "icon.jpg",
   "files": [
-    "themes",
-    "icon.jpg",
+    "CHANGELOG.md",
     "LICENSE",
-    "CHANGELOG.md"
+    "icon.jpg",
+    "themes"
   ],
   "engines": {
     "vscode": "^1.43.0"

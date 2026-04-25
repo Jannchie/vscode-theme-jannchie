@@ -26,7 +26,7 @@ const lightTokens = {
     orange: '#a65e2b',
     primary: '#4babf2',
     red: '#ab5959',
-    yellow: '#998114',
+    yellow: '#b88200',
   },
   base: {
     panel: '#f7f7f7',

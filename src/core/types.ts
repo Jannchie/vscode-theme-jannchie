@@ -2,6 +2,7 @@
  * VS Code theme structure
  */
 export interface VSCodeTheme {
+  $schema?: string
   name: string
   base: 'vs' | 'vs-dark'
   colors: Record<string, string>

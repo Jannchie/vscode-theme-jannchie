@@ -59,7 +59,7 @@ export function buildTokenColors(colorResolver: ColorResolver) {
     {
       scope: ['entity', 'entity.name'],
       settings: {
-        foreground: color('syntax.parameter'),
+        foreground,
       },
     },
     {
@@ -105,6 +105,13 @@ export function buildTokenColors(colorResolver: ColorResolver) {
       scope: [
         'storage',
         'storage.type',
+      ],
+      settings: {
+        foreground: color('syntax.keyword'),
+      },
+    },
+    {
+      scope: [
         'support.type.builtin',
         'constant.language.undefined',
         'constant.language.null',
@@ -235,7 +242,26 @@ export function buildTokenColors(colorResolver: ColorResolver) {
         'meta.var.expr.ts',
       ],
       settings: {
-        foreground: color('syntax.operator'),
+        foreground: punctuation,
+      },
+    },
+    {
+      scope: [
+        'keyword.control',
+        'keyword.operator.new',
+        'keyword.operator.expression',
+        'keyword.operator.cast',
+        'keyword.operator.sizeof',
+        'keyword.operator.alignof',
+        'keyword.operator.typeid',
+        'keyword.operator.alignas',
+        'keyword.operator.instanceof',
+        'keyword.operator.logical.python',
+        'keyword.operator.wordlike',
+        'keyword.operator.noexcept',
+      ],
+      settings: {
+        foreground: color('syntax.keyword'),
       },
     },
     {
@@ -289,6 +315,12 @@ export function buildTokenColors(colorResolver: ColorResolver) {
     },
     {
       scope: ['source.regexp', 'string.regexp'],
+      settings: {
+        foreground: color('syntax.regex'),
+      },
+    },
+    {
+      scope: 'constant.regexp',
       settings: {
         foreground: color('syntax.regex'),
       },
@@ -357,6 +389,12 @@ export function buildTokenColors(colorResolver: ColorResolver) {
       },
     },
     {
+      scope: 'punctuation.definition.quote.begin.markdown',
+      settings: {
+        foreground: color('syntax.comment'),
+      },
+    },
+    {
       scope: ['markup.heading', 'markup.heading entity.name'],
       settings: {
         fontStyle: 'bold',
@@ -384,7 +422,37 @@ export function buildTokenColors(colorResolver: ColorResolver) {
       },
     },
     {
+      scope: 'strong',
+      settings: {
+        fontStyle: 'bold',
+      },
+    },
+    {
+      scope: 'emphasis',
+      settings: {
+        fontStyle: 'italic',
+      },
+    },
+    {
+      scope: 'markup.underline',
+      settings: {
+        fontStyle: 'underline',
+      },
+    },
+    {
+      scope: 'markup.strikethrough',
+      settings: {
+        fontStyle: 'strikethrough',
+      },
+    },
+    {
       scope: 'markup.raw',
+      settings: {
+        foreground: primary,
+      },
+    },
+    {
+      scope: 'markup.inline.raw',
       settings: {
         foreground: primary,
       },
@@ -505,6 +573,155 @@ export function buildTokenColors(colorResolver: ColorResolver) {
       ],
       settings: {
         foreground: color('syntax.parameter'),
+      },
+    },
+    {
+      scope: [
+        'entity.other.attribute-name',
+        'support.type.property-name',
+        'support.type.vendored.property-name',
+        'meta.structure.dictionary.key.python',
+      ],
+      settings: {
+        foreground: color('syntax.property'),
+      },
+    },
+    {
+      scope: [
+        'entity.name.tag.css',
+        'entity.name.tag.less',
+      ],
+      settings: {
+        foreground: color('syntax.function'),
+      },
+    },
+    {
+      scope: [
+        'entity.other.attribute-name.class.css',
+        'source.css entity.other.attribute-name.class',
+        'entity.other.attribute-name.id.css',
+        'entity.other.attribute-name.parent-selector.css',
+        'entity.other.attribute-name.parent.less',
+        'source.css entity.other.attribute-name.pseudo-class',
+        'entity.other.attribute-name.pseudo-element.css',
+        'source.css.less entity.other.attribute-name.id',
+        'entity.other.attribute-name.scss',
+      ],
+      settings: {
+        foreground: color('syntax.type'),
+      },
+    },
+    {
+      scope: [
+        'meta.embedded',
+        'source.groovy.embedded',
+        'meta.embedded.assembly',
+        'source.coffee.embedded',
+        'punctuation.section.embedded',
+        'string meta.image.inline.markdown',
+        'variable.legacy.builtin.python',
+        'meta.template.expression',
+      ],
+      settings: {
+        foreground,
+      },
+    },
+    {
+      scope: [
+        'punctuation.definition.template-expression.begin',
+        'punctuation.definition.template-expression.end',
+        'punctuation.section.embedded.begin.php',
+        'punctuation.section.embedded.end.php',
+      ],
+      settings: {
+        foreground: color('syntax.keyword'),
+      },
+    },
+    {
+      scope: [
+        'meta.preprocessor',
+        'entity.name.function.preprocessor',
+      ],
+      settings: {
+        foreground: color('syntax.keyword'),
+      },
+    },
+    {
+      scope: 'meta.preprocessor.string',
+      settings: {
+        foreground: color('syntax.string'),
+      },
+    },
+    {
+      scope: 'meta.preprocessor.numeric',
+      settings: {
+        foreground: color('syntax.number'),
+      },
+    },
+    {
+      scope: [
+        'string.tag',
+        'string.value',
+      ],
+      settings: {
+        foreground: color('syntax.string'),
+      },
+    },
+    {
+      scope: [
+        'source.css variable',
+        'support.function.git-rebase',
+      ],
+      settings: {
+        foreground: color('syntax.property'),
+      },
+    },
+    {
+      scope: [
+        'constant.sha.git-rebase',
+        'variable.other.enummember',
+      ],
+      settings: {
+        foreground: color('syntax.constant'),
+      },
+    },
+    {
+      scope: [
+        'keyword.operator.plus.exponent',
+        'keyword.operator.minus.exponent',
+      ],
+      settings: {
+        foreground: color('syntax.number'),
+      },
+    },
+    {
+      scope: [
+        'storage.modifier',
+        'storage.modifier.import.java',
+        'storage.modifier.package.java',
+      ],
+      settings: {
+        foreground: color('syntax.keyword'),
+      },
+    },
+    {
+      scope: 'variable.language.wildcard.java',
+      settings: {
+        foreground,
+      },
+    },
+    {
+      scope: [
+        'invalid',
+      ],
+      settings: {
+        foreground: color('accent.red'),
+      },
+    },
+    {
+      scope: 'punctuation.definition.tag',
+      settings: {
+        foreground: punctuation,
       },
     },
     {

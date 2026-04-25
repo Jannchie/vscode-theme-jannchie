@@ -33,6 +33,7 @@ export class ThemeBuilder {
     const tokenColors = buildTokenColors(this.colorResolver)
 
     return {
+      $schema: 'vscode://schemas/color-theme',
       name: this.config.name,
       base: this.colorResolver.pick({ light: 'vs', dark: 'vs-dark' }),
       colors: buildUIColors(this.colorResolver),

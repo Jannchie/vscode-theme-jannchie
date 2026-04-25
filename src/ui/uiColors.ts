@@ -11,10 +11,42 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const mutedForeground = color('text.muted')
   const subtleForeground = color('text.subtle')
   const primary = color('accent.primary')
+  const indicatorColor = secondaryForeground
   const background = color('surface.canvas')
   const activeBackground = color('surface.panel')
   const border = color('surface.border')
   const transparent = color('utility.transparent')
+  let darkEditorBackground = '#0a0a0a'
+  if (colorResolver.hasModifier('black')) {
+    darkEditorBackground = '#000000'
+  }
+  else if (colorResolver.hasModifier('soft')) {
+    darkEditorBackground = '#141414'
+  }
+  const editorBackground = colorResolver.pick({
+    light: background,
+    dark: darkEditorBackground,
+  })
+  const selectedTabBackground = colorResolver.pick({
+    light: activeBackground,
+    dark: editorBackground,
+  })
+  const remoteBackground = colorResolver.pick({
+    light: '#d59600',
+    dark: color('accent.yellow'),
+  })
+  const remoteForeground = colorResolver.pick({
+    light: '#ffffff',
+    dark: background,
+  })
+  const remoteHoverBackground = colorResolver.pick({
+    light: background,
+    dark: background,
+  })
+  const remoteHoverForeground = colorResolver.pick({
+    light: activeForeground,
+    dark: activeForeground,
+  })
   const selectionBackgroundInActive = colorByVariant('surface.overlay', {
     light: 'barely',
     dark: 'faint',
@@ -43,6 +75,14 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const findMatchHighlightBackground = colorByVariant('accent.yellow', {
     light: 'lower',
     dark: 'subtle',
+  })
+  const focusBackground = colorByVariant('accent.blue', {
+    light: 'barely',
+    dark: 'ghost',
+  })
+  const dragAndDropBackground = colorByVariant('accent.blue', {
+    light: 'ghost',
+    dark: 'barely',
   })
   const stackFrameHighlightBackground = colorByVariant('accent.yellow', {
     light: 'ghost',
@@ -86,7 +126,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'button.hoverBackground': primary,
 
     'checkbox.background': activeBackground,
-    'checkbox.border': activeBackground,
+    'checkbox.border': secondaryForeground,
 
     'dropdown.background': background,
     'dropdown.border': border,
@@ -100,7 +140,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'inputOption.activeBackground': mutedForeground,
 
     'badge.foreground': background,
-    'badge.background': secondaryForeground,
+    'badge.background': indicatorColor,
 
     'progressBar.background': primary,
 
@@ -114,8 +154,8 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'activityBar.inactiveForeground': secondaryForeground,
     'activityBar.background': background,
     'activityBarBadge.foreground': background,
-    'activityBarBadge.background': activeForeground,
-    'activityBar.activeBorder': primary,
+    'activityBarBadge.background': indicatorColor,
+    'activityBar.activeBorder': indicatorColor,
     'activityBar.border': border,
 
     'sideBar.foreground': activeForeground,
@@ -129,12 +169,14 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'list.hoverForeground': foreground,
     'list.inactiveSelectionForeground': foreground,
     'list.activeSelectionForeground': foreground,
+    'list.activeSelectionIconForeground': foreground,
     'list.hoverBackground': activeBackground,
     'list.inactiveSelectionBackground': activeBackground,
     'list.activeSelectionBackground': activeBackground,
     'list.inactiveFocusBackground': background,
     'list.focusBackground': activeBackground,
     'list.highlightForeground': primary,
+    'list.dropBackground': dragAndDropBackground,
 
     'tree.indentGuidesStroke': activeBackground,
 
@@ -160,10 +202,10 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'statusBar.debuggingBackground': activeBackground,
     'statusBar.debuggingForeground': activeForeground,
     'statusBarItem.prominentBackground': activeBackground,
-    'statusBarItem.remoteBackground': activeBackground,
-    'statusBarItem.remoteForeground': activeForeground,
-    'statusBarItem.remoteHoverBackground': color('accent.yellow'),
-    'statusBarItem.remoteHoverForeground': background,
+    'statusBarItem.remoteBackground': remoteBackground,
+    'statusBarItem.remoteForeground': remoteForeground,
+    'statusBarItem.remoteHoverBackground': remoteHoverBackground,
+    'statusBarItem.remoteHoverForeground': remoteHoverForeground,
     'statusBarItem.errorBackground': color('accent.red'),
     'statusBarItem.errorForeground': background,
 
@@ -174,10 +216,13 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'tab.activeForeground': foreground,
     'tab.inactiveForeground': mutedForeground,
     'tab.inactiveBackground': background,
-    'tab.activeBackground': background,
+    'tab.activeBackground': selectedTabBackground,
+    'tab.selectedForeground': foreground,
+    'tab.selectedBackground': selectedTabBackground,
     'tab.hoverBackground': activeBackground,
     'tab.unfocusedHoverBackground': background,
     'tab.border': border,
+    'tab.lastPinnedBorder': border,
     'tab.unfocusedActiveBorderTop': border,
     'tab.activeBorder': border,
     'tab.unfocusedActiveBorder': border,
@@ -185,17 +230,19 @@ export function buildUIColors(colorResolver: ColorResolver) {
 
     'breadcrumb.foreground': mutedForeground,
     'breadcrumb.focusForeground': foreground,
-    'breadcrumb.background': activeBackground,
+    'breadcrumb.background': selectedTabBackground,
     'breadcrumb.activeSelectionForeground': selectionBackgroundActive,
     'breadcrumbPicker.background': background,
 
     'editor.foreground': foreground,
-    'editor.background': background,
+    'editor.background': editorBackground,
     'editorWidget.background': background,
     'editor.foldBackground': foldBackground,
     'editor.lineHighlightBackground': activeBackground,
     'editorLineNumber.foreground': mutedForeground,
     'editorLineNumber.activeForeground': activeForeground,
+    'editorIndentGuide.background1': indentGuideBackground,
+    'editorIndentGuide.activeBackground1': indentGuideActiveBackground,
     'editorIndentGuide.background': indentGuideBackground,
     'editorIndentGuide.activeBackground': indentGuideActiveBackground,
     'editorWhitespace.foreground': indentGuideBackground,
@@ -220,13 +267,14 @@ export function buildUIColors(colorResolver: ColorResolver) {
 
     'panel.background': background,
     'panel.border': border,
-    'panelTitle.activeBorder': primary,
+    'panelTitle.activeBorder': indicatorColor,
     'panelTitle.activeForeground': foreground,
     'panelTitle.inactiveForeground': mutedForeground,
     'panelInput.border': activeBackground,
 
     'terminal.foreground': foreground,
     'terminal.selectionBackground': selectionBackground,
+    'terminal.inactiveSelectionBackground': selectionBackgroundInActive,
     'terminal.ansiBrightBlack': colorResolver.pick({ light: activeForeground, dark: mutedForeground }),
     'terminal.ansiBrightBlue': color('accent.blue'),
     'terminal.ansiBrightCyan': color('accent.cyan'),
@@ -273,7 +321,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'peekViewResult.background': background,
 
     'settings.headerForeground': foreground,
-    'settings.modifiedItemIndicator': primary,
+    'settings.modifiedItemIndicator': indicatorColor,
     'welcomePage.buttonBackground': activeBackground,
     'welcomePage.buttonHoverBackground': mutedForeground,
 
@@ -295,6 +343,14 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'editorStickyScroll.background': activeBackground,
     'editorStickyScrollHover.background': activeBackground,
 
+    'menu.background': background,
+    'menu.foreground': foreground,
+    'menu.border': border,
     'menu.separatorBackground': border,
+    'menu.selectionBackground': focusBackground,
+
+    'widget.border': border,
+    'actionBar.toggledBackground': focusBackground,
+    'ports.iconRunningProcessForeground': color('accent.green'),
   }
 }

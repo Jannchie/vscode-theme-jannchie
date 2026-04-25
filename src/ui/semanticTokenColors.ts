@@ -2,34 +2,31 @@ import type { ColorResolver } from '../core/colorResolver'
 
 export function buildSemanticTokenColors(colorResolver: ColorResolver) {
   const color = colorResolver.resolve.bind(colorResolver)
+  const foreground = color('text.primary')
+  const punctuation = color('syntax.punctuation')
 
   return {
     'namespace': {
       foreground: color('syntax.namespace'),
-      underline: true,
     },
     'class': {
       foreground: color('syntax.class'),
-      underline: true,
     },
     'class.defaultLibrary': {
       foreground: color('syntax.classBuiltin'),
     },
     'interface': {
       foreground: color('syntax.class'),
-      underline: true,
     },
     'interface.defaultLibrary': {
       foreground: color('syntax.class'),
     },
     'struct': {
       foreground: color('syntax.class'),
-      underline: true,
     },
     'typeParameter': color('syntax.type'),
     'type': {
       foreground: color('syntax.type'),
-      underline: true,
     },
     'parameter': {
       foreground: color('syntax.parameter'),
@@ -44,15 +41,12 @@ export function buildSemanticTokenColors(colorResolver: ColorResolver) {
     'property': color('syntax.property'),
     'enum.declaration': {
       foreground: color('syntax.class'),
-      underline: true,
     },
     'enum': {
       foreground: color('syntax.class'),
-      underline: true,
     },
     'enumMember': {
       foreground: color('syntax.class'),
-      underline: true,
     },
     'decorator': color('syntax.decorator'),
     'variable.decorator': {
@@ -69,10 +63,14 @@ export function buildSemanticTokenColors(colorResolver: ColorResolver) {
     'label': color('syntax.function'),
     'comment': color('syntax.comment'),
     'string': color('syntax.string'),
+    'stringLiteral': color('syntax.string'),
     'keyword': color('syntax.keyword'),
     'number': color('syntax.number'),
+    'numberLiteral': color('syntax.number'),
     'regexp': color('syntax.regex'),
-    'operator': color('syntax.operator'),
+    'operator': punctuation,
+    'newOperator': foreground,
+    'customLiteral': foreground,
     'builtinConstant': color('syntax.boolean'),
     'component': color('syntax.class'),
     'variable.builtin': {
