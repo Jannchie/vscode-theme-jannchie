@@ -1,3 +1,32 @@
+## v2.0.0
+
+v1.1.0...v2.0.0
+
+### :rocket: Breaking Changes
+
+- **theme**: modularize theme logic and centralize color config - By [Jianqi Pan](mailto:jannchie@gmail.com) in 15b0b87
+
+### :sparkles: Features
+
+- **monorepo**: add monorepo packages vscode shiki core - By [Jannchie](mailto:jannchie@gmail.com) in 2772b3f
+- **theme**: expand theme color mappings - By [Jianqi Pan](mailto:jannchie@gmail.com) in 727ae60
+
+### :adhesive_bandage: Fixes
+
+- **theme**: fix theme color tokens && add vscode dev task - By [Jannchie](mailto:jannchie@gmail.com) in c8a3cdb
+
+### :art: Refactors
+
+- **color**: restructure color tokens and update themes - By [Jannchie](mailto:jannchie@gmail.com) in 0805c8c
+- **color**: inline opacity util and refactor palette access - By [Jianqi Pan](mailto:jannchie@gmail.com) in b4c531a
+- **config**: split palette into typed theme tokens - By [Jianqi Pan](mailto:jannchie@gmail.com) in aa79827
+- **core**: use ModifierColorGroups for getModifierColor param - By [Jannchie](mailto:jannchie@gmail.com) in 791451a
+
+### :wrench: Chores
+
+- **package**: include additional package files - By [Jianqi Pan](mailto:jannchie@gmail.com) in 1030f81
+- **shiki**: update shiki build process && bump dev dependencies - By [Jannchie](mailto:jannchie@gmail.com) in 41f5191
+
 ## v1.1.0
 
 [v1.0.2...v1.1.0](https://github.com/Jannchie/vscode-theme-jannchie/compare/v1.0.2...v1.1.0)
