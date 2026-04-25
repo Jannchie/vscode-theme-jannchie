@@ -1,4 +1,5 @@
 import type {
+  ModifierColorGroups,
   OpacityLevel,
   ResolvedThemeColor,
   ThemeColorGroup,
@@ -86,7 +87,7 @@ export class ColorResolver {
   }
 
   private getModifierColor<Path extends ThemeColorPath>(
-    modifierGroup: Partial<ThemeColorGroups> | undefined,
+    modifierGroup: ModifierColorGroups | undefined,
     path: Path,
   ): ResolvedThemeColor<Path> | undefined {
     if (!modifierGroup) {
