@@ -1,0 +1,76 @@
+{
+  "publisher": "jannchie",
+  "name": "theme-jannchie",
+  "displayName": "Jannchie Theme",
+  "type": "module",
+  "version": "1.1.0",
+  "description": "Jannchie theme for VS Code",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jannchie/vscode-theme",
+    "directory": "packages/vscode"
+  },
+  "bugs": {
+    "url": "https://github.com/jannchie/vscode-theme/issues"
+  },
+  "keywords": [
+    "theme",
+    "jannchie",
+    "light",
+    "dark"
+  ],
+  "categories": [
+    "Themes"
+  ],
+  "icon": "icon.jpg",
+  "files": [
+    "CHANGELOG.md",
+    "LICENSE",
+    "icon.jpg",
+    "themes"
+  ],
+  "engines": {
+    "vscode": "^1.43.0"
+  },
+  "contributes": {
+    "themes": [
+      {
+        "label": "Jannchie Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/jannchie-dark.json"
+      },
+      {
+        "label": "Jannchie Dark Soft",
+        "uiTheme": "vs-dark",
+        "path": "./themes/jannchie-dark-soft.json"
+      },
+      {
+        "label": "Jannchie Black",
+        "uiTheme": "vs-dark",
+        "path": "./themes/jannchie-black.json"
+      },
+      {
+        "label": "Jannchie Light",
+        "uiTheme": "vs",
+        "path": "./themes/jannchie-light.json"
+      },
+      {
+        "label": "Jannchie Light Soft",
+        "uiTheme": "vs",
+        "path": "./themes/jannchie-light-soft.json"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "esno src/index.ts",
+    "dev": "esno watch src/index.ts",
+    "vscode:prepublish": "pnpm build",
+    "prepublishOnly": "pnpm build",
+    "release": "vsce publish --no-dependencies"
+  },
+  "devDependencies": {
+    "@jannchie/theme-core": "workspace:*"
+  },
+  "preview": true
+}

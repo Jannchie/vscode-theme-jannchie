@@ -1,4 +1,4 @@
-import type { ColorResolver } from '../core/colorResolver'
+import type { ColorResolver } from '@jannchie/theme-core'
 
 export function buildSemanticTokenColors(colorResolver: ColorResolver) {
   const color = colorResolver.resolve.bind(colorResolver)

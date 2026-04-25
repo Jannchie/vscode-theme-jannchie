@@ -1,3 +1,5 @@
+import type { TokenColor } from '@jannchie/theme-core'
+
 /**
  * VS Code theme structure
  */
@@ -7,19 +9,9 @@ export interface VSCodeTheme {
   base: 'vs' | 'vs-dark'
   colors: Record<string, string>
   semanticHighlighting: boolean
-  semanticTokenColors: Record<string, any>
+  semanticTokenColors: Record<string, unknown>
   tokenColors: TokenColor[]
   rules: Rule[]
-}
-
-export interface TokenColor {
-  scope: string | string[]
-  settings: {
-    foreground?: string
-    background?: string
-    fontStyle?: string
-    [key: string]: any
-  }
 }
 
 export interface Rule {
@@ -27,5 +19,5 @@ export interface Rule {
   foreground?: string
   background?: string
   fontStyle?: string
-  [key: string]: any
+  [key: string]: unknown
 }

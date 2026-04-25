@@ -7,8 +7,8 @@ import type {
   ThemeModifier,
   ThemeVariant,
   VariantValue,
-} from '../config/colorPalette'
-import { applyOpacity, themeColorConfig } from '../config/colorPalette'
+} from './config/colorPalette'
+import { applyOpacity, themeColorConfig } from './config/colorPalette'
 
 export interface ColorResolverOptions {
   modifiers: ThemeModifier[]

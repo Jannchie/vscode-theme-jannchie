@@ -1,4 +1,4 @@
-import type { ColorResolver } from '../core/colorResolver'
+import type { ColorResolver } from '../colorResolver'
 
 export function buildTokenColors(colorResolver: ColorResolver) {
   const color = colorResolver.resolve.bind(colorResolver)

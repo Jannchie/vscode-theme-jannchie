@@ -1,17 +1,10 @@
-import type { ThemeModifier, ThemeVariant } from '../config/colorPalette'
-import type { VSCodeTheme } from './types'
-import { ThemeBuilder } from './ThemeBuilder'
+import type { ThemeModifier, ThemeVariant } from './config/colorPalette'
 
 export interface ThemeDefinition {
   filename: string
   modifiers: ThemeModifier[]
   name: string
   variant: ThemeVariant
-}
-
-export interface BuiltTheme {
-  filename: string
-  theme: VSCodeTheme
 }
 
 export const themeDefinitions: ThemeDefinition[] = [
@@ -46,20 +39,3 @@ export const themeDefinitions: ThemeDefinition[] = [
     modifiers: ['soft'],
   },
 ]
-
-export function buildTheme(definition: ThemeDefinition): VSCodeTheme {
-  const themeBuilder = new ThemeBuilder({
-    name: definition.name,
-    variant: definition.variant,
-    modifiers: definition.modifiers,
-  })
-
-  return themeBuilder.build()
-}
-
-export function buildAllThemes(): BuiltTheme[] {
-  return themeDefinitions.map(definition => ({
-    filename: definition.filename,
-    theme: buildTheme(definition),
-  }))
-}

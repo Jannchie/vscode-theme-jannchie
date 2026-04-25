@@ -1,19 +1,24 @@
-# Jannchie's Theme for VS Code
+# Jannchie Theme
 
-[Previews](https://vscodethemes.com/e/jannchie.theme-jannchie/jannchie-dark?language=cpp)
+This monorepo contains the Jannchie theme for multiple targets.
 
-This is a vscode theme I made for myself.
+## Packages
 
-I want to highlight important code - like custom functions. At the same time, I've made the less important code - like built-in function calls - less eye-catching.
+- `packages/vscode`: VS Code theme extension published to the VS Code Marketplace.
+- `packages/shiki`: Shiki theme package published to npm.
+- `packages/core`: private shared theme source used by both packages.
 
-It may still need tweaking. But for a first version, I think it already looks cool.
+## Development
 
-## Thanks
-
-This project is based on [vscode-theme-vitesse](https://github.com/antfu/vscode-theme-vitesse).
+```sh
+pnpm install
+pnpm build
+pnpm test
+```
 
 ## License
 
 MIT - Copyright (c) 2020 Primer <br>
 MIT - Copyright (c) 2021 Anthony Fu <br>
-MIT - Copyrigth (c) 2023 Jianqi Pan
+MIT - Copyright (c) 2023 Jianqi Pan
+

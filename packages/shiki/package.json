@@ -1,0 +1,41 @@
+{
+  "name": "@jannchie/shiki-theme",
+  "type": "module",
+  "version": "1.1.0",
+  "description": "Jannchie themes for Shiki",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jannchie/vscode-theme",
+    "directory": "packages/shiki"
+  },
+  "keywords": [
+    "shiki",
+    "theme",
+    "jannchie",
+    "light",
+    "dark"
+  ],
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./themes/*.json": "./themes/*.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist",
+    "themes"
+  ],
+  "scripts": {
+    "build": "esno src/build.ts && tsup src/index.ts --format esm --dts",
+    "prepublishOnly": "pnpm build"
+  },
+  "devDependencies": {
+    "@jannchie/theme-core": "workspace:*"
+  }
+}

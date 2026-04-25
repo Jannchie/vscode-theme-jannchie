@@ -1,4 +1,5 @@
-import type { ColorResolver } from '../core/colorResolver'
+import type { ColorResolver } from '@jannchie/theme-core'
+import { resolveCodeBackground } from '@jannchie/theme-core'
 
 export function buildUIColors(colorResolver: ColorResolver) {
   const color = colorResolver.resolve.bind(colorResolver)
@@ -16,17 +17,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const activeBackground = color('surface.panel')
   const border = color('surface.border')
   const transparent = color('utility.transparent')
-  let darkEditorBackground = '#0a0a0a'
-  if (colorResolver.hasModifier('black')) {
-    darkEditorBackground = '#000000'
-  }
-  else if (colorResolver.hasModifier('soft')) {
-    darkEditorBackground = '#141414'
-  }
-  const editorBackground = colorResolver.pick({
-    light: background,
-    dark: darkEditorBackground,
-  })
+  const editorBackground = resolveCodeBackground(colorResolver)
   const selectedTabBackground = colorResolver.pick({
     light: activeBackground,
     dark: editorBackground,

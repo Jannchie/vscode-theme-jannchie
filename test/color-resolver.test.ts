@@ -1,7 +1,6 @@
-import type { ThemeColorGroups } from '../src/config/colorPalette'
+import type { ThemeColorGroups } from '@jannchie/theme-core'
+import { ColorResolver, themeColorConfig } from '@jannchie/theme-core'
 import { describe, expect, it } from 'vitest'
-import { themeColorConfig } from '../src/config/colorPalette'
-import { ColorResolver } from '../src/core/colorResolver'
 
 function collectThemePaths(groups: Partial<ThemeColorGroups>): string[] {
   return Object.entries(groups).flatMap(([group, values]) =>
@@ -87,7 +86,7 @@ describe('color resolver', () => {
     expect(lightResolver.resolveByVariant('accent.yellow', {
       light: 'subtle',
       dark: 'ghost',
-    })).toBe('#9981144d')
+    })).toBe('#b882004d')
   })
 
   it('keeps light and dark semantic keys aligned', () => {

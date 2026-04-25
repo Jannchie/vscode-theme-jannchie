@@ -1,5 +1,5 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
-import { buildAllThemes } from './core/buildThemes'
+import { buildAllThemes } from './buildThemes'
 
 mkdirSync('./themes', { recursive: true })
 
