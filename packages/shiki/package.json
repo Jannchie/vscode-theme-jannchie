@@ -32,7 +32,7 @@
     "themes"
   ],
   "scripts": {
-    "build": "esno src/build.ts && tsup src/index.ts --format esm --dts",
+    "build": "esno src/build.ts",
     "prepublishOnly": "pnpm build"
   },
   "devDependencies": {
