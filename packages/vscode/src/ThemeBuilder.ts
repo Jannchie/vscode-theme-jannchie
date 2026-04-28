@@ -1,17 +1,17 @@
-import type { ThemeModifier, ThemeVariant, TokenColor } from '@jannchie/theme-core'
-import type { Rule, VSCodeTheme } from './types'
+import type { ThemeModifier, ThemeVariant } from '@jannchie/theme-core'
+import type { VSCodeTheme } from './types'
 import { buildTokenColors, ColorResolver } from '@jannchie/theme-core'
 import { buildSemanticTokenColors } from './ui/semanticTokenColors'
 import { buildUIColors } from './ui/uiColors'
 
 export interface ThemeConfig {
-  modifiers: ThemeModifier[]
+  modifier?: ThemeModifier
   name: string
   variant: ThemeVariant
 }
 
 /**
- * Main theme builder class that constructs VS Code themes
+ * Main theme builder class that constructs VS Code themes.
  */
 export class ThemeBuilder {
   private config: ThemeConfig
@@ -21,16 +21,11 @@ export class ThemeBuilder {
     this.config = config
     this.colorResolver = new ColorResolver({
       variant: config.variant,
-      modifiers: config.modifiers,
+      modifier: config.modifier,
     })
   }
 
-  /**
-   * Build the complete VS Code theme
-   */
   build(): VSCodeTheme {
-    const tokenColors = buildTokenColors(this.colorResolver)
-
     return {
       $schema: 'vscode://schemas/color-theme',
       name: this.config.name,
@@ -38,37 +33,7 @@ export class ThemeBuilder {
       colors: buildUIColors(this.colorResolver),
       semanticHighlighting: true,
       semanticTokenColors: buildSemanticTokenColors(this.colorResolver),
-      tokenColors,
-      rules: this.generateMonacoRules(tokenColors),
+      tokenColors: buildTokenColors(this.colorResolver),
     }
-  }
-
-  /**
-   * Generate Monaco editor rules from token colors
-   */
-  private generateMonacoRules(tokenColors: TokenColor[]): Rule[] {
-    const rules: Rule[] = []
-
-    for (const tokenColor of tokenColors) {
-      const scopes = Array.isArray(tokenColor.scope) ? tokenColor.scope : [tokenColor.scope]
-
-      for (const scope of scopes) {
-        const rule: Rule = { token: scope }
-
-        if (tokenColor.settings.foreground) {
-          rule.foreground = tokenColor.settings.foreground.replace('#', '')
-        }
-        if (tokenColor.settings.background) {
-          rule.background = tokenColor.settings.background.replace('#', '')
-        }
-        if (tokenColor.settings.fontStyle) {
-          rule.fontStyle = tokenColor.settings.fontStyle
-        }
-
-        rules.push(rule)
-      }
-    }
-
-    return rules
   }
 }

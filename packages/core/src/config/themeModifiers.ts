@@ -1,45 +1,47 @@
 import type { ModifierColorGroups, ThemeModifier, ThemeVariant } from './colorTypes'
 import { applyOpacity } from './colorTokens'
-
-export const modifierPrecedence = ['soft', 'black'] as const satisfies readonly ThemeModifier[]
+import { lightPalette as l, darkPalette as p } from './palette'
 
 export const themeModifiers = {
   soft: {
     dark: {
       surface: {
-        canvas: '#171717',
-        panel: '#262626',
-        border: '#2c2c2c',
+        canvas: p.paper,
+        panel: p.graphite,
+        editor: p.graphiteEditor,
+        border: p.graphiteEdge,
       },
     },
     light: {
       surface: {
-        canvas: '#F1F0E9',
-        panel: '#E7E5DB',
-        border: '#dfdcd0',
+        canvas: l.cream,
+        panel: l.creamPanel,
+        editor: l.cream,
+        border: l.creamEdge,
       },
       text: {
-        muted: '#797979',
+        muted: l.smoke,
       },
     },
   },
   black: {
     dark: {
       text: {
-        primary: applyOpacity('#dbd7ca', 'medium'),
+        primary: applyOpacity(p.bone, 'medium'),
       },
       surface: {
-        canvas: '#000000',
-        panel: '#121212',
-        border: '#1a1a1a',
+        canvas: p.carbon,
+        panel: p.carbonPanel,
+        editor: p.carbonEditor,
+        border: p.carbonEdge,
       },
       syntax: {
-        punctuation: applyOpacity('#8a9099', 'medium'),
+        punctuation: applyOpacity(p.pearl, 'medium'),
       },
     },
     light: {
       text: {
-        muted: '#797979',
+        muted: l.smoke,
       },
     },
   },

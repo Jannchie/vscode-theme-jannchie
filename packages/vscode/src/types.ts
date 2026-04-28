@@ -11,13 +11,4 @@ export interface VSCodeTheme {
   semanticHighlighting: boolean
   semanticTokenColors: Record<string, unknown>
   tokenColors: TokenColor[]
-  rules: Rule[]
-}
-
-export interface Rule {
-  token: string
-  foreground?: string
-  background?: string
-  fontStyle?: string
-  [key: string]: unknown
 }

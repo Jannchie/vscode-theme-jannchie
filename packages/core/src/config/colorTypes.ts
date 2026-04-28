@@ -17,16 +17,29 @@ export interface ThemeColorGroups {
     red: string
     yellow: string
   }
+  state: {
+    error: string
+    warning: string
+    success: string
+    info: string
+    hint: string
+    added: string
+    modified: string
+    deleted: string
+    conflict: string
+    untracked: string
+    indicator: string
+  }
   surface: {
     border: string
     canvas: string
+    editor: string
     guide: string
     overlay: string
     panel: string
     shadow: string
   }
   syntax: {
-    import: string
     boolean: string
     builtin: string
     class: string
@@ -36,11 +49,11 @@ export interface ThemeColorGroups {
     decorator: string
     function: string
     functionBuiltin: string
+    import: string
     interface: string
     keyword: string
     namespace: string
     number: string
-    operator: string
     parameter: string
     property: string
     punctuation: string
@@ -85,7 +98,6 @@ export type ModifierColorGroups = Partial<{
 
 export interface ThemeColorConfig {
   baseColors: Record<ThemeVariant, ThemeColorGroups>
-  modifierPrecedence: readonly ThemeModifier[]
   modifiers: Record<ThemeModifier, Partial<Record<ThemeVariant, ModifierColorGroups>>>
   opacity: Record<string, string>
 }

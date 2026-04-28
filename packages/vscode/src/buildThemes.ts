@@ -12,7 +12,7 @@ export function buildTheme(definition: ThemeDefinition): VSCodeTheme {
   const themeBuilder = new ThemeBuilder({
     name: definition.name,
     variant: definition.variant,
-    modifiers: definition.modifiers,
+    modifier: definition.modifier,
   })
 
   return themeBuilder.build()

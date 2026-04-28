@@ -18,26 +18,29 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const border = color('surface.border')
   const transparent = color('utility.transparent')
   const editorBackground = resolveCodeBackground(colorResolver)
+
+  const stateError = color('state.error')
+  const stateWarning = color('state.warning')
+  const stateInfo = color('state.info')
+  const stateHint = color('state.hint')
+  const stateAdded = color('state.added')
+  const stateModified = color('state.modified')
+  const stateDeleted = color('state.deleted')
+  const stateConflict = color('state.conflict')
+  const stateUntracked = color('state.untracked')
+  const stateIndicator = color('state.indicator')
+
   const selectedTabBackground = colorResolver.pick({
     light: activeBackground,
     dark: editorBackground,
   })
-  const remoteBackground = colorResolver.pick({
-    light: '#d59600',
-    dark: color('accent.yellow'),
-  })
+  const remoteBackground = stateIndicator
   const remoteForeground = colorResolver.pick({
-    light: '#ffffff',
+    light: color('utility.terminalBlack'),
     dark: background,
   })
-  const remoteHoverBackground = colorResolver.pick({
-    light: background,
-    dark: background,
-  })
-  const remoteHoverForeground = colorResolver.pick({
-    light: chromeForeground,
-    dark: chromeForeground,
-  })
+  const remoteHoverBackground = background
+  const remoteHoverForeground = chromeForeground
   const selectionBackgroundInActive = colorByVariant('surface.overlay', {
     light: 'barely',
     dark: 'faint',
@@ -86,14 +89,17 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const wordHighlightBackground = color('accent.green', 'barely')
   const wordHighlightStrongBackground = color('accent.green', 'faint')
   const bracketMatchBackground = color('accent.green', 'ghost')
-  const insertedTextBackground = colorByVariant('accent.green', {
+  const insertedTextBackground = colorByVariant('state.added', {
     light: 'faint',
     dark: 'ghost',
   })
-  const removedTextBackground = colorByVariant('accent.red', {
+  const removedTextBackground = colorByVariant('state.deleted', {
     light: 'faint',
     dark: 'ghost',
   })
+  const mergeCurrentBackground = color('state.added', 'barely')
+  const mergeIncomingBackground = color('state.info', 'barely')
+  const mergeCommonBackground = color('accent.magenta', 'barely')
   const scrollbarShadow = color('surface.shadow')
   const terminalBlack = color('utility.terminalBlack')
   const peekMatchBackground = color('utility.peekMatchBackground')
@@ -102,10 +108,10 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'focusBorder': transparent,
     foreground,
     'descriptionForeground': secondaryForeground,
-    'errorForeground': color('accent.red'),
+    'errorForeground': stateError,
 
-    'textLink.foreground': color('accent.blue'),
-    'textLink.activeForeground': color('accent.blue'),
+    'textLink.foreground': stateInfo,
+    'textLink.activeForeground': stateInfo,
     'textBlockQuote.background': background,
     'textBlockQuote.border': border,
     'textCodeBlock.background': background,
@@ -129,6 +135,15 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'input.foreground': foreground,
     'input.placeholderForeground': secondaryForeground,
     'inputOption.activeBackground': mutedForeground,
+    'inputValidation.errorBackground': color('state.error', 'faint'),
+    'inputValidation.errorForeground': stateError,
+    'inputValidation.errorBorder': stateError,
+    'inputValidation.warningBackground': color('state.warning', 'faint'),
+    'inputValidation.warningForeground': stateWarning,
+    'inputValidation.warningBorder': stateWarning,
+    'inputValidation.infoBackground': color('state.info', 'faint'),
+    'inputValidation.infoForeground': stateInfo,
+    'inputValidation.infoBorder': stateInfo,
 
     'badge.foreground': background,
     'badge.background': indicatorColor,
@@ -168,6 +183,8 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'list.focusBackground': activeBackground,
     'list.highlightForeground': primary,
     'list.dropBackground': dragAndDropBackground,
+    'list.errorForeground': stateError,
+    'list.warningForeground': stateWarning,
 
     'tree.indentGuidesStroke': activeBackground,
 
@@ -176,9 +193,9 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'notifications.foreground': foreground,
     'notifications.background': background,
     'notifications.border': border,
-    'notificationsErrorIcon.foreground': color('accent.red'),
-    'notificationsWarningIcon.foreground': color('accent.orange'),
-    'notificationsInfoIcon.foreground': color('accent.blue'),
+    'notificationsErrorIcon.foreground': stateError,
+    'notificationsWarningIcon.foreground': stateWarning,
+    'notificationsInfoIcon.foreground': stateInfo,
 
     'pickerGroup.border': border,
     'pickerGroup.foreground': foreground,
@@ -197,8 +214,10 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'statusBarItem.remoteForeground': remoteForeground,
     'statusBarItem.remoteHoverBackground': remoteHoverBackground,
     'statusBarItem.remoteHoverForeground': remoteHoverForeground,
-    'statusBarItem.errorBackground': color('accent.red'),
+    'statusBarItem.errorBackground': stateError,
     'statusBarItem.errorForeground': background,
+    'statusBarItem.warningBackground': stateWarning,
+    'statusBarItem.warningForeground': background,
 
     'editorGroupHeader.tabsBackground': background,
     'editorGroupHeader.tabsBorder': border,
@@ -250,6 +269,19 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'diffEditor.insertedTextBackground': insertedTextBackground,
     'diffEditor.removedTextBackground': removedTextBackground,
 
+    'merge.currentHeaderBackground': color('state.added', 'subtle'),
+    'merge.currentContentBackground': mergeCurrentBackground,
+    'merge.incomingHeaderBackground': color('state.info', 'subtle'),
+    'merge.incomingContentBackground': mergeIncomingBackground,
+    'merge.commonHeaderBackground': color('accent.magenta', 'subtle'),
+    'merge.commonContentBackground': mergeCommonBackground,
+    'mergeEditor.change.background': color('state.modified', 'faint'),
+    'mergeEditor.change.word.background': color('state.modified', 'ghost'),
+    'mergeEditor.conflict.unhandledUnfocused.border': stateConflict,
+    'mergeEditor.conflict.unhandledFocused.border': stateConflict,
+    'mergeEditor.conflict.handledUnfocused.border': mutedForeground,
+    'mergeEditor.conflict.handledFocused.border': mutedForeground,
+
     'scrollbar.shadow': scrollbarShadow,
     'scrollbarSlider.background': subtleForeground,
     'scrollbarSlider.hoverBackground': mutedForeground,
@@ -283,17 +315,19 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'terminal.ansiWhite': baseColor('text.primary'),
     'terminal.ansiYellow': color('accent.yellow'),
 
-    'gitDecoration.addedResourceForeground': color('accent.green'),
-    'gitDecoration.modifiedResourceForeground': color('accent.blue'),
-    'gitDecoration.deletedResourceForeground': color('accent.red'),
-    'gitDecoration.untrackedResourceForeground': color('accent.cyan'),
+    'gitDecoration.addedResourceForeground': stateAdded,
+    'gitDecoration.modifiedResourceForeground': stateModified,
+    'gitDecoration.deletedResourceForeground': stateDeleted,
+    'gitDecoration.untrackedResourceForeground': stateUntracked,
     'gitDecoration.ignoredResourceForeground': mutedForeground,
-    'gitDecoration.conflictingResourceForeground': color('accent.orange'),
+    'gitDecoration.conflictingResourceForeground': stateConflict,
     'gitDecoration.submoduleResourceForeground': secondaryForeground,
+    'gitDecoration.stageDeletedResourceForeground': stateDeleted,
+    'gitDecoration.stageModifiedResourceForeground': stateModified,
 
-    'editorGutter.modifiedBackground': color('accent.blue'),
-    'editorGutter.addedBackground': color('accent.green'),
-    'editorGutter.deletedBackground': color('accent.red'),
+    'editorGutter.modifiedBackground': stateModified,
+    'editorGutter.addedBackground': stateAdded,
+    'editorGutter.deletedBackground': stateDeleted,
 
     'editorBracketHighlight.foreground1': color('accent.cyan'),
     'editorBracketHighlight.foreground2': color('accent.green'),
@@ -305,6 +339,19 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'debugToolBar.background': background,
     'editor.stackFrameHighlightBackground': stackFrameHighlightBackground,
     'editor.focusedStackFrameHighlightBackground': focusedStackFrameHighlightBackground,
+    'debugTokenExpression.name': color('syntax.property'),
+    'debugTokenExpression.value': foreground,
+    'debugTokenExpression.string': color('syntax.string'),
+    'debugTokenExpression.boolean': color('syntax.boolean'),
+    'debugTokenExpression.number': color('syntax.number'),
+    'debugTokenExpression.error': stateError,
+    'debugIcon.breakpointForeground': stateError,
+    'debugIcon.breakpointDisabledForeground': mutedForeground,
+    'debugIcon.startForeground': stateAdded,
+    'debugIcon.pauseForeground': stateInfo,
+    'debugIcon.stopForeground': stateError,
+    'debugIcon.continueForeground': stateAdded,
+    'debugIcon.stepOverForeground': stateInfo,
 
     'peekViewEditor.matchHighlightBackground': peekMatchBackground,
     'peekViewResult.matchHighlightBackground': peekMatchBackground,
@@ -316,14 +363,14 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'welcomePage.buttonBackground': activeBackground,
     'welcomePage.buttonHoverBackground': mutedForeground,
 
-    'problemsErrorIcon.foreground': color('accent.red'),
-    'problemsWarningIcon.foreground': color('accent.orange'),
-    'problemsInfoIcon.foreground': color('accent.blue'),
+    'problemsErrorIcon.foreground': stateError,
+    'problemsWarningIcon.foreground': stateWarning,
+    'problemsInfoIcon.foreground': stateInfo,
 
-    'editorError.foreground': color('accent.red'),
-    'editorWarning.foreground': color('accent.orange'),
-    'editorInfo.foreground': color('accent.blue'),
-    'editorHint.foreground': color('accent.green'),
+    'editorError.foreground': stateError,
+    'editorWarning.foreground': stateWarning,
+    'editorInfo.foreground': stateInfo,
+    'editorHint.foreground': stateHint,
 
     'editorGutter.commentRangeForeground': mutedForeground,
     'editorGutter.foldingControlForeground': secondaryForeground,
@@ -342,6 +389,61 @@ export function buildUIColors(colorResolver: ColorResolver) {
 
     'widget.border': border,
     'actionBar.toggledBackground': focusBackground,
-    'ports.iconRunningProcessForeground': color('accent.green'),
+    'ports.iconRunningProcessForeground': stateAdded,
+
+    // Chat / Inline chat
+    'chat.requestBackground': activeBackground,
+    'chat.requestBorder': border,
+    'chat.slashCommandForeground': primary,
+    'chat.slashCommandBackground': color('accent.blue', 'faint'),
+    'chat.editedFileForeground': stateModified,
+    'inlineChat.background': background,
+    'inlineChat.border': border,
+    'inlineChat.shadow': scrollbarShadow,
+    'inlineChatInput.border': border,
+    'inlineChatInput.background': activeBackground,
+    'inlineChatInput.focusBorder': primary,
+    'inlineChatInput.placeholderForeground': secondaryForeground,
+
+    // Notebook
+    'notebook.editorBackground': editorBackground,
+    'notebook.cellBorderColor': border,
+    'notebook.cellHoverBackground': activeBackground,
+    'notebook.cellInsertionIndicator': primary,
+    'notebook.cellStatusBarItemHoverBackground': activeBackground,
+    'notebook.cellToolbarSeparator': border,
+    'notebook.focusedCellBorder': primary,
+    'notebook.focusedEditorBorder': primary,
+    'notebook.outputContainerBackgroundColor': activeBackground,
+    'notebook.selectedCellBackground': activeBackground,
+    'notebook.selectedCellBorder': border,
+    'notebookStatusErrorIcon.foreground': stateError,
+    'notebookStatusRunningIcon.foreground': primary,
+    'notebookStatusSuccessIcon.foreground': stateAdded,
+
+    // Testing
+    'testing.iconPassed': stateAdded,
+    'testing.iconFailed': stateError,
+    'testing.iconErrored': stateError,
+    'testing.iconQueued': stateWarning,
+    'testing.iconUnset': mutedForeground,
+    'testing.iconSkipped': mutedForeground,
+    'testing.runAction': stateAdded,
+    'testing.message.error.decorationForeground': stateError,
+    'testing.message.info.decorationForeground': stateInfo,
+
+    // Charts
+    'charts.foreground': foreground,
+    'charts.lines': mutedForeground,
+    'charts.red': color('accent.red'),
+    'charts.blue': color('accent.blue'),
+    'charts.yellow': color('accent.yellow'),
+    'charts.orange': color('accent.orange'),
+    'charts.green': color('accent.green'),
+    'charts.purple': color('accent.magenta'),
+
+    // Comments view
+    'commentsView.resolvedIcon': mutedForeground,
+    'commentsView.unresolvedIcon': stateInfo,
   }
 }

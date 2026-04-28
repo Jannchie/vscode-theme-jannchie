@@ -1,5 +1,4 @@
 import type {
-  ModifierColorGroups,
   OpacityLevel,
   ResolvedThemeColor,
   ThemeColorGroup,
@@ -12,90 +11,60 @@ import type {
 import { applyOpacity, themeColorConfig } from './config/colorPalette'
 
 export interface ColorResolverOptions {
-  modifiers: ThemeModifier[]
+  modifier?: ThemeModifier
   variant: ThemeVariant
 }
 
 /**
- * Color resolver utility for picking appropriate colors based on theme variant
+ * Resolves theme color paths against the active variant and (optional) modifier.
+ *
+ * Each theme is identified by exactly one (variant, modifier?) pair; modifiers
+ * are mutually exclusive and never stack.
  */
 export class ColorResolver {
   private variant: ThemeVariant
-  private modifiers: ThemeModifier[]
+  private modifier?: ThemeModifier
 
   constructor(options: ColorResolverOptions) {
     this.variant = options.variant
-    this.modifiers = options.modifiers
+    this.modifier = options.modifier
   }
 
-  /**
-   * Pick color from variant pair
-   */
   pick<T>(options: VariantValue<T>): T {
     return options[this.variant]
   }
 
-  /**
-   * Resolve semantic role with optional opacity
-   */
   resolve<Path extends ThemeColorPath>(path: Path, op: OpacityLevel | string = ''): ResolvedThemeColor<Path> {
-    const color = this.getColor(path)
-    return this.withOptionalOpacity(color, op) as ResolvedThemeColor<Path>
+    return this.withOptionalOpacity(this.getColor(path), op) as ResolvedThemeColor<Path>
   }
 
-  /**
-   * Resolve theme color without modifier overrides
-   */
   resolveBase<Path extends ThemeColorPath>(path: Path, op: OpacityLevel | string = ''): ResolvedThemeColor<Path> {
-    const color = this.getBaseColor(path)
-    return this.withOptionalOpacity(color, op) as ResolvedThemeColor<Path>
+    return this.withOptionalOpacity(this.getBaseColor(path), op) as ResolvedThemeColor<Path>
   }
 
-  /**
-   * Resolve theme color with variant-specific opacity
-   */
   resolveByVariant<Path extends ThemeColorPath>(path: Path, opacityByVariant: VariantValue<OpacityLevel | string>): ResolvedThemeColor<Path> {
     return this.resolve(path, this.pick(opacityByVariant))
   }
 
-  /**
-   * Check if a specific modifier is active
-   */
   hasModifier(modifier: ThemeModifier): boolean {
-    return this.modifiers.includes(modifier)
+    return this.modifier === modifier
   }
 
   private getColor<Path extends ThemeColorPath>(path: Path): ResolvedThemeColor<Path> {
-    let resolvedColor = this.getBaseColor(path)
-    for (const modifier of themeColorConfig.modifierPrecedence) {
-      if (!this.hasModifier(modifier)) {
-        continue
-      }
-
-      const override = this.getModifierColor(themeColorConfig.modifiers[modifier]?.[this.variant], path)
-      if (override !== undefined) {
-        resolvedColor = override as ResolvedThemeColor<Path>
-      }
+    const baseColor = this.getBaseColor(path)
+    if (!this.modifier) {
+      return baseColor
     }
 
-    return resolvedColor
+    const [group, key] = this.parsePath(path)
+    const modifierGroups = themeColorConfig.modifiers[this.modifier]?.[this.variant]
+    const override = modifierGroups?.[group]?.[key]
+    return (override ?? baseColor) as ResolvedThemeColor<Path>
   }
 
   private getBaseColor<Path extends ThemeColorPath>(path: Path): ResolvedThemeColor<Path> {
     const [group, key] = this.parsePath(path)
     return themeColorConfig.baseColors[this.variant][group][key] as ResolvedThemeColor<Path>
-  }
-
-  private getModifierColor<Path extends ThemeColorPath>(
-    modifierGroup: ModifierColorGroups | undefined,
-    path: Path,
-  ): ResolvedThemeColor<Path> | undefined {
-    if (!modifierGroup) {
-      return undefined
-    }
-
-    const [group, key] = this.parsePath(path)
-    return modifierGroup[group]?.[key] as ResolvedThemeColor<Path> | undefined
   }
 
   private parsePath<Path extends ThemeColorPath>(path: Path): [
@@ -106,7 +75,6 @@ export class ColorResolver {
       ThemeColorGroup,
       keyof ThemeColorGroups[ThemeColorGroup],
     ]
-
     return [group, key]
   }
 
@@ -114,7 +82,6 @@ export class ColorResolver {
     if (color === undefined || !op) {
       return color
     }
-
     return applyOpacity(color, op)
   }
 }

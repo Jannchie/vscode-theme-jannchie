@@ -27,7 +27,7 @@ export interface BuiltShikiTheme {
 export function buildShikiTheme(definition: ThemeDefinition): ShikiTheme {
   const colorResolver = new ColorResolver({
     variant: definition.variant,
-    modifiers: definition.modifiers,
+    modifier: definition.modifier,
   })
   const tokenColors = buildTokenColors(colorResolver)
 
