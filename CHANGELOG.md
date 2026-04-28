@@ -1,3 +1,12 @@
+## v3.0.0
+
+v2.0.0...v3.0.0
+
+### :rocket: Breaking Changes
+
+- **colors**: rename text.active to chrome && update color tokens - By [Jannchie](mailto:jannchie@gmail.com) in af78011
+- **core**: introduce palette and single-modifier API - By [Jannchie](mailto:jannchie@gmail.com) in cf8da4e
+
 ## v2.0.0
 
 v1.1.0...v2.0.0
