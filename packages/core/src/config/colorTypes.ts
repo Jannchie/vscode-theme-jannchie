@@ -52,7 +52,7 @@ export interface ThemeColorGroups {
     variableBuiltin: string
   }
   text: {
-    active: string
+    chrome: string
     muted: string
     primary: string
     secondary: string

@@ -31,7 +31,7 @@ describe('color resolver', () => {
 
     expect(resolver.resolve('surface.canvas')).toBe('#F1F0E9')
     expect(resolver.resolve('surface.panel')).toBe('#E7E5DB')
-    expect(resolver.resolve('surface.border')).toBe('#E7E5DB')
+    expect(resolver.resolve('surface.border')).toBe('#dfdcd0')
   })
 
   it('prefers black overrides over soft overrides', () => {
@@ -62,8 +62,8 @@ describe('color resolver', () => {
       modifiers: [],
     })
 
-    expect(resolver.resolve('accent.primary', 'barely')).toBe('#4babf20d')
-    expect(resolver.resolve('accent.primary', '33')).toBe('#4babf233')
+    expect(resolver.resolve('accent.primary', 'barely')).toBe('#0d6dc70d')
+    expect(resolver.resolve('accent.primary', '33')).toBe('#0d6dc733')
   })
 
   it('resolves utility colors and variant-specific helpers', () => {

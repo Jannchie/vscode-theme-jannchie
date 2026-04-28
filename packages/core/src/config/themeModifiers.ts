@@ -9,14 +9,14 @@ export const themeModifiers = {
       surface: {
         canvas: '#171717',
         panel: '#262626',
-        border: '#262626',
+        border: '#2c2c2c',
       },
     },
     light: {
       surface: {
         canvas: '#F1F0E9',
         panel: '#E7E5DB',
-        border: '#E7E5DB',
+        border: '#dfdcd0',
       },
       text: {
         muted: '#797979',
@@ -31,6 +31,7 @@ export const themeModifiers = {
       surface: {
         canvas: '#000000',
         panel: '#121212',
+        border: '#1a1a1a',
       },
       syntax: {
         punctuation: applyOpacity('#8a9099', 'medium'),

@@ -7,7 +7,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const baseColor = colorResolver.resolveBase.bind(colorResolver)
 
   const foreground = color('text.primary')
-  const activeForeground = color('text.active')
+  const chromeForeground = color('text.chrome')
   const secondaryForeground = color('text.secondary')
   const mutedForeground = color('text.muted')
   const subtleForeground = color('text.subtle')
@@ -35,8 +35,8 @@ export function buildUIColors(colorResolver: ColorResolver) {
     dark: background,
   })
   const remoteHoverForeground = colorResolver.pick({
-    light: activeForeground,
-    dark: activeForeground,
+    light: chromeForeground,
+    dark: chromeForeground,
   })
   const selectionBackgroundInActive = colorByVariant('surface.overlay', {
     light: 'barely',
@@ -110,7 +110,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'textBlockQuote.border': border,
     'textCodeBlock.background': background,
     'textPreformat.foreground': mutedForeground,
-    'textSeparator.foreground': activeForeground,
+    'textSeparator.foreground': chromeForeground,
 
     'button.background': primary,
     'button.foreground': foreground,
@@ -135,7 +135,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
 
     'progressBar.background': primary,
 
-    'titleBar.activeForeground': activeForeground,
+    'titleBar.activeForeground': chromeForeground,
     'titleBar.activeBackground': background,
     'titleBar.inactiveForeground': mutedForeground,
     'titleBar.inactiveBackground': background,
@@ -149,7 +149,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'activityBar.activeBorder': indicatorColor,
     'activityBar.border': border,
 
-    'sideBar.foreground': activeForeground,
+    'sideBar.foreground': chromeForeground,
     'sideBar.background': background,
     'sideBar.border': border,
     'sideBarTitle.foreground': foreground,
@@ -186,12 +186,12 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'quickInput.foreground': foreground,
     'quickInputList.focusBackground': activeBackground,
 
-    'statusBar.foreground': activeForeground,
+    'statusBar.foreground': chromeForeground,
     'statusBar.background': background,
     'statusBar.border': border,
     'statusBar.noFolderBackground': background,
     'statusBar.debuggingBackground': activeBackground,
-    'statusBar.debuggingForeground': activeForeground,
+    'statusBar.debuggingForeground': chromeForeground,
     'statusBarItem.prominentBackground': activeBackground,
     'statusBarItem.remoteBackground': remoteBackground,
     'statusBarItem.remoteForeground': remoteForeground,
@@ -231,7 +231,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'editor.foldBackground': foldBackground,
     'editor.lineHighlightBackground': activeBackground,
     'editorLineNumber.foreground': mutedForeground,
-    'editorLineNumber.activeForeground': activeForeground,
+    'editorLineNumber.activeForeground': chromeForeground,
     'editorIndentGuide.background1': indentGuideBackground,
     'editorIndentGuide.activeBackground1': indentGuideActiveBackground,
     'editorIndentGuide.background': indentGuideBackground,
@@ -266,7 +266,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'terminal.foreground': foreground,
     'terminal.selectionBackground': selectionBackground,
     'terminal.inactiveSelectionBackground': selectionBackgroundInActive,
-    'terminal.ansiBrightBlack': colorResolver.pick({ light: activeForeground, dark: mutedForeground }),
+    'terminal.ansiBrightBlack': colorResolver.pick({ light: chromeForeground, dark: mutedForeground }),
     'terminal.ansiBrightBlue': color('accent.blue'),
     'terminal.ansiBrightCyan': color('accent.cyan'),
     'terminal.ansiBrightGreen': color('accent.green'),
