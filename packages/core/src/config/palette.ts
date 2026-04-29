@@ -43,6 +43,7 @@ export const lightPalette = {
   yellow: '#fad149',
   olive: '#5e7a1e',
   forest: '#547570',
+  fern: '#3d7a2e',
   emerald: '#0f7d68',
   teal: '#097575',
   pine: '#005e6d',
@@ -94,13 +95,17 @@ export const darkPalette = {
   apricot: '#d39d91',
   amber: '#fccf3c',
   butter: '#f3e1a6',
-  // Greens, light → deep: mint, sage, jade, emerald, green, teal
+  // Greens. `fern` is the yellow-green axis (≈100°), the others sit on the
+  // blue-green axis (≈155–165°). Listed light → deep within each axis.
   mint: '#cce0a8',
+  fern: '#7ec46a',
   sage: '#86d3b8',
-  jade: '#5cc09d',
   emerald: '#22d3a8',
   green: '#34c09d',
   teal: '#4a8a85',
+  // Note: `jade` was removed in favor of `fern` for components — fern's
+  // yellow-green hue is visually distinct from emerald instead of being
+  // a near-twin in saturation/lightness only.
   cyan: '#57cbdd',
   aqua: '#a8e0eb',
   pool: '#5fd4e0',

@@ -89,7 +89,8 @@ export function languageRules(colorResolver: ColorResolver): TokenColor[] {
       settings: { foreground: color('syntax.builtin') },
     },
 
-    // JSX / TSX
+    // JSX / TSX — user-defined components use `syntax.class` (emerald),
+    // distinct from native intrinsic tags which use `syntax.classBuiltin`.
     {
       scope: [
         'support.class.component.jsx',

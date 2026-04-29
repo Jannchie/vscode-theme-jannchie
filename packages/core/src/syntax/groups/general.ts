@@ -60,15 +60,28 @@ export function generalRules(colorResolver: ColorResolver): TokenColor[] {
       settings: { foreground },
     },
     {
+      // Native markup tags (HTML/Vue/Svelte/JSX intrinsic). They are the
+      // language's built-in vocabulary, so they share `syntax.classBuiltin`
+      // with `class.defaultLibrary` and CSS type selectors (see markup.ts).
       scope: ['entity.name.tag', 'tag.html'],
-      settings: { foreground: color('syntax.class') },
+      settings: { foreground: color('syntax.classBuiltin') },
     },
     {
-      scope: [
-        'entity.other.attribute-name.html.meta.attribute.class.html',
-        'support.class.component',
-      ],
+      scope: ['entity.other.attribute-name.html.meta.attribute.class.html'],
       settings: { foreground: color('syntax.type') },
+    },
+    {
+      // User-defined components (Vue / JSX / Svelte). They are the user's own
+      // declarations — like a class — and so share `syntax.class` (emerald),
+      // visually distinct from the built-in markup tags above.
+      scope: [
+        'support.class.component',
+        'support.class.component.html',
+        'support.class.component.jsx',
+        'support.class.component.tsx',
+        'meta.tag.other.unrecognized.html.derivative entity.name.tag',
+      ],
+      settings: { foreground: color('syntax.class') },
     },
     {
       scope: 'entity.name.function',

@@ -13,8 +13,21 @@ export function markupRules(colorResolver: ColorResolver): TokenColor[] {
       settings: { foreground: color('syntax.parameter') },
     },
     {
+      // HTML id="x" — colored as the matching CSS `#x` selector so that the
+      // identifier reference is visually paired across files. Mirrors the
+      // existing rule for class="x" ↔ `.x` (in general.ts).
+      scope: [
+        'entity.other.attribute-name.html.meta.attribute.id.html',
+        'meta.attribute.id.html string.quoted',
+      ],
+      settings: { foreground: color('syntax.type') },
+    },
+    {
+      // CSS type selectors (`body`, `a`, …) reference HTML built-in element
+      // names, so they share `syntax.classBuiltin` with `entity.name.tag`
+      // for identifier correspondence across files.
       scope: ['entity.name.tag.css', 'entity.name.tag.less'],
-      settings: { foreground: color('syntax.function') },
+      settings: { foreground: color('syntax.classBuiltin') },
     },
     {
       scope: [
