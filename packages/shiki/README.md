@@ -1,6 +1,6 @@
-# Jannchie Theme for Shiki
+# Jannchie Code Theme for Shiki
 
-Shiki-compatible themes generated from the same source as the Jannchie VS Code theme.
+Shiki-compatible themes generated from the same source as the Jannchie Code Theme for VS Code.
 
 ## Usage
 

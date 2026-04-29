@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Jannchie Light",
+  "name": "Jannchie Code Light",
   "base": "vs",
   "colors": {
     "focusBorder": "#00000000",
@@ -221,6 +221,8 @@
     "debugIcon.stopForeground": "#b62626",
     "debugIcon.continueForeground": "#0f7d68",
     "debugIcon.stepOverForeground": "#1d5e97",
+    "peekViewEditor.matchHighlightBackground": "#d5960033",
+    "peekViewResult.matchHighlightBackground": "#d5960033",
     "peekViewEditor.background": "#ffffff",
     "peekViewResult.background": "#ffffff",
     "settings.headerForeground": "#1b1b1b",

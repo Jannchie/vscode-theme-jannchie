@@ -2,7 +2,7 @@
   "name": "@jannchie/shiki-theme",
   "type": "module",
   "version": "3.0.0",
-  "description": "Jannchie themes for Shiki",
+  "description": "Jannchie Code Theme for Shiki",
   "license": "MIT",
   "repository": {
     "type": "git",

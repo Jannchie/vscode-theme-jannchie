@@ -72,9 +72,9 @@ describe('color resolver', () => {
     const darkResolver = new ColorResolver({ variant: 'dark' })
     const lightResolver = new ColorResolver({ variant: 'light' })
 
-    expect(lightResolver.resolve('utility.terminalBlack')).toBe('#ffffff')
+    expect(lightResolver.resolve('utility.terminalAnsiBlack')).toBe('#ffffff')
     expect(darkResolver.resolve('utility.peekMatchBackground')).toBe('#ffd33d33')
-    expect(lightResolver.resolve('utility.peekMatchBackground')).toBeUndefined()
+    expect(lightResolver.resolve('utility.peekMatchBackground')).toBe('#d5960033')
     expect(darkResolver.resolveByVariant('surface.overlay', {
       light: 'barely',
       dark: 'faint',

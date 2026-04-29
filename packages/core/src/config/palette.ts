@@ -4,10 +4,19 @@
  * Semantic roles (text/surface/accent/state/syntax) reference these names
  * rather than hex codes. To shift a hue across the theme, change the value
  * here once and every consumer follows.
+ *
+ * Conventions:
+ * - Entries are pure RGB. Alpha is layered at the token site through
+ *   `applyOpacity(name, level)` against the `opacity` ladder.
+ * - Names describe the color (`brick`, `fog`, `carbon`), not where it is
+ *   used (`background`, `keyword`).
  */
 
+/** Shared sentinel: fully transparent. The only legal alpha-bearing value. */
+export const transparent = '#00000000'
+
 export const lightPalette = {
-  // Neutrals
+  // Neutrals — ink-on-paper foreground/background ladder
   ink: '#1b1b1b',
   charcoal: '#474747',
   smoke: '#797979',
@@ -15,10 +24,14 @@ export const lightPalette = {
   silver: '#ececec',
   paper: '#f7f7f7',
   white: '#ffffff',
+
+  // Modifier-only surfaces (consumed by `soft` modifier)
   cream: '#F1F0E9',
   creamPanel: '#E7E5DB',
   creamEdge: '#dfdcd0',
-  inkShadow: '#6a737d33',
+
+  // Auxiliary tints
+  shadowInk: '#6a737d',
 
   // Chromatic
   red: '#b62626',
@@ -47,7 +60,7 @@ export const lightPalette = {
 } as const
 
 export const darkPalette = {
-  // Neutrals
+  // Neutrals — fog-over-carbon foreground/background ladder
   fog: '#d4d4d4',
   mist: '#a3a3a3',
   pearl: '#8a9099',
@@ -55,18 +68,22 @@ export const darkPalette = {
   paper: '#171717',
   canvas: '#0f0f0f',
   editor: '#0d0d0d',
+  bone: '#dbd7ca',
+  guide: '#ffffff',
+  overlay: '#eeeeee',
+
+  // Modifier-only surfaces (consumed by `soft` and `black` modifiers)
+  graphite: '#262626',
+  graphiteEdge: '#2c2c2c',
+  graphiteEditor: '#141414',
   carbon: '#000000',
   carbonPanel: '#121212',
   carbonEdge: '#1a1a1a',
   carbonEditor: '#000000',
-  graphite: '#262626',
-  graphiteEdge: '#2c2c2c',
-  graphiteEditor: '#141414',
-  bone: '#dbd7ca',
-  shadow: '#1f1f1f1e',
-  guide: '#ffffff',
-  overlay: '#eeeeee',
-  terminalBlack: '#393a34',
+
+  // Auxiliary tints
+  signalYellow: '#ffd33d',
+  terminalGraphite: '#393a34',
 
   // Chromatic
   rose: '#ff6e6e',
@@ -77,28 +94,30 @@ export const darkPalette = {
   apricot: '#d39d91',
   amber: '#fccf3c',
   butter: '#f3e1a6',
+  // Greens, light → deep: mint, sage, jade, emerald, green, teal
   mint: '#cce0a8',
-  green: '#34c09d',
-  emerald: '#22d3a8',
-  jade: '#5cc09d',
   sage: '#86d3b8',
+  jade: '#5cc09d',
+  emerald: '#22d3a8',
+  green: '#34c09d',
   teal: '#4a8a85',
   cyan: '#57cbdd',
   aqua: '#a8e0eb',
   pool: '#5fd4e0',
+  // Blues, soft → saturated: mistyBlue, sky, iceBlue, cornflower, sapphire, azure, blue, cobalt
   mistyBlue: '#b8d4ed',
   sky: '#71c9ff',
   iceBlue: '#84c4f0',
-  azure: '#5db1ff',
-  sapphire: '#7aa5e8',
   cornflower: '#7eb6ff',
+  sapphire: '#7aa5e8',
+  azure: '#5db1ff',
   blue: '#4babf2',
   cobalt: '#1f8fff',
+  // Cool grays / lavenders for parameters & subdued tokens
   steel: '#9fb6ce',
   storm: '#9aa5d4',
   porcelain: '#cfe6ff',
   lilac: '#c490ff',
-  peekMatch: '#ffd33d33',
 } as const
 
 export type LightPaletteName = keyof typeof lightPalette

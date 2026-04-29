@@ -2,6 +2,14 @@ import type { ModifierColorGroups, ThemeModifier, ThemeVariant } from './colorTy
 import { applyOpacity } from './colorTokens'
 import { lightPalette as l, darkPalette as p } from './palette'
 
+/**
+ * Modifier deltas. Each modifier overrides only the slots that change for
+ * that flavor; everything else inherits from the base variant.
+ *
+ * Foreground tweaks (`text.*`) use the opacity ladder against the variant's
+ * primary ink — never a separately picked gray — so the foreground hierarchy
+ * stays consistent across `cream`, `canvas`, and `carbon` grounds.
+ */
 export const themeModifiers = {
   soft: {
     dark: {
@@ -20,7 +28,7 @@ export const themeModifiers = {
         border: l.creamEdge,
       },
       text: {
-        muted: l.smoke,
+        muted: applyOpacity(l.ink, 'low'),
       },
     },
   },
@@ -37,11 +45,6 @@ export const themeModifiers = {
       },
       syntax: {
         punctuation: applyOpacity(p.pearl, 'medium'),
-      },
-    },
-    light: {
-      text: {
-        muted: l.smoke,
       },
     },
   },

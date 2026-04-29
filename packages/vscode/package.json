@@ -1,10 +1,10 @@
 {
   "publisher": "jannchie",
   "name": "theme-jannchie",
-  "displayName": "Jannchie Theme",
+  "displayName": "Jannchie Code Theme",
   "type": "module",
   "version": "3.0.0",
-  "description": "Jannchie theme for VS Code",
+  "description": "Jannchie Code Theme for VS Code",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -36,27 +36,27 @@
   "contributes": {
     "themes": [
       {
-        "label": "Jannchie Dark",
+        "label": "Jannchie Code Dark",
         "uiTheme": "vs-dark",
         "path": "./themes/jannchie-dark.json"
       },
       {
-        "label": "Jannchie Dark Soft",
+        "label": "Jannchie Code Dark Soft",
         "uiTheme": "vs-dark",
         "path": "./themes/jannchie-dark-soft.json"
       },
       {
-        "label": "Jannchie Black",
+        "label": "Jannchie Code Black",
         "uiTheme": "vs-dark",
         "path": "./themes/jannchie-black.json"
       },
       {
-        "label": "Jannchie Light",
+        "label": "Jannchie Code Light",
         "uiTheme": "vs",
         "path": "./themes/jannchie-light.json"
       },
       {
-        "label": "Jannchie Light Soft",
+        "label": "Jannchie Code Light Soft",
         "uiTheme": "vs",
         "path": "./themes/jannchie-light-soft.json"
       }

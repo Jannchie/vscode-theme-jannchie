@@ -1,6 +1,6 @@
 {
   "name": "jannchie-light-soft",
-  "displayName": "Jannchie Light Soft",
+  "displayName": "Jannchie Code Light Soft",
   "type": "light",
   "fg": "#1b1b1b",
   "bg": "#F1F0E9",
@@ -704,7 +704,7 @@
         "markup.untracked"
       ],
       "settings": {
-        "foreground": "#797979",
+        "foreground": "#1b1b1baa",
         "background": "#2993a3"
       }
     },
@@ -744,7 +744,7 @@
         "brackethighlighter.quote"
       ],
       "settings": {
-        "foreground": "#797979"
+        "foreground": "#1b1b1baa"
       }
     },
     {
@@ -1645,7 +1645,7 @@
         "markup.untracked"
       ],
       "settings": {
-        "foreground": "#797979",
+        "foreground": "#1b1b1baa",
         "background": "#2993a3"
       }
     },
@@ -1685,7 +1685,7 @@
         "brackethighlighter.quote"
       ],
       "settings": {
-        "foreground": "#797979"
+        "foreground": "#1b1b1baa"
       }
     },
     {

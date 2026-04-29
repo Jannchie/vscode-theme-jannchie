@@ -1,5 +1,5 @@
 {
-  "name": "jannchie-theme-monorepo",
+  "name": "@jannchie/code-theme",
   "type": "module",
   "version": "3.0.0",
   "private": true,

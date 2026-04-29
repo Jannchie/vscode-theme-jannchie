@@ -1,5 +1,5 @@
 import type { ThemeColorGroups } from './colorTypes'
-import { lightPalette as l, darkPalette as p } from './palette'
+import { lightPalette as l, darkPalette as p, transparent } from './palette'
 
 export const opacity = {
   full: 'ff',
@@ -16,10 +16,11 @@ export const opacity = {
 
 export type OpacityLevel = keyof typeof opacity
 
-const transparent = '#00000000'
-
 const lightTokens = {
   text: {
+    // Foreground hierarchy — derived from `primary` via the opacity ladder.
+    // `chrome` is the one exception: a flat ink for UI chrome (status bar,
+    // tab labels) where alpha-mixed text would blend into panel surfaces.
     primary: l.ink,
     chrome: l.charcoal,
     secondary: applyOpacity(l.ink, 'high'),
@@ -33,7 +34,7 @@ const lightTokens = {
     border: l.silver,
     overlay: l.ink,
     guide: l.ink,
-    shadow: l.inkShadow,
+    shadow: applyOpacity(l.shadowInk, 'ghost'),
   },
   accent: {
     blue: l.blue,
@@ -84,8 +85,8 @@ const lightTokens = {
     variableBuiltin: l.smoke,
   },
   utility: {
-    peekMatchBackground: undefined,
-    terminalBlack: l.white,
+    peekMatchBackground: applyOpacity(l.gold, 'ghost'),
+    terminalAnsiBlack: l.white,
     transparent,
   },
 } as const satisfies ThemeColorGroups
@@ -105,7 +106,7 @@ const darkTokens = {
     border: p.ash,
     overlay: p.overlay,
     guide: p.guide,
-    shadow: p.shadow,
+    shadow: applyOpacity(p.ash, 'faint'),
   },
   accent: {
     blue: p.blue,
@@ -156,8 +157,8 @@ const darkTokens = {
     variableBuiltin: p.storm,
   },
   utility: {
-    peekMatchBackground: p.peekMatch,
-    terminalBlack: p.terminalBlack,
+    peekMatchBackground: applyOpacity(p.signalYellow, 'ghost'),
+    terminalAnsiBlack: p.terminalGraphite,
     transparent,
   },
 } as const satisfies ThemeColorGroups

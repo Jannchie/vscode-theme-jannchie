@@ -35,10 +35,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     dark: editorBackground,
   })
   const remoteBackground = stateIndicator
-  const remoteForeground = colorResolver.pick({
-    light: color('utility.terminalBlack'),
-    dark: background,
-  })
+  const remoteForeground = background
   const remoteHoverBackground = background
   const remoteHoverForeground = chromeForeground
   const selectionBackgroundInActive = colorByVariant('surface.overlay', {
@@ -101,7 +98,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
   const mergeIncomingBackground = color('state.info', 'barely')
   const mergeCommonBackground = color('accent.magenta', 'barely')
   const scrollbarShadow = color('surface.shadow')
-  const terminalBlack = color('utility.terminalBlack')
+  const terminalAnsiBlack = color('utility.terminalAnsiBlack')
   const peekMatchBackground = color('utility.peekMatchBackground')
 
   return {
@@ -306,7 +303,7 @@ export function buildUIColors(colorResolver: ColorResolver) {
     'terminal.ansiBrightRed': color('accent.red'),
     'terminal.ansiBrightWhite': colorResolver.pick({ light: mutedForeground, dark: foreground }),
     'terminal.ansiBrightYellow': color('accent.yellow'),
-    'terminal.ansiBlack': terminalBlack,
+    'terminal.ansiBlack': terminalAnsiBlack,
     'terminal.ansiBlue': color('accent.blue'),
     'terminal.ansiCyan': color('accent.cyan'),
     'terminal.ansiGreen': color('accent.green'),

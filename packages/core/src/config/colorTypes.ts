@@ -72,8 +72,8 @@ export interface ThemeColorGroups {
     subtle: string
   }
   utility: {
-    peekMatchBackground: string | undefined
-    terminalBlack: string
+    peekMatchBackground: string
+    terminalAnsiBlack: string
     transparent: string
   }
 }

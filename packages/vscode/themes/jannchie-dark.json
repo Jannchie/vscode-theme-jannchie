@@ -1,6 +1,6 @@
 {
   "$schema": "vscode://schemas/color-theme",
-  "name": "Jannchie Dark",
+  "name": "Jannchie Code Dark",
   "base": "vs-dark",
   "colors": {
     "focusBorder": "#00000000",
@@ -157,7 +157,7 @@
     "mergeEditor.conflict.unhandledFocused.border": "#f28043",
     "mergeEditor.conflict.handledUnfocused.border": "#a3a3a3aa",
     "mergeEditor.conflict.handledFocused.border": "#a3a3a3aa",
-    "scrollbar.shadow": "#1f1f1f1e",
+    "scrollbar.shadow": "#1f1f1f1a",
     "scrollbarSlider.background": "#a3a3a31a",
     "scrollbarSlider.hoverBackground": "#a3a3a3aa",
     "scrollbarSlider.activeBackground": "#a3a3a3aa",
@@ -257,7 +257,7 @@
     "chat.editedFileForeground": "#4babf2",
     "inlineChat.background": "#0f0f0f",
     "inlineChat.border": "#1f1f1f",
-    "inlineChat.shadow": "#1f1f1f1e",
+    "inlineChat.shadow": "#1f1f1f1a",
     "inlineChatInput.border": "#1f1f1f",
     "inlineChatInput.background": "#171717",
     "inlineChatInput.focusBorder": "#1f8fff",
