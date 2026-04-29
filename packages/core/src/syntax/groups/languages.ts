@@ -100,6 +100,30 @@ export function languageRules(colorResolver: ColorResolver): TokenColor[] {
       ],
       settings: { foreground: color('syntax.class') },
     },
+
+    // SQL — keywords are dense (every clause begins with one), so the global
+    // `syntax.keyword` red would dominate the page. Route SQL keywords to
+    // `syntax.builtin` (blue) instead: they are DSL vocabulary, not control
+    // flow. SQL types stay on the same blue family for visual cohesion.
+    {
+      scope: [
+        'keyword.other.DML.sql',
+        'keyword.other.DDL.sql',
+        'keyword.other.DCL.sql',
+        'keyword.other.LUW.sql',
+        'keyword.other.create.sql',
+        'keyword.other.alter.sql',
+        'keyword.other.alias.sql',
+        'keyword.other.sql',
+        'keyword.other.authorization.sql',
+        'keyword.other.data-integrity.sql',
+        'keyword.other.object-comments.sql',
+        'keyword.other.cte.sql',
+        'storage.modifier.sql',
+        'storage.type.sql',
+      ],
+      settings: { foreground: color('syntax.builtin') },
+    },
     {
       scope: [
         'punctuation.definition.tag.begin.jsx',

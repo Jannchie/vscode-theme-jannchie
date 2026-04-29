@@ -1248,6 +1248,27 @@
     },
     {
       "scope": [
+        "keyword.other.DML.sql",
+        "keyword.other.DDL.sql",
+        "keyword.other.DCL.sql",
+        "keyword.other.LUW.sql",
+        "keyword.other.create.sql",
+        "keyword.other.alter.sql",
+        "keyword.other.alias.sql",
+        "keyword.other.sql",
+        "keyword.other.authorization.sql",
+        "keyword.other.data-integrity.sql",
+        "keyword.other.object-comments.sql",
+        "keyword.other.cte.sql",
+        "storage.modifier.sql",
+        "storage.type.sql"
+      ],
+      "settings": {
+        "foreground": "#246cbf"
+      }
+    },
+    {
+      "scope": [
         "punctuation.definition.tag.begin.jsx",
         "punctuation.definition.tag.end.jsx",
         "punctuation.definition.tag.begin.tsx",
