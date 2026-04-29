@@ -1,7 +1,7 @@
 {
   "name": "@jannchie/theme-core",
   "type": "module",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "exports": {
     ".": "./src/index.ts"

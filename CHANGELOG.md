@@ -1,3 +1,16 @@
+## v3.1.0
+
+v3.0.0...v3.1.0
+
+### :sparkles: Features
+
+- **syntax**: route sql keywords to builtin color - By [Jannchie](mailto:jannchie@gmail.com) in af55fa9
+
+### :art: Refactors
+
+- **syntax**: separate builtin and component token colors - By [Jannchie](mailto:jannchie@gmail.com) in a16ac41
+- **theme**: rename to jannchie code theme - By [Jannchie](mailto:jannchie@gmail.com) in ad544bd
+
 ## v3.0.0
 
 v2.0.0...v3.0.0
