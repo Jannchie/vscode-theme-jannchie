@@ -1,3 +1,11 @@
+## v3.1.1
+
+v3.1.0...v3.1.1
+
+### :art: Refactors
+
+- **color**: update namespace color to orchid - By [Jannchie](mailto:jannchie@gmail.com) in aa6d27e
+
 ## v3.1.0
 
 v3.0.0...v3.1.0
