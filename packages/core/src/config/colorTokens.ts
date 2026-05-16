@@ -144,7 +144,7 @@ const darkTokens = {
     import: p.lilac,
     interface: p.cornflower,
     keyword: p.rose,
-    namespace: p.steel,
+    namespace: p.orchid,
     number: p.pool,
     parameter: p.mistyBlue,
     property: p.sky,

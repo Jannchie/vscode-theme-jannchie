@@ -244,7 +244,7 @@
     {
       "scope": "namespace",
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -810,7 +810,7 @@
         "entity.name.module.rust"
       ],
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -851,7 +851,7 @@
         "entity.name.package.go"
       ],
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -965,7 +965,7 @@
         "entity.name.namespace.cpp"
       ],
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -1226,7 +1226,7 @@
     {
       "scope": "namespace",
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -1792,7 +1792,7 @@
         "entity.name.module.rust"
       ],
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -1833,7 +1833,7 @@
         "entity.name.package.go"
       ],
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {
@@ -1947,7 +1947,7 @@
         "entity.name.namespace.cpp"
       ],
       "settings": {
-        "foreground": "#9fb6ce"
+        "foreground": "#dc8be8"
       }
     },
     {

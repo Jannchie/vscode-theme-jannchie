@@ -123,6 +123,10 @@ export const darkPalette = {
   storm: '#9aa5d4',
   porcelain: '#cfe6ff',
   lilac: '#c490ff',
+  // Vivid magenta-violet — distinct from lilac (truer purple) and pink
+  // (red-magenta); used where a hue needs to stand alone, not blend into
+  // the blue identifier family.
+  orchid: '#dc8be8',
 } as const
 
 export type LightPaletteName = keyof typeof lightPalette
