@@ -1,6 +1,6 @@
 id = "jannchie-code"
 name = "Jannchie Code"
-version = "3.1.1"
+version = "3.2.0"
 schema_version = 1
 authors = [ "Jannchie <jannchie@gmail.com>" ]
 description = "Jannchie Code Theme for Zed"

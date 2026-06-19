@@ -1,3 +1,15 @@
+## v3.2.0
+
+v3.1.1...v3.2.0
+
+### :sparkles: Features
+
+- **zed**: add Zed editor theme target - By [Jannchie](mailto:jannchie@gmail.com) in 25f5bfc
+
+### :art: Refactors
+
+- **color**: recolor import to pink and namespace to cyan - By [Jannchie](mailto:jannchie@gmail.com) in 5f56cec
+
 ## v3.1.1
 
 v3.1.0...v3.1.1
