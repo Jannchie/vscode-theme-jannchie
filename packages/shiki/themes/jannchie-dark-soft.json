@@ -244,7 +244,7 @@
     {
       "scope": "namespace",
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -281,7 +281,7 @@
         "keyword.control.import"
       ],
       "settings": {
-        "foreground": "#c490ff"
+        "foreground": "#f24391"
       }
     },
     {
@@ -810,7 +810,7 @@
         "entity.name.module.rust"
       ],
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -851,7 +851,7 @@
         "entity.name.package.go"
       ],
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -965,7 +965,7 @@
         "entity.name.namespace.cpp"
       ],
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -1226,7 +1226,7 @@
     {
       "scope": "namespace",
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -1263,7 +1263,7 @@
         "keyword.control.import"
       ],
       "settings": {
-        "foreground": "#c490ff"
+        "foreground": "#f24391"
       }
     },
     {
@@ -1792,7 +1792,7 @@
         "entity.name.module.rust"
       ],
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -1833,7 +1833,7 @@
         "entity.name.package.go"
       ],
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {
@@ -1947,7 +1947,7 @@
         "entity.name.namespace.cpp"
       ],
       "settings": {
-        "foreground": "#dc8be8"
+        "foreground": "#57cbdd"
       }
     },
     {

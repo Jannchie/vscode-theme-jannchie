@@ -299,7 +299,7 @@
   "semanticHighlighting": true,
   "semanticTokenColors": {
     "namespace": {
-      "foreground": "#246cbf"
+      "foreground": "#2993a3"
     },
     "class": {
       "foreground": "#0f7d68"
@@ -609,7 +609,7 @@
     {
       "scope": "namespace",
       "settings": {
-        "foreground": "#246cbf"
+        "foreground": "#2993a3"
       }
     },
     {
@@ -646,7 +646,7 @@
         "keyword.control.import"
       ],
       "settings": {
-        "foreground": "#9b25d1"
+        "foreground": "#a13865"
       }
     },
     {
@@ -1175,7 +1175,7 @@
         "entity.name.module.rust"
       ],
       "settings": {
-        "foreground": "#246cbf"
+        "foreground": "#2993a3"
       }
     },
     {
@@ -1216,7 +1216,7 @@
         "entity.name.package.go"
       ],
       "settings": {
-        "foreground": "#246cbf"
+        "foreground": "#2993a3"
       }
     },
     {
@@ -1330,7 +1330,7 @@
         "entity.name.namespace.cpp"
       ],
       "settings": {
-        "foreground": "#246cbf"
+        "foreground": "#2993a3"
       }
     },
     {
