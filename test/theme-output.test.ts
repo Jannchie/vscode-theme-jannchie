@@ -3,6 +3,7 @@ import path from 'node:path'
 import { describe, expect, it } from 'vitest'
 import { buildAllShikiThemes } from '../packages/shiki/src/buildShikiThemes'
 import { buildAllThemes } from '../packages/vscode/src/buildThemes'
+import { buildThemeFamily } from '../packages/zed/src/buildThemes'
 
 describe('theme output', () => {
   it('matches the checked-in generated vs code themes', () => {
@@ -27,5 +28,13 @@ describe('theme output', () => {
 
       expect(actual).toBe(expected)
     }
+  })
+
+  it('matches the checked-in generated zed theme', () => {
+    const themePath = path.resolve('packages/zed/themes', 'jannchie.json')
+    const expected = readFileSync(themePath, 'utf8')
+    const actual = `${JSON.stringify(buildThemeFamily(), null, 2)}\n`
+
+    expect(actual).toBe(expected)
   })
 })

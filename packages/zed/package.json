@@ -1,0 +1,33 @@
+{
+  "name": "@jannchie/zed-theme",
+  "type": "module",
+  "version": "3.1.1",
+  "private": true,
+  "description": "Jannchie Code Theme for Zed",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jannchie/vscode-theme",
+    "directory": "packages/zed"
+  },
+  "keywords": [
+    "zed",
+    "theme",
+    "jannchie",
+    "light",
+    "dark"
+  ],
+  "files": [
+    "LICENSE",
+    "README.md",
+    "extension.toml",
+    "themes"
+  ],
+  "scripts": {
+    "build": "esno src/index.ts",
+    "dev": "esno watch src/index.ts"
+  },
+  "devDependencies": {
+    "@jannchie/theme-core": "workspace:*"
+  }
+}

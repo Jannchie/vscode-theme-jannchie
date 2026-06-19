@@ -7,7 +7,8 @@ single source of truth.
 
 - `packages/vscode`: VS Code theme extension published to the VS Code Marketplace.
 - `packages/shiki`: Shiki theme package published to npm.
-- `packages/core`: private shared theme source used by both packages.
+- `packages/zed`: Zed theme family (`themes/jannchie.json`) for the Zed editor.
+- `packages/core`: private shared theme source used by all targets.
 
 Five variants are produced from one core: **Light**, **Light Soft**, **Dark**,
 **Dark Soft**, and **Black**.
@@ -16,7 +17,7 @@ Five variants are produced from one core: **Light**, **Light Soft**, **Dark**,
 
 The theme is built on a small set of rules that, together, determine every
 color decision. The goal is that changing one hue propagates correctly across
-five variants and two render targets without hand-tuning.
+five variants and every render target without hand-tuning.
 
 ### Three layers, one direction of flow
 
@@ -60,7 +61,7 @@ semantic load, so reading any file feels structurally consistent.
 | orange / amber      | function, string, decorator (execution, literal, annotation) |
 | green / pine        | class, comment, regex, added |
 | cyan / blue         | type, interface, property, namespace |
-| purple / lilac      | import (structural boundary) |
+| magenta / pink      | import (structural boundary) |
 | gray                | variable, punctuation (intentional quiet) |
 
 ### Foreground hierarchy through alpha, not extra grays

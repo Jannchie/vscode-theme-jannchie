@@ -62,6 +62,12 @@ importers:
         specifier: workspace:*
         version: link:../core
 
+  packages/zed:
+    devDependencies:
+      '@jannchie/theme-core':
+        specifier: workspace:*
+        version: link:../core
+
 packages:
 
   '@antfu/eslint-config@8.2.0':
@@ -3741,8 +3747,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.57.1(typescript@5.9.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.57.1(typescript@5.9.3)
-      '@typescript-eslint/types': 8.57.1
+      '@typescript-eslint/tsconfig-utils': 8.59.0(typescript@5.9.3)
+      '@typescript-eslint/types': 8.59.0
       debug: 4.4.3
       typescript: 5.9.3
     transitivePeerDependencies:
